@@ -39,8 +39,15 @@
 					$nouvelArticle = new Article($nombreArticles, $titre, true);	
 					
 					$fichierSauvegarde = fopen("articles.txt", "a+");
-					fwrite($fichierSauvegarde, $nouvelArticle->_id."\r\n");
-					fwrite($fichierSauvegarde, $nouvelArticle->_titre."\r\n");
+					fwrite($fichierSauvegarde, $nouvelArticle->getId()."\r\n");
+					fwrite($fichierSauvegarde, $nouvelArticle->getTitre()."\r\n");
+					
+					$nombreMots = sizeof($nouvelArticle->getMotsCles());
+					for ($motActuel = 0; $motActuel < $nombreMots-1; $motActuel++) {
+						fwrite($fichierSauvegarde, $nouvelArticle->getMotsCles()[$motActuel].";");
+					}
+					fwrite($fichierSauvegarde, $nouvelArticle->getMotsCles()[$nombreMots-1]."\r\n");
+					
 					fclose($fichierSauvegarde);
 				}
 			?>
