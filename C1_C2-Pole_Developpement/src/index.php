@@ -3,21 +3,25 @@
 <?php 
 	include 'article.php';
 	$ligne = 0;
+	
+	$compteur = fopen("compteur.txt", "r+");
+	$nombreArticles = fgets($compteur, 255);
+	$nombreArticles = intval($nombreArticles);
+	fclose($compteur);
+	
 	$articles = fopen("articles.txt", "r");
 	
-	while (!feof($articles)) {
-		$ligne++;
+	for ($i = 0; $i < $nombreArticles; $i++) {
+		
+		// Création de l'article avec l'id correspondant
 		$valeur = fgets($articles, 4096); 
-		if ($valeur != ""){ 
-			if ($ligne % 2 != 0) {
-				$valeur = intval($valeur);
-				${"article$valeur"} = new Article($valeur, "temp", false);
-				$idArticle = $valeur;
-			}
-			else {
-				${"article$idArticle"}->setTitre($valeur);
-			}
-		}
+		$valeur = intval($valeur);
+		${"article$valeur"} = new Article($valeur, "temp", false);
+		$idArticle = $valeur;
+
+		// Ajout du titre à l'article
+		$valeur = fgets($articles, 4096); 		
+		${"article$idArticle"}->setTitre($valeur);
 	}
 	fclose($articles);
 ?>

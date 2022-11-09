@@ -24,19 +24,19 @@
 				
 				if ($titre != "") {
 					$compteur = fopen("compteur.txt", "r+");
-					$chaine = fgets($compteur, 255);
-					if ($chaine == "") {
+					$nombreArticles = fgets($compteur, 255);
+					if ($nombreArticles == "") {
 						fwrite($compteur, 1);
 						$nb = 1;
 					}
 					else {
-						$nb = intval($chaine);
-						$nb = $nb + 1;
-						file_put_contents("compteur.txt", $nb);
+						$nombreArticles = intval($nombreArticles);
+						$nombreArticles = $nombreArticles + 1;
+						file_put_contents("compteur.txt", $nombreArticles);
 					}
 					fclose($compteur);
 					
-					$nouvelArticle = new Article($nb, $titre, true);	
+					$nouvelArticle = new Article($nombreArticles, $titre, true);	
 					
 					$fichierSauvegarde = fopen("articles.txt", "a+");
 					fwrite($fichierSauvegarde, $nouvelArticle->_id."\r\n");
