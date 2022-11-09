@@ -22,21 +22,27 @@
 			<?php
 				extract($_POST,EXTR_OVERWRITE);
 				
-				$compteur = fopen("compteur.txt", "r+");
-				$chaine = fgets($compteur, 255);
-				if ($chaine == "") {
-					fwrite($compteur, 1);
+				if ($titre != "") {
+					$compteur = fopen("compteur.txt", "r+");
+					$chaine = fgets($compteur, 255);
+					if ($chaine == "") {
+						fwrite($compteur, 1);
+						$nb = 1;
+					}
+					else {
+						$nb = intval($chaine);
+						$nb = $nb + 1;
+						file_put_contents("compteur.txt", $nb);
+					}
+					fclose($compteur);
+					
+					$nouvelArticle = new Article($nb, $titre, true);	
+					
+					$fichierSauvegarde = fopen("articles.txt", "a+");
+					fwrite($fichierSauvegarde, $nouvelArticle->_id."\r\n");
+					fwrite($fichierSauvegarde, $nouvelArticle->_titre."\r\n");
+					fclose($fichierSauvegarde);
 				}
-				else {
-					$nb = intval($chaine);
-					$nb = $nb + 1;
-					file_put_contents("compteur.txt", $nb);
-				}
-				fclose($compteur);
-				
-				$monArticle = new Article($nb, $titre);	
-				
-				
 			?>
 		</section>
 	</main>

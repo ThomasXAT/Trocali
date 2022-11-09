@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php include 'article.php';?>
+<?php 
+	include 'article.php';
+	$ligne = 0;
+	$articles = fopen("articles.txt", "r");
+	
+	while (!feof($articles)) {
+		$ligne++;
+		$valeur = fgets($articles, 4096); 
+		if ($valeur != ""){ 
+			if ($ligne % 2 != 0) {
+				$valeur = intval($valeur);
+				${"article$valeur"} = new Article($valeur, "temp", false);
+				$idArticle = $valeur;
+			}
+			else {
+				${"article$idArticle"}->setTitre($valeur);
+			}
+		}
+	}
+	fclose($articles);
+?>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +40,6 @@
 	<main>
 		<?php 
 			$recherche = "";
-			$domaine = "";
 		?>
 		<form action="index.php" method="POST">
 			<label for="recherche">Recherche</label>

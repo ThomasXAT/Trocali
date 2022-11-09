@@ -4,13 +4,15 @@ class Article
     public $_id;
 	public $_titre;
 
-    function __construct($id, $titre) {
+    function __construct($id, $titre, $afficher) {
 		$this->setId($id);
 		$this->setTitre($titre);
-		print 'Article n°';
-		print $this->getId();
-		print ' publié : ';
-		print $this->getTitre();
+		if ($afficher == true) {
+			print 'Article n°';
+			print $this->getId();
+			print ' publié : ';
+			print $this->getTitre();
+		}
     }
 	
     public function setId($id) {
@@ -29,8 +31,8 @@ class Article
         print $this->_titre;
     }
 	
-	/*public function sauvegarder($fic) {
-		
-	}*/
+	public function sauvegarder($fic) {
+		$compteur = fopen("articles.txt", "w+");
+	}
 }
 ?>
