@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE Tabula_Rasa>
+<Algorithme>
+  <nom>Trocali</nom>
+  <date_creation>7/11/2022 14:24</date_creation>
+  <Elements>
+    <Action>
+      <Position>734;29</Position>
+      <StyleLien>1</StyleLien>
+      <PreAssertion>∅</PreAssertion>
+      <PostAssertion>
+listeSynoCorresp
+</PostAssertion>
+      <Titre>Rechercher des articles</Titre>
+      <DetailsVisible>1</DetailsVisible>
+      <DetailsVideVisible>1</DetailsVideVisible>
+      <Enfants/>
+    </Action>
+  </Elements>
+  <Dictionary/>
+</Algorithme>
