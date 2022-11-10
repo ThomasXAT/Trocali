@@ -1,57 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-
-
-
-
-<?php 
-	include 'article.php';
-	
-	// Récupération des articles dans la base de données
-	
-	$compteur = fopen("compteur.txt", "r+");
-	$nombreArticles = fgets($compteur, 255);
-	$nombreArticles = intval($nombreArticles);
-	fclose($compteur);
-	
-	$articles = fopen("articles.txt", "r");
-	for ($i = 0; $i < $nombreArticles; $i++) {
-		
-		// Création de l'article avec l'id correspondant
-		$id = fgets($articles, 4096); 
-		$id = intval($id);
-		${"article$id"} = new Article($id, "temp", false);
-		$idArticle = $id;
-
-		// Ajout du titre
-		$titre = fgets($articles, 4096); 		
-		${"article$idArticle"}->setTitre($titre);
-		
-		// Ajout des mots clés
-		$chaineMotsCles = fgets($articles, 4096); 		
-		$listeMotsCles = array();
-		$motCle = "";
-		for ($i = 0; $i < strlen($chaineMotsCles); $i++) {
-			if ($chaineMotsCles[$i] != ";") {
-				$motCle[strlen($motCle)] = $chaineMotsCles[$i];
-			}
-			else {
-				array_push($listeMotsCles, $motCle);
-				$motCle = "";
-			}
-		}
-		array_push($listeMotsCles, $motCle);
-		${"article$idArticle"}->setMotsCles($listeMotsCles);
-		
-	}
-	fclose($articles);
-	
-?>
-
-
-
-
+<?php include 'article.php';?>
 
 <head>
 	<meta charset="UTF-8">
