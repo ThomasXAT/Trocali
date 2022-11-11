@@ -93,10 +93,14 @@
 		$listeMotsCles = array(); 
 		$mot = strtok($chaine, $delimiteurs);
 		$listeMots = getListeMots();
-		while ($mot != false) {
+		while ($mot != "") {
 			if (in_array($mot, $listeMots)) {
 				array_push($listeMotsCles, $mot);
 				$mot = strtok($delimiteurs);
+			}
+			else {
+				$mot = strtok($delimiteurs);
+
 			}
 		}
 		return $listeMotsCles; 
