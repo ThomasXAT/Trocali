@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <?php include 'article.php';?>
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,17 +19,9 @@
 	</header>
 	<main>
 	
-	
-	
-	
-	
 		<?php 
 			$recherche = "";
 		?>
-		
-		
-		
-		
 		
 		<form action="index.php" method="POST">
 			<label for="recherche">Recherche</label>
@@ -40,18 +30,10 @@
 		</form>
 		<section class="articles">
 		
-		
-		
-		
-		
 			<?php 
 				extract($_POST,EXTR_OVERWRITE);
 				print $recherche.'<P>';
-			?>
-			
-			
-			
-			
+			?>	
 			
 		</section>
 	</main>

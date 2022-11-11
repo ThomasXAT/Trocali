@@ -23,6 +23,7 @@
 			<input type="text" id="titre" name="titre">
 			<input type="submit" value="Valider">
 		</form>
+
 	</main>
 	<footer>
 	</footer>
