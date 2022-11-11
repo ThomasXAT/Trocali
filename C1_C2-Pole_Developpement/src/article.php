@@ -11,16 +11,10 @@
 
 		// CONSTRUCTEUR 
 		
-		function __construct($id, $titre, $afficher) {
+		function __construct($id, $titre) {
 			$this->setId($id);
 			$this->setTitre($titre);
 			$this->setMotsCles(findMotsCles($titre));
-			if ($afficher) {
-				print 'Article n°';
-				print $this->getId();
-				print ' publié : ';
-				print $this->getTitre();
-			}
 		}
 		
 		// METHODES D'ENCAPSULATION
@@ -83,7 +77,7 @@
 		$nombreArticles = getNombreArticles();
 
 		// Création du nouvel article
-		$nouvelArticle = new Article($nombreArticles, $titre, false);	
+		$nouvelArticle = new Article($nombreArticles, $titre);	
 
 		// Exportation des données de l'article
 		$articles = fopen("articles.txt", "a+");
@@ -105,7 +99,7 @@
 		}
 		if ($valeur == $id) {
 			// Création de l'article avec l'id correspondant
-			$article = new Article($id, "temp", false);
+			$article = new Article($id, "temp");
 			
 			// Ajout du titre
 			$titre = fgets($articles, 4096); 		
@@ -115,9 +109,6 @@
 			$chaineMotsCles = fgets($articles, 4096); 		
 			$listeMotsCles = stringToArray($chaineMotsCles);
 			$article->setMotsCles($listeMotsCles);
-		}
-		else {
-			print "Cet article n'existe pas";
 		}
 		fclose($articles);
 		return $article;
