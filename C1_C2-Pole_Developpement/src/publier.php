@@ -18,6 +18,7 @@
 		<nav>
 			<ul>
 				<li><a href="index.php">Accueil<a></li>
+				<li><a href="clear.php">Supprimer les articles</i><a></li>
 			</ul>
 		</nav>
 	</header>
@@ -36,16 +37,29 @@
 		<section class="saisieInfosArticles">
 			<form action="valider.php" method="POST">
 				<div>
-					<label for="titre">Titre</label>
-					<input type="text" id="titre" name="titre">
+					<input type="text" class="titre" id="titre" name="titre" placeholder="Titre de l'article">
+					<select class="categorie" name="categorie" id="categorie">
+						<option value="">Aucune catégorie</option>
+						<?php
+							$listeCategories = getCategories();
+							$nombreCategories = count($listeCategories);
+							for ($numCategorie = 0; $numCategorie < $nombreCategories; $numCategorie++) {
+								$categorie = $listeCategories[$numCategorie];
+								print "<option value=$categorie>$categorie</option>";
+							}
+						?>
+					</select>
+				</div>
+				<div>
+					<textarea class="description" id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea>
 				</div>
 				<div>
 					<?php
 						if (isset($offre)) {
-							print '<input type="submit" name="offre" "value="Valider offre">';
+							print '<input class="valider" type="submit" name="offre" "value="Valider">';
 						}
 						else {
-							print '<input type="submit" name="demande" "value="Valider demande">';
+							print '<input class="valider" type="submit" name="demande" "value="Valider">';
 						}
 					?>
 				</div>

@@ -18,16 +18,38 @@
 		<nav>
 			<ul>
 				<li><a href="index.php">Accueil</i><a></li>
+				<li><a href="clear.php">Supprimer les articles</i><a></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
 		<section class="recherche">
 			<form action="index.php" method="POST">
-				<label for="recherche">Recherche</label>
-				<input type="search" id="recherche" name="recherche">
-				<input type="submit" value="Valider">
+				<div>
+					<label for="recherche">Recherche</label>
+					<input type="search" id="recherche" name="recherche">
+					<label for="categorie">Catégorie</label>
+					<select name="categorie" id="categorie">
+						<option value="">Aucune</option>
+						<?php
+							$listeCategories = getCategories();
+							$nombreCategories = count($listeCategories);
+							for ($numCategorie = 0; $numCategorie < $nombreCategories; $numCategorie++) {
+								$categorie = $listeCategories[$numCategorie];
+								print "<option value=$categorie>$categorie</option>";
+							}
+						?>
+					</select>
+					<input type="submit" value="Valider">
+				</div>
 			</form>
+			<?php
+				extract($_POST,EXTR_OVERWRITE);		
+				if (isset($recherche)) {
+					$motsClesRecherche = findMotsCles($recherche);
+					print arrayToString($motsClesRecherche)." ".$categorie;
+				}
+			?>
 		</section>
 		<section class="publication">
 			<form action="publier.php" method="POST">

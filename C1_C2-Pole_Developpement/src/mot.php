@@ -109,16 +109,19 @@
 		$delimiteurs = " .!?,:;(){}[]%-$'/\_"; 
 		$listeMotsCles = array(); 
 		$mot = strtok($chaine, $delimiteurs);
-		$listeMots = getListeMots();
 		while ($mot != "") {
-			if (in_array($mot, $listeMots)) {
+			if (existe($mot)) {
 				array_push($listeMotsCles, $mot);
 			}
-			elseif (in_array(testerSingulier($mot), $listeMots)) {
+			elseif (existe(testerSingulier($mot))) {
 				array_push($listeMotsCles, testerSingulier($mot));
 			}
 			$mot = strtok($delimiteurs);
 		}
 		return $listeMotsCles; 
+	}
+
+	function existe($mot) {
+		return in_array($mot, getListeMots());
 	}
 ?>

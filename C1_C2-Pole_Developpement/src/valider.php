@@ -10,7 +10,8 @@
 		elseif (isset($demande)) {
 			$type = "demande";
 		}
-		exporter($titre, $type);
+		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
+		exporter($titre, $type, $categorie, $description);
 		//print "Article n°".getNombreArticles()." publié : ".$titre."\r\n";
 		header("Location:index.php");
 	}

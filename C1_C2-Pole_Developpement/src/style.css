@@ -41,10 +41,15 @@ table {
 	border-spacing: 0;
 }
 
+textarea, select {
+	font-family:Arial, Helvetica, sans-serif;
+}
+
 /* Téléphone */
 
 body {
 	background-color: whitesmoke;
+	font-family:Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -102,6 +107,29 @@ main > .saisieInfosArticles {
 	padding: 2vh;
 }
 
+main > .saisieInfosArticles > form > div > .titre {
+	font-size: 1em;
+	width: 57%;
+}
+
+main > .saisieInfosArticles > form > div > .categorie {
+	font-size: 1em;
+	width: 37%;
+}
+
+main > .saisieInfosArticles > form > div > .description {
+	font-size: 1em;
+	width: 95%;
+	margin-top: 1vh;
+	height: 20vh;
+}
+
+main > .saisieInfosArticles > form > div > .valider {
+	font-size: 1em;
+	width: 40%;
+	margin-top: 1vh;
+}
+
 footer {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
@@ -111,6 +139,31 @@ footer {
 
 /* Ordinateur */
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 800px) {
+
+	main > .saisieInfosArticles {
+		width: 600px;
+		margin: auto;
+	}
+
+	main > .saisieInfosArticles > form > div > .titre {
+		font-size: 1.2em;
+		height: 5vh;
+	}
+	
+	main > .saisieInfosArticles > form > div > .categorie {
+		font-size: 1.2em;
+		height: 5vh;
+	}
+	
+	main > .saisieInfosArticles > form > div > .description {
+		font-size: 1.2em;
+		height: 30vh;
+	}
+
+	main > .saisieInfosArticles > form > div > .valider {
+		font-size: 1.2em;
+		height: 5vh;
+	}
 
 }

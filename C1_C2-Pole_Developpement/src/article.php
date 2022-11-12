@@ -1,14 +1,21 @@
 <?php
 	include 'mot.php';
+
+	function getCategories() {
+		return ["Automobile", "Catégorie 2", "Catégorie 3"];
+	}
 	
 	class Article
 	{
 		// ATTRIBUTS
 		
-		public $_id;			// Identifiant unique de l'article
-		public $_titre;			// Titre de l'article
-		public $_motsCles;		// Mots clés de l'article
-		public $_type;			// Type de l'article (offre ou demande)
+		private $_id;			// Identifiant unique de l'article
+		private $_titre;		// Titre de l'article
+		private $_motsCles;		// Mots clés de l'article
+		private $_type;			// Type de l'article (offre ou demande)
+		private $_categorie;	// Catégorie de l'article
+		private $_description;
+		private $_masque = false;
 
 		// CONSTRUCTEUR 
 		
@@ -52,27 +59,40 @@
 			return $this->_type;
 		}
 
-		// METHODES USUELLES
-
-		public function toString() {
-			return $this->getId()." ".$this->getTitre()." ".arrayToString($this->getMotsCles());
+		public function setCategorie($categorie) {
+			$this->_categorie = $categorie;
 		}
+		
+		public function getCategorie() {
+			return $this->_categorie;
+		}
+
+		public function setDescription($description) {
+			$this->_description = $description;
+		}
+		
+		public function getDescription() {
+			return $this->_description;
+		}
+
+		// METHODES USUELLES
 
 		public function afficher($infosDev) {
 			$id = $this->getId();
 			$titre = $this->getTitre();
 			$type = $this->getType();
+			$categorie = $this->getCategorie();
 			print "<article><p>Article n°$id ($type) : '$titre'";
 			if ($infosDev) {
 				$motsCles = arrayToString($this->getMotsCles());
-				print " dont les mots clés sont $motsCles";
+				print " dont les mots clés sont $motsCles est posté dans la catégorie $categorie";
 			}
 			print "</p></article>";
 		}
 	}
 		
 	// SOUS-PROGRAMMES EXTERNES
-	
+
 	function getNombreArticles() {
 		$compteur = fopen("compteur.txt", "r+");
 		$nombreArticles = fgets($compteur, 255);
@@ -97,7 +117,7 @@
 		fclose($compteur);
 	}
 
-	function exporter($titre, $type) {
+	function exporter($titre, $type, $categorie, $description) {
 
 		// Incrémentation et récupération du nombre d'articles
 		incrNombreArticles();
@@ -114,6 +134,9 @@
 		fwrite($articles, $nouvelArticle->getTitre()."\r\n");
 		fwrite($articles, $motsCles."\r\n");
 		fwrite($articles, $type."\r\n");
+		fwrite($articles, $categorie."\r\n");
+		fwrite($articles, $description."\r\n");
+		fwrite($articles, "\r\n");
 		fclose($articles);			
 	}
 
@@ -122,16 +145,16 @@
 		$articles = fopen("articles.txt", "r");
 		$valeur = fgets($articles, 4096);
 		while ($valeur != $id && $valeur != $nombreArticles) {
-			for ($i = 0; $i < 4; $i++) {
+			for ($i = 0; $i < 7; $i++) {
 				$valeur = fgets($articles, 4096);
 			}
 		}
 		if ($valeur == $id) {
 			// Création de l'article avec l'id correspondant
-			$article = new Article($id, "temp");
+			$titre = fgets($articles, 4096); 	
+			$article = new Article($id, $titre);
 			
-			// Ajout du titre
-			$titre = fgets($articles, 4096); 		
+			// Ajout du titre	
 			$article->setTitre($titre);
 
 			// Ajout des mots clés
@@ -142,6 +165,16 @@
 			// Ajout du type
 			$type = fgets($articles, 4096);
 			$article->setType($type);
+
+			// Ajout de la catégorie
+			$categorie = fgets($articles, 4096);
+			$article->setCategorie($categorie);
+
+			// Ajout de la description
+			$description = fgets($articles, 4096);
+			$article->setDescription($description);
+
+			fgets($articles, 4096);
 		}
 		fclose($articles);
 		return $article;
