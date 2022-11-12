@@ -1,11 +1,19 @@
 <?php
     include "article.php";
 
-	extract($_POST,EXTR_OVERWRITE);		
+	extract($_POST,EXTR_OVERWRITE);	
+
 	if ($titre != "") {
-		exporter($titre);
+		if (isset($offre)) {
+			$type = "offre";
+		}	
+		elseif (isset($demande)) {
+			$type = "demande";
+		}
+		exporter($titre, $type);
 		//print "Article n°".getNombreArticles()." publié : ".$titre."\r\n";
+		header("Location:index.php");
 	}
-	header("Location:publier.php");
+
 
 ?>

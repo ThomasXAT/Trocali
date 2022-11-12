@@ -8,6 +8,7 @@
 		public $_id;			// Identifiant unique de l'article
 		public $_titre;			// Titre de l'article
 		public $_motsCles;		// Mots clés de l'article
+		public $_type;			// Type de l'article (offre ou demande)
 
 		// CONSTRUCTEUR 
 		
@@ -42,6 +43,32 @@
 		public function getMotsCles() {
 			return $this->_motsCles;
 		}
+
+		public function setType($type) {
+			$this->_type = $type;
+		}
+		
+		public function getType() {
+			return $this->_type;
+		}
+
+		// METHODES USUELLES
+
+		public function toString() {
+			return $this->getId()." ".$this->getTitre()." ".arrayToString($this->getMotsCles());
+		}
+
+		public function afficher($infosDev) {
+			$id = $this->getId();
+			$titre = $this->getTitre();
+			$type = $this->getType();
+			print "<article><p>Article n°$id ($type) : '$titre'";
+			if ($infosDev) {
+				$motsCles = arrayToString($this->getMotsCles());
+				print " dont les mots clés sont $motsCles";
+			}
+			print "</p></article>";
+		}
 	}
 		
 	// SOUS-PROGRAMMES EXTERNES
@@ -70,7 +97,7 @@
 		fclose($compteur);
 	}
 
-	function exporter($titre) {
+	function exporter($titre, $type) {
 
 		// Incrémentation et récupération du nombre d'articles
 		incrNombreArticles();
@@ -78,13 +105,15 @@
 
 		// Création du nouvel article
 		$nouvelArticle = new Article($nombreArticles, $titre);	
+		$nouvelArticle->setType($type);
+		$motsCles = arrayToString($nouvelArticle->getMotsCles());
 
 		// Exportation des données de l'article
 		$articles = fopen("articles.txt", "a+");
 		fwrite($articles, $nouvelArticle->getId()."\r\n");
 		fwrite($articles, $nouvelArticle->getTitre()."\r\n");
-		$motsCles = arrayToString($nouvelArticle->getMotsCles());
 		fwrite($articles, $motsCles."\r\n");
+		fwrite($articles, $type."\r\n");
 		fclose($articles);			
 	}
 
@@ -93,7 +122,7 @@
 		$articles = fopen("articles.txt", "r");
 		$valeur = fgets($articles, 4096);
 		while ($valeur != $id && $valeur != $nombreArticles) {
-			for ($i = 0; $i < 3; $i++) {
+			for ($i = 0; $i < 4; $i++) {
 				$valeur = fgets($articles, 4096);
 			}
 		}
@@ -109,6 +138,10 @@
 			$chaineMotsCles = fgets($articles, 4096); 		
 			$listeMotsCles = stringToArray($chaineMotsCles);
 			$article->setMotsCles($listeMotsCles);
+
+			// Ajout du type
+			$type = fgets($articles, 4096);
+			$article->setType($type);
 		}
 		fclose($articles);
 		return $article;

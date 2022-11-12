@@ -63,6 +63,7 @@
 
 	function stringToArray($chaine) {
 		$liste = array();
+		$mot = "";
 		for ($i = 0; $i < strlen($chaine); $i++) {
 			if ($chaine[$i] != ";") {
 				$mot[strlen($mot)] = $chaine[$i];

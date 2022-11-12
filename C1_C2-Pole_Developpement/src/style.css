@@ -74,8 +74,9 @@ main {
 	text-align: center;
 }
 
-main > .recherche {
-	background-color: red;
+main > .titre {
+	margin-bottom: 4vh;
+	font-size: 2em;
 }
 
 main > .publication {
@@ -91,6 +92,14 @@ main > .articles {
 	border: 1px solid black;
 	padding: 2vh;
 	margin: 2vh;
+}
+
+main > .saisieInfosArticles {
+	background-color: white;
+	border: 1px solid black;
+	margin-left: 4vh;
+	margin-right: 4vh;
+	padding: 2vh;
 }
 
 footer {

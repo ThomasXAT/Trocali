@@ -30,13 +30,27 @@
 			</form>
 		</section>
 		<section class="publication">
-			<p>Un bien ou un service à proposer ?</p>
-			<a href="publier.php"><button>Publier une offre</button></a>
-			<p>Vous avez besoin de quelque chose ?</p>
-			<button>Lancer un appel d'offres</button>
+			<form action="publier.php" method="POST">
+				<p>Un bien ou un service à proposer ?</p>
+				<input type="submit" name="offre" value="Publier une offre" />
+				<p>Vous avez besoin de quelque chose ?</p>
+				<input type="submit" name="demande" value="Lancer un appel d'offres" />
+			</form>
 		</section>
 		<section class="articles">
-			<p>Articles</p>	
+			<?php
+				$nombreArticles = getNombreArticles();
+				if ($nombreArticles != 0) {
+					print "<p>Derniers articles</p><br />";
+					for ($id = $nombreArticles; $id > 0; $id--) {
+						$article = importer($id);
+						$article->afficher(true);
+					}
+				}
+				else {
+					print "<p>Aucun article n'a encore été publié...</p>";
+				}
+			?>
 		</section>
 	</main>
 	<footer>

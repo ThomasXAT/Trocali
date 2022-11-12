@@ -22,11 +22,34 @@
 		</nav>
 	</header>
 	<main>
-		<section>
+		<section class="titre">
+			<?php
+				extract($_POST,EXTR_OVERWRITE);		
+				if (isset($offre)) {
+					print "<h2>Publier une offre</h2>";
+				}
+				else {
+					print "<h2>Lancer un appel d'offres</h2>";
+				}
+			?>
+		</section>
+		<section class="saisieInfosArticles">
 			<form action="valider.php" method="POST">
-				<label for="titre">Titre</label>
-				<input type="text" id="titre" name="titre">
-				<input type="submit" value="Valider">
+				<div>
+					<label for="titre">Titre</label>
+					<input type="text" id="titre" name="titre">
+				</div>
+				<div>
+					<?php
+						if (isset($offre)) {
+							print '<input type="submit" name="offre" "value="Valider offre">';
+						}
+						else {
+							print '<input type="submit" name="demande" "value="Valider demande">';
+						}
+					?>
+				</div>
+
 			</form>
 		</section>
 	</main>
