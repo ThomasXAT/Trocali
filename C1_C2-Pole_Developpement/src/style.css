@@ -41,39 +41,66 @@ table {
 	border-spacing: 0;
 }
 
-/* ---------------------------------------------------------- */
+/* Téléphone */
 
 body {
 	background-color: whitesmoke;
 }
 
 header {
-	margin-top: 5vh;
-	margin-bottom: 5vh;	
-	text-align: center;
+	background-color: white;
+	border: 1px black solid;
+	display: grid;
+	grid-template-columns: 20% 80%;
+	padding: 4vh;
+	align-items: center; 
+	margin-bottom: 4vh;
 }
 
 header > h1 {
-	font-size: 4em;
+	font-size: 1.5em;
+	text-align: left;
 }
 
 header > nav {
+	text-align: right;
+}
 
-	font-size: 1.5em;
+header > nav > ul > li {
+	display: inline;
 }
 
 main {
-	margin-top: 5vh;
-	margin-bottom: 5vh;
 	text-align: center;
+}
 
+main > .recherche {
+	background-color: red;
+}
+
+main > .publication {
+	background-color: white;
+	border: 1px black solid;
+	padding: 2vh;
+	margin-top: 4vh;
+	margin-bottom: 4vh;
+}
+
+main > .articles {
+	background-color: white;
+	border: 1px solid black;
+	padding: 2vh;
+	margin: 2vh;
 }
 
 footer {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
 	text-align: center;
+	font-size: 0.75em;
 }
+
+/* Ordinateur */
 
 @media screen and (min-width: 1024px) {
 

@@ -17,8 +17,7 @@
 		<h1>Trocali</h1>
 		<nav>
 			<ul>
-				<li><a href="index.php">Accueil<a></li>
-				<li><a href="publier.php">Publier un article<a></li>
+				<li><a href="index.php">Accueil</i><a></li>
 			</ul>
 		</nav>
 	</header>
@@ -29,9 +28,15 @@
 				<input type="search" id="recherche" name="recherche">
 				<input type="submit" value="Valider">
 			</form>
-	</section>
+		</section>
+		<section class="publication">
+			<p>Un bien ou un service à proposer ?</p>
+			<a href="publier.php"><button>Publier une offre</button></a>
+			<p>Vous avez besoin de quelque chose ?</p>
+			<button>Lancer un appel d'offres</button>
+		</section>
 		<section class="articles">
-
+			<p>Articles</p>	
 		</section>
 	</main>
 	<footer>

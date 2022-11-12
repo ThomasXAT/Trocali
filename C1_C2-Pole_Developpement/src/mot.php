@@ -88,20 +88,35 @@
 		return $chaine;
 	}
 
+	function testerSingulier($mot) {
+		$derniereLettre = substr($mot, -1);
+		if ($derniereLettre == "s") {
+			$tailleMot = strlen($mot);
+			$singulier = "";
+			for ($lettre = 0; $lettre <= $tailleMot - 2; $lettre++) {
+				$singulier[$lettre] = $mot[$lettre];
+			}
+			return $singulier;
+		}
+		else {
+			return $mot;
+		}
+	}
+
 	function findMotsCles($chaine) {
-		$delimiteurs = " .!?,:;(){}[]%"; 
+		$chaine = strtolower($chaine);
+		$delimiteurs = " .!?,:;(){}[]%-$'/\_"; 
 		$listeMotsCles = array(); 
 		$mot = strtok($chaine, $delimiteurs);
 		$listeMots = getListeMots();
 		while ($mot != "") {
 			if (in_array($mot, $listeMots)) {
 				array_push($listeMotsCles, $mot);
-				$mot = strtok($delimiteurs);
 			}
-			else {
-				$mot = strtok($delimiteurs);
-
+			elseif (in_array(testerSingulier($mot), $listeMots)) {
+				array_push($listeMotsCles, testerSingulier($mot));
 			}
+			$mot = strtok($delimiteurs);
 		}
 		return $listeMotsCles; 
 	}

@@ -17,17 +17,18 @@
 	<h1>Trocali</h1>
 		<nav>
 			<ul>
-			<li><a href="index.php">Accueil<a></li>
-				<li><a href="publier.php">Publier un article<a></li>
+				<li><a href="index.php">Accueil<a></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
-		<form action="valider.php" method="POST">
-			<label for="titre">Titre</label>
-			<input type="text" id="titre" name="titre">
-			<input type="submit" value="Valider">
-		</form>
+		<section>
+			<form action="valider.php" method="POST">
+				<label for="titre">Titre</label>
+				<input type="text" id="titre" name="titre">
+				<input type="submit" value="Valider">
+			</form>
+		</section>
 	</main>
 	<footer>
 		<?php print $footer; ?>

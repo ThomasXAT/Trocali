@@ -2,7 +2,7 @@
     include "article.php";
 
 	extract($_POST,EXTR_OVERWRITE);		
-	if (isset($titre)) {
+	if ($titre != "") {
 		exporter($titre);
 		//print "Article n°".getNombreArticles()." publié : ".$titre."\r\n";
 	}
