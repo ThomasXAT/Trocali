@@ -25,31 +25,20 @@
 	<main>
 		<section class="recherche">
 			<form action="index.php" method="POST">
-				<div>
-					<label for="recherche">Recherche</label>
-					<input type="search" id="recherche" name="recherche">
-					<label for="categorie">Catégorie</label>
-					<select name="categorie" id="categorie">
-						<option value="">Aucune</option>
-						<?php
-							$listeCategories = getCategories();
-							$nombreCategories = count($listeCategories);
-							for ($numCategorie = 0; $numCategorie < $nombreCategories; $numCategorie++) {
-								$categorie = $listeCategories[$numCategorie];
-								print "<option value=$categorie>$categorie</option>";
-							}
-						?>
-					</select>
-					<input type="submit" value="Valider">
-				</div>
+				<input class="saisie" type="search" id="recherche" name="recherche" placeholder="Recherche">
+				<select class="categorie" name="categorie" id="categorie">
+					<option value="">Aucune catégorie</option>
+					<?php
+						$listeCategories = getCategories();
+						$nombreCategories = count($listeCategories);
+						for ($numCategorie = 0; $numCategorie < $nombreCategories; $numCategorie++) {
+							$categorie = $listeCategories[$numCategorie];
+							print "<option value=$categorie>$categorie</option>";
+						}
+					?>
+				</select>
+				<input class ="valider" type="submit" value="Valider">
 			</form>
-			<?php
-				extract($_POST,EXTR_OVERWRITE);		
-				if (isset($recherche)) {
-					$motsClesRecherche = findMotsCles($recherche);
-					print arrayToString($motsClesRecherche)." ".$categorie;
-				}
-			?>
 		</section>
 		<section class="publication">
 			<form action="publier.php" method="POST">
@@ -61,16 +50,24 @@
 		</section>
 		<section class="articles">
 			<?php
-				$nombreArticles = getNombreArticles();
-				if ($nombreArticles != 0) {
-					print "<p>Derniers articles</p><br />";
-					for ($id = $nombreArticles; $id > 0; $id--) {
-						$article = importer($id);
-						$article->afficher(true);
-					}
+				extract($_POST,EXTR_OVERWRITE);		
+				if (isset($recherche) && $recherche != "") {
+					print "<p>Articles correspondants à votre recherche :</p><br />";
+					$motsClesRecherche = findMotsCles($recherche);
+					print arrayToString($motsClesRecherche)." ".$categorie;
 				}
 				else {
-					print "<p>Aucun article n'a encore été publié...</p>";
+					$nombreArticles = getNombreArticles();
+					if ($nombreArticles != 0) {
+						print "<p>Derniers articles</p><br />";
+						for ($id = $nombreArticles; $id > 0; $id--) {
+							$article = importer($id);
+							$article->afficher(true);
+						}
+					}
+					else {
+						print "<p>Aucun article n'a encore été publié...</p>";
+					}
 				}
 			?>
 		</section>

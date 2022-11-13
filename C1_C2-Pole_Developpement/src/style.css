@@ -108,26 +108,60 @@ main > .saisieInfosArticles {
 }
 
 main > .saisieInfosArticles > form > div > .titre {
-	font-size: 1em;
-	width: 57%;
+	font-size: 1.5em;
+	width: 95%;
+	height: 8vh;
+	margin-bottom: 1vh;
 }
 
 main > .saisieInfosArticles > form > div > .categorie {
-	font-size: 1em;
-	width: 37%;
+	font-size: 1.5em;
+	width: 97%;
+	height: 8vh;
 }
 
 main > .saisieInfosArticles > form > div > .description {
-	font-size: 1em;
+	font-size: 1.5em;
 	width: 95%;
 	margin-top: 1vh;
-	height: 20vh;
+	height: 25vh;
 }
 
 main > .saisieInfosArticles > form > div > .valider {
-	font-size: 1em;
-	width: 40%;
+	font-size: 1.5em;
+	width: 60%;
 	margin-top: 1vh;
+	height: 8vh;
+}
+
+main > .recherche > form > .saisie {
+	font-size: 1.5em;
+	height: 8vh;
+	width: 90%;
+	margin-bottom: 1vh;
+}
+
+main > .recherche > form > .categorie {
+	font-size: 1em;
+	height: 6vh;
+	width: 35%;
+}
+
+main > .recherche > form > .valider {
+	font-size: 1em;
+	height: 6vh;
+	width: 54%;
+}
+
+main > .publication > form > input {
+	font-size: 1em;
+	height: 6vh;
+	width: 80%;
+	margin: 1vh;
+}
+
+main > .publication > form > p {
+	font-size: 1.2em;
 }
 
 footer {
@@ -135,6 +169,12 @@ footer {
 	margin-bottom: 5vh;
 	text-align: center;
 	font-size: 0.75em;
+}
+
+article {
+	border: 1px solid black;
+	padding: 2vh;
+	
 }
 
 /* Ordinateur */
@@ -149,21 +189,54 @@ footer {
 	main > .saisieInfosArticles > form > div > .titre {
 		font-size: 1.2em;
 		height: 5vh;
+		width: 57%;
 	}
 	
 	main > .saisieInfosArticles > form > div > .categorie {
 		font-size: 1.2em;
-		height: 5vh;
+		height: 5.9vh;
+		width: 37%;
 	}
 	
 	main > .saisieInfosArticles > form > div > .description {
 		font-size: 1.2em;
 		height: 30vh;
+		width: 95%;
 	}
 
 	main > .saisieInfosArticles > form > div > .valider {
 		font-size: 1.2em;
 		height: 5vh;
+		width: 40%;
+	}
+
+	main > .recherche > form {
+		margin: auto;
+		width: 60%;
+	}
+
+	main > .recherche > form > .saisie {
+		height: 6vh;
+		font-size: 1em;
+		width: 55%;
+		margin-bottom: 1vh;
+	}
+	
+	main > .recherche > form > .categorie {
+		width: 20%;
+	}
+	
+	main > .recherche > form > .valider {
+		width: 15%;
+	}
+
+	main > .publication > form > input {
+		width: 25%;
+	}
+
+	main > .articles {
+		width: 60%;
+		margin: auto;
 	}
 
 }
