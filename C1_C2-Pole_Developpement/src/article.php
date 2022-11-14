@@ -85,12 +85,15 @@
 			$titre = $this->getTitre();
 			$type = $this->getType();
 			$categorie = $this->getCategorie();
-			print "<article><p>Article n°$id ($type) : '$titre'";
-			if ($infosDev) {
-				$motsCles = arrayToString($this->getMotsCles());
-				print " dont les mots clés sont $motsCles est posté dans la catégorie $categorie";
+			$description = $this->getDescription();
+
+			print "<article>";
+			print "<h3>$type : $titre";
+			if ($categorie != "") {
+				print " ($categorie)";
 			}
-			print "</p></article>";
+			print "</h3><br /><p>$description</p>";
+			print "</article>";
 		}
 	}
 		

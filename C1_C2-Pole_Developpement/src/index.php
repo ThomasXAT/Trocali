@@ -50,17 +50,14 @@
 		</section>
 		<section class="articles">
 			<?php
-				//print getDicSynonymes()["à"]["Articles"][0];
 				extract($_POST,EXTR_OVERWRITE);		
 				if (isset($recherche) && $recherche != "") {
 					print "<p>Articles correspondants à votre recherche :</p><br />";
-					$motsClesRecherche = findMotsCles($recherche);
-					print arrayToString($motsClesRecherche)." ".$categorie;
 				}
 				else {
 					$nombreArticles = getNombreArticles();
 					if ($nombreArticles != 0) {
-						print "<p>Derniers articles</p><br />";
+						print "<p>Derniers articles ($nombreArticles)</p><br />";
 						for ($id = $nombreArticles; $id > 0; $id--) {
 							$article = importer($id);
 							$article->afficher(true);

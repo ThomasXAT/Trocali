@@ -85,34 +85,6 @@
 		return array_keys(getDicSynonymes());
 	}
 
-	function stringToArray($chaine) {
-		$liste = array();
-		$mot = "";
-		for ($i = 0; $i < strlen($chaine); $i++) {
-			if ($chaine[$i] != ";") {
-				$mot[strlen($mot)] = $chaine[$i];
-			}
-			else {
-				array_push($liste, $mot);
-				$mot= "";
-			}
-		}
-		array_push($liste, $mot);
-		return $liste;
-	}
-
-	function arrayToString($liste) {
-		$chaine = "";
-		$nombreMots = sizeof($liste);
-		for ($mot = 0; $mot < $nombreMots; $mot++) {
-			$chaine = $chaine.$liste[$mot];
-			if ($liste[$mot] != end($liste)) {
-				$chaine = $chaine.";";
-			}
-		}
-		return $chaine;
-	}
-
 	function testerSingulier($mot) {
 		$derniereLettre = substr($mot, -1);
 		if ($derniereLettre == "s") {
