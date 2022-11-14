@@ -1,0 +1,40 @@
+\hypertarget{clear_8php}{}\doxysection{Référence du fichier src/clear.php}
+\label{clear_8php}\index{src/clear.php@{src/clear.php}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{clear_8php_a912409f4d3858d8f3d17fff9a307eed5}{\$compteur}} = fopen(\char`\"{}compteur.\+txt\char`\"{}, \char`\"{}r+\char`\"{})
+\item 
+\mbox{\hyperlink{clear_8php_a086d538fe71143a08071c194c8569f92}{\$articles}} = fopen(\char`\"{}articles.\+json\char`\"{}, \char`\"{}r+\char`\"{})
+\item 
+\mbox{\hyperlink{clear_8php_abc7c3385478b73d486c29767e764f855}{\$dic}} = \mbox{\hyperlink{mot_8php_a8de3944df27c09cfad0ec9325ad51ef2}{get\+Dic\+Synonymes}}()
+\item 
+foreach(\mbox{\hyperlink{mot_8php_aaf2e0e7d8454cdf77d8cdee6f0420231}{get\+Liste\+Mots}}() as \$mot) \mbox{\hyperlink{clear_8php_acdcda90639542affd16342c7f7134eb1}{\$donnees}} = json\+\_\+encode(\$dic)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{clear_8php_a086d538fe71143a08071c194c8569f92}\label{clear_8php_a086d538fe71143a08071c194c8569f92}} 
+\index{clear.php@{clear.php}!\$articles@{\$articles}}
+\index{\$articles@{\$articles}!clear.php@{clear.php}}
+\doxysubsubsection{\texorpdfstring{\$articles}{$articles}}
+{\footnotesize\ttfamily \$articles = fopen(\char`\"{}articles.\+json\char`\"{}, \char`\"{}r+\char`\"{})}
+
+\mbox{\Hypertarget{clear_8php_a912409f4d3858d8f3d17fff9a307eed5}\label{clear_8php_a912409f4d3858d8f3d17fff9a307eed5}} 
+\index{clear.php@{clear.php}!\$compteur@{\$compteur}}
+\index{\$compteur@{\$compteur}!clear.php@{clear.php}}
+\doxysubsubsection{\texorpdfstring{\$compteur}{$compteur}}
+{\footnotesize\ttfamily \$compteur = fopen(\char`\"{}compteur.\+txt\char`\"{}, \char`\"{}r+\char`\"{})}
+
+\mbox{\Hypertarget{clear_8php_abc7c3385478b73d486c29767e764f855}\label{clear_8php_abc7c3385478b73d486c29767e764f855}} 
+\index{clear.php@{clear.php}!\$dic@{\$dic}}
+\index{\$dic@{\$dic}!clear.php@{clear.php}}
+\doxysubsubsection{\texorpdfstring{\$dic}{$dic}}
+{\footnotesize\ttfamily \$dic = \mbox{\hyperlink{mot_8php_a8de3944df27c09cfad0ec9325ad51ef2}{get\+Dic\+Synonymes}}()}
+
+\mbox{\Hypertarget{clear_8php_acdcda90639542affd16342c7f7134eb1}\label{clear_8php_acdcda90639542affd16342c7f7134eb1}} 
+\index{clear.php@{clear.php}!\$donnees@{\$donnees}}
+\index{\$donnees@{\$donnees}!clear.php@{clear.php}}
+\doxysubsubsection{\texorpdfstring{\$donnees}{$donnees}}
+{\footnotesize\ttfamily foreach (\mbox{\hyperlink{mot_8php_aaf2e0e7d8454cdf77d8cdee6f0420231}{get\+Liste\+Mots}}() as \$mot) \$donnees = json\+\_\+encode(\$dic)}
+
