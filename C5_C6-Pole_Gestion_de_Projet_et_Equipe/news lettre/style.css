@@ -1,0 +1,47 @@
+* {
+    padding: 0;
+}
+
+#news_lettre {
+    align-items: center;
+
+    margin: auto;
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    width: 20%;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+form {
+    padding: 0 0 20px 10px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+.email {
+    height: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+p {
+    text
+}
+
+.button {
+    text-align: center;
+    color: white;
+    background-color: rgb(108, 163, 108);
+    border: rgb(108, 163, 108);
+    padding: 10px 0 10px 0;
+    margin: auto;
+    margin-top: 20px;
+    width: 50%;
+}
