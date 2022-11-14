@@ -50,6 +50,7 @@
 		</section>
 		<section class="articles">
 			<?php
+				//print getDicSynonymes()["à"]["Articles"][0];
 				extract($_POST,EXTR_OVERWRITE);		
 				if (isset($recherche) && $recherche != "") {
 					print "<p>Articles correspondants à votre recherche :</p><br />";

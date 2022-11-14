@@ -5,14 +5,15 @@
 		
 		public $_intitule;					// Intitulé du mot
 		public $_synonymes;					// Liste des synonymes de ce mot
-		public $_presentDans = array();		// Liste des articles dans lesquels est présent ce mot
+		public $_articles = array();		// Liste des articles dans lesquels est présent ce mot
 		public $_compteur = 1 ;			
 
 		// CONSTRUCTEUR 
 		
 		function __construct($intitule) {
 			$this->setIntitule($intitule);
-			$this->setSynonymes(getDicSynonymes()[$this->getIntitule()]);
+			$this->setSynonymes(getDicSynonymes()[$this->getIntitule()]["Synonymes"]);
+			$this->setArticles(getDicSynonymes()[$this->getIntitule()]["Articles"]);
 		}
 		
 		// METHODES D'ENCAPSULATION
@@ -32,6 +33,14 @@
 		public function getSynonymes() {
 			return $this->_synonymes;
 		}
+
+		public function setArticles($articles) {
+			$this->_articles = $articles;
+		}
+		
+		public function getArticles() {
+			return $this->_articles;
+		}
 		
 		public function setCompteur($compteur) {
 			$this->_compteur = $compteur;
@@ -46,6 +55,21 @@
 		public function incrCompteur() {
 			$this->setCompteur($this->getCompteur()+1);
 		}	
+
+		public function ajouterArticle($id) {
+			$fichier = ("dicSynonymes.json");
+			$donnees = file_get_contents($fichier);
+			$dicSynonymes = json_decode($donnees, true);
+
+			if (isset($dicSynonymes[$this->getIntitule()]["Articles"])) {
+				array_push($dicSynonymes[$this->getIntitule()]["Articles"], $id);
+			}
+			else {
+				$dicSynonymes[$this->getIntitule()]["Articles"] = [$id];
+			}
+			$donnees = json_encode($dicSynonymes);
+			file_put_contents($fichier, $donnees);
+		}
 	}
 
 	// SOUS-PROGRAMMES EXTERNES

@@ -5,14 +5,20 @@
 
 	if ($titre != "") {
 		if (isset($offre)) {
-			$type = "offre";
+			$type = "Offre";
 		}	
 		elseif (isset($demande)) {
-			$type = "demande";
+			$type = "Appel d'offres";
 		}
 		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
 		exporter($titre, $type, $categorie, $description);
-		//print "Article n°".getNombreArticles()." publié : ".$titre."\r\n";
+		$nouvelArticle = importer(getNombreArticles());
+
+		foreach ($nouvelArticle->getMotsCles() as $mot) {
+			$mot = new Mot($mot);
+			$mot->ajouterArticle($nouvelArticle->getId());
+		}
+
 		header("Location:index.php");
 	}
 

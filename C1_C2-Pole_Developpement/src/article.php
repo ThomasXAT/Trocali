@@ -2,7 +2,7 @@
 	include 'mot.php';
 
 	function getCategories() {
-		return ["Automobile", "Catégorie 2", "Catégorie 3"];
+		return ["Automobile", "Catégorie 2", "Catégorie 4"];
 	}
 	
 	class Article
@@ -14,15 +14,18 @@
 		private $_motsCles;		// Mots clés de l'article
 		private $_type;			// Type de l'article (offre ou demande)
 		private $_categorie;	// Catégorie de l'article
-		private $_description;
+		private $_description;	// Description de l'article
 		private $_masque = false;
 
 		// CONSTRUCTEUR 
 		
-		function __construct($id, $titre) {
+		function __construct($id, $titre, $motsCles, $type, $categorie, $description) {
 			$this->setId($id);
 			$this->setTitre($titre);
-			$this->setMotsCles(findMotsCles($titre));
+			$this->setMotsCles($motsCles);
+			$this->setType($type);
+			$this->setCategorie($categorie);
+			$this->setDescription($description);
 		}
 		
 		// METHODES D'ENCAPSULATION
@@ -122,61 +125,40 @@
 		// Incrémentation et récupération du nombre d'articles
 		incrNombreArticles();
 		$nombreArticles = getNombreArticles();
+		$motsCles = findMotsCles($titre);
 
-		// Création du nouvel article
-		$nouvelArticle = new Article($nombreArticles, $titre);	
-		$nouvelArticle->setType($type);
-		$motsCles = arrayToString($nouvelArticle->getMotsCles());
+		// Récupération de dicArticles
+		$fichier = ("articles.json");
+		$donnees = file_get_contents($fichier);
+		$dicArticles = json_decode($donnees, true);
 
-		// Exportation des données de l'article
-		$articles = fopen("articles.txt", "a+");
-		fwrite($articles, $nouvelArticle->getId()."\r\n");
-		fwrite($articles, $nouvelArticle->getTitre()."\r\n");
-		fwrite($articles, $motsCles."\r\n");
-		fwrite($articles, $type."\r\n");
-		fwrite($articles, $categorie."\r\n");
-		fwrite($articles, $description."\r\n");
-		fwrite($articles, "\r\n");
-		fclose($articles);			
+		// Stockage des informations du nouvel article
+		$dicArticles[$nombreArticles] = ["Titre" => $titre, 
+										 "Mots cles" => $motsCles, 
+										 "Type" => $type, 
+										 "Categorie" => $categorie, 
+										 "Description" => $description];
+
+		// Exporation de la nouvelle version de dicArticles
+		$donnees = json_encode($dicArticles);
+		file_put_contents("articles.json", $donnees);
 	}
 
 	function importer($id) {
-		$nombreArticles = getNombreArticles();
-		$articles = fopen("articles.txt", "r");
-		$valeur = fgets($articles, 4096);
-		while ($valeur != $id && $valeur != $nombreArticles) {
-			for ($i = 0; $i < 7; $i++) {
-				$valeur = fgets($articles, 4096);
-			}
-		}
-		if ($valeur == $id) {
-			// Création de l'article avec l'id correspondant
-			$titre = fgets($articles, 4096); 	
-			$article = new Article($id, $titre);
-			
-			// Ajout du titre	
-			$article->setTitre($titre);
+		// Récupération de dicArticles
+		$fichier = ("articles.json");
+		$donnees = file_get_contents($fichier);
+		$dicArticles = json_decode($donnees, true);
 
-			// Ajout des mots clés
-			$chaineMotsCles = fgets($articles, 4096); 		
-			$listeMotsCles = stringToArray($chaineMotsCles);
-			$article->setMotsCles($listeMotsCles);
+		// Récupération des attributs de l'article
+		$titre = $dicArticles[$id]["Titre"];
+		$motsCles = $dicArticles[$id]["Mots cles"];
+		$type = $dicArticles[$id]["Type"];
+		$categorie = $dicArticles[$id]["Categorie"];
+		$description = $dicArticles[$id]["Description"];
 
-			// Ajout du type
-			$type = fgets($articles, 4096);
-			$article->setType($type);
-
-			// Ajout de la catégorie
-			$categorie = fgets($articles, 4096);
-			$article->setCategorie($categorie);
-
-			// Ajout de la description
-			$description = fgets($articles, 4096);
-			$article->setDescription($description);
-
-			fgets($articles, 4096);
-		}
-		fclose($articles);
+		// Création de l'article
+		$article = new Article($id, $titre, $motsCles, $type, $categorie, $description);
 		return $article;
 	}
 ?>
