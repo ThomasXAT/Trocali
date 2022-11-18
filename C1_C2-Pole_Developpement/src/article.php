@@ -2,7 +2,7 @@
 	include 'mot.php';
 
 	function getCategories() {
-		return ["Automobile", "Catégorie 2", "Catégorie 4"];
+		return ["Automobile", "Enseignement", "Informatique", "Sécurité", "Nettoyage"];
 	}
 	
 	class Article
@@ -15,7 +15,6 @@
 		private $_type;			// Type de l'article (offre ou demande)
 		private $_categorie;	// Catégorie de l'article
 		private $_description;	// Description de l'article
-		private $_masque = false;
 
 		// CONSTRUCTEUR 
 		
@@ -78,7 +77,7 @@
 			return $this->_description;
 		}
 
-		// METHODES
+		// METHODES SPECIFIQUES
 
 		public function afficher($infosDev) {
 			$id = $this->getId();

@@ -4,6 +4,7 @@
 	include 'infos.php';
 	foreach (getListeMots() as $mot) {
 		${$mot} = new Mot($mot);
+		${$mot}->genererSynonymes();
 	}
 ?>
 <html lang="fr">

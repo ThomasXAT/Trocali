@@ -21,6 +21,7 @@
 "portier":{"Synonymes":["gardien", "vigile", "concierge"], "Articles":[]},
 "surveillant":{"Synonymes":["gardien", "garde", "concierge"], "Articles":[]},
 "garde":{"Synonymes":["vigile", "surveillant", "concierge", "surveillant"], "Articles":[]},
+"policier":{"Synonymes":["garde", "surveillant"], "Articles":[]},
 "concierge":{"Synonymes":["garde", "portier", "surveillant", "gardien"], "Articles":[]},
 "veilleur":{"Synonymes":["garde", "portier", "surveillant", "gardien"], "Articles":[]},
 "serpillère":{"Synonymes":["chiffon", "balai", "aspirateur", "torchon"], "Articles":[]},

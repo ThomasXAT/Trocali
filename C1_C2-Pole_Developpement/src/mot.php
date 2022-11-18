@@ -11,8 +11,16 @@
 		
 		function __construct($intitule) {
 			$this->setIntitule($intitule);
-			$this->setSynonymes(getDicSynonymes()[$this->getIntitule()]["Synonymes"]);
-			$this->setArticles(getDicSynonymes()[$this->getIntitule()]["Articles"]);
+			$listeSynonymes = array();
+			$listeArticles = array(); 
+			
+			foreach (getDicSynonymes()[$this->getIntitule()]["Articles"] as $id) {
+				$article = importer($id);
+				array_push($listeArticles, $article);
+			}
+
+			$this->setSynonymes($listeSynonymes);
+			$this->setArticles($listeArticles);
 		}
 		
 		// METHODES D'ENCAPSULATION
@@ -41,7 +49,7 @@
 			return $this->_articles;
 		}
 		
-		// METHODES 	
+		// METHODES SPECIFIQUES	
 
 		public function ajouterArticle($id) {
 			$fichier = ("dicSynonymes.json");
@@ -58,9 +66,22 @@
 			$donnees = json_encode($dicSynonymes);
 			file_put_contents($fichier, $donnees);
 		}
+
+		public function genererSynonymes() {
+			$listeSynonymes = array();
+			foreach (getDicSynonymes()[$this->getIntitule()]["Synonymes"] as $mot) {
+				$synonyme = new Mot($mot);
+				array_push($listeSynonymes, $synonyme);
+			}
+			$this->setSynonymes($listeSynonymes);
+		}
 	}
 
 	// SOUS-PROGRAMMES EXTERNES
+
+	foreach (getListeMots() as $mot) {
+		${$mot} = new Mot($mot);
+	}
 
 	function getDicSynonymes() {
 		$fichier = "dicSynonymes.json"; 
@@ -73,7 +94,7 @@
 		return array_keys(getDicSynonymes());
 	}
 
-	function testerSingulier($mot) {
+	/*function testerSingulier($mot) {
 		$derniereLettre = substr($mot, -1);
 		if ($derniereLettre == "s") {
 			$tailleMot = strlen($mot);
@@ -81,12 +102,13 @@
 			for ($lettre = 0; $lettre <= $tailleMot - 2; $lettre++) {
 				$singulier[$lettre] = $mot[$lettre];
 			}
+
 			return $singulier;
 		}
 		else {
 			return $mot;
 		}
-	}
+	}*/
 
 	function findMotsCles($chaine) {
 		$chaine = strtolower($chaine);
@@ -95,17 +117,16 @@
 		$mot = strtok($chaine, $delimiteurs);
 		while ($mot != "") {
 			if (existe($mot)) {
-				if (!in_array($mot, $listeMotsCles)) {
-					$mot = new Mot($mot);
-					array_push($listeMotsCles, $mot);
+				$synonyme = new Mot($mot);
+				if (!in_array($synonyme, $listeMotsCles)) {
+					array_push($listeMotsCles, $synonyme);
 				}
 			}
-			elseif (existe(testerSingulier($mot))) {
+			/*elseif (existe(testerSingulier($mot))) {
 				if (!in_array($mot, $listeMotsCles)) {
-					$mot = new Mot($mot);
-					array_push($listeMotsCles, testerSingulier($mot));
+					array_push($listeMotsCles, testerSingulier($mot)->getIntitule());
 				}
-			}
+			}*/
 			$mot = strtok($delimiteurs);
 		}
 		return $listeMotsCles; 
