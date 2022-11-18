@@ -5,8 +5,7 @@
 		
 		public $_intitule;					// Intitulé du mot
 		public $_synonymes;					// Liste des synonymes de ce mot
-		public $_articles = array();		// Liste des articles dans lesquels est présent ce mot
-		public $_compteur = 1 ;			
+		public $_articles = array();		// Liste des articles dans lesquels est présent ce mot	
 
 		// CONSTRUCTEUR 
 		
