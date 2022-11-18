@@ -175,7 +175,40 @@ article {
 	border: 1px solid black;
 	padding: 2vh;
 	margin: 1vh;
-	
+}
+
+main > .newsletter {
+	background-color: white;
+	border: 1px solid black;
+	padding: 2vh;
+	margin-top: 4vh;
+	align-items: left;
+}
+
+main > .newsletter > h2 {
+	font-size: 1.2em;
+	width: 80%;
+	margin: auto;
+}
+
+main > .newsletter > form > .email {
+	font-size: 1.2em;
+	height: 5vh;
+	width: 90%;
+	margin: 1vh;
+}
+
+main > .newsletter > form > p {
+	padding: 1vh;
+	width: 28%;
+	margin: auto;
+}
+
+main > .newsletter > form > .valider {
+	border: 1px black solid;
+	background-color: rgb(108, 163, 108);
+	width: 40%;
+	height: 6vh;
 }
 
 /* Ordinateur */
@@ -240,4 +273,17 @@ article {
 		margin: auto;
 	}
 
+	main > .newsletter > form > .email {
+		font-size: 1.2em;
+		height: 4vh;
+		width: 25%;
+		margin: 1vh;
+	}
+
+	main > .newsletter > form > .valider {
+		border: 1px black solid;
+		background-color: rgb(108, 163, 108);
+		width: 8%;
+		height: 4vh;
+	}
 }

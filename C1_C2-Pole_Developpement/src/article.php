@@ -78,7 +78,7 @@
 			return $this->_description;
 		}
 
-		// METHODES USUELLES
+		// METHODES
 
 		public function afficher($infosDev) {
 			$id = $this->getId();
@@ -94,6 +94,30 @@
 			}
 			print "</h3><br /><p>$description</p>";
 			print "</article>";
+		}
+
+		function exporter() {
+
+			// Incrémentation et récupération du nombre d'articles
+			incrNombreArticles();
+			$nombreArticles = getNombreArticles();
+			$motsCles = findMotsCles($this->getTitre());
+	
+			// Récupération de dicArticles
+			$fichier = ("articles.json");
+			$donnees = file_get_contents($fichier);
+			$dicArticles = json_decode($donnees, true);
+	
+			// Stockage des informations du nouvel article
+			$dicArticles[$nombreArticles] = ["Titre" => $this->getTitre(), 
+											 "Mots cles" => $motsCles, 
+											 "Type" => $this->getType(), 
+											 "Categorie" => $this->getCategorie(), 
+											 "Description" => $this->getDescription()];
+	
+			// Exporation de la nouvelle version de dicArticles
+			$donnees = json_encode($dicArticles);
+			file_put_contents("articles.json", $donnees);
 		}
 	}
 		
@@ -121,30 +145,6 @@
 		$nombreArticles++;
 		file_put_contents("compteur.txt", $nombreArticles);
 		fclose($compteur);
-	}
-
-	function exporter($titre, $type, $categorie, $description) {
-
-		// Incrémentation et récupération du nombre d'articles
-		incrNombreArticles();
-		$nombreArticles = getNombreArticles();
-		$motsCles = findMotsCles($titre);
-
-		// Récupération de dicArticles
-		$fichier = ("articles.json");
-		$donnees = file_get_contents($fichier);
-		$dicArticles = json_decode($donnees, true);
-
-		// Stockage des informations du nouvel article
-		$dicArticles[$nombreArticles] = ["Titre" => $titre, 
-										 "Mots cles" => $motsCles, 
-										 "Type" => $type, 
-										 "Categorie" => $categorie, 
-										 "Description" => $description];
-
-		// Exporation de la nouvelle version de dicArticles
-		$donnees = json_encode($dicArticles);
-		file_put_contents("articles.json", $donnees);
 	}
 
 	function importer($id) {

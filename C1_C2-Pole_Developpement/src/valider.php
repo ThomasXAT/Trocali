@@ -11,12 +11,12 @@
 			$type = "Appel d'offres";
 		}
 		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
-		exporter($titre, $type, $categorie, $description);
-		$nouvelArticle = importer(getNombreArticles());
+		$nouvelArticle = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
+		$nouvelArticle->exporter();
 
 		foreach ($nouvelArticle->getMotsCles() as $mot) {
 			$mot = new Mot($mot);
-			$mot->ajouterArticle($nouvelArticle->getId());
+			$mot->ajouterArticle($nouvelArticle);
 		}
 
 		header("Location:index.php");

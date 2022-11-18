@@ -5,7 +5,7 @@
 		
 		public $_intitule;					// Intitulé du mot
 		public $_synonymes;					// Liste des synonymes de ce mot
-		public $_articles = array();		// Liste des articles dans lesquels est présent ce mot	
+		public $_articles = array();		// Liste des articles dans lesquels est présent ce mot
 
 		// CONSTRUCTEUR 
 		
@@ -41,30 +41,19 @@
 			return $this->_articles;
 		}
 		
-		public function setCompteur($compteur) {
-			$this->_compteur = $compteur;
-		}
-		
-		public function getCompteur() {
-			return $this->_compteur;
-		}
-		
-		// METHODES 
-	
-		public function incrCompteur() {
-			$this->setCompteur($this->getCompteur()+1);
-		}	
+		// METHODES 	
 
 		public function ajouterArticle($id) {
 			$fichier = ("dicSynonymes.json");
 			$donnees = file_get_contents($fichier);
 			$dicSynonymes = json_decode($donnees, true);
+			$article = importer($id);
 
 			if (isset($dicSynonymes[$this->getIntitule()]["Articles"])) {
-				array_push($dicSynonymes[$this->getIntitule()]["Articles"], $id);
+				array_push($dicSynonymes[$this->getIntitule()]["Articles"], $article);
 			}
 			else {
-				$dicSynonymes[$this->getIntitule()]["Articles"] = [$id];
+				$dicSynonymes[$this->getIntitule()]["Articles"] = [$article];
 			}
 			$donnees = json_encode($dicSynonymes);
 			file_put_contents($fichier, $donnees);
@@ -106,10 +95,16 @@
 		$mot = strtok($chaine, $delimiteurs);
 		while ($mot != "") {
 			if (existe($mot)) {
-				array_push($listeMotsCles, $mot);
+				if (!in_array($mot, $listeMotsCles)) {
+					$mot = new Mot($mot);
+					array_push($listeMotsCles, $mot);
+				}
 			}
 			elseif (existe(testerSingulier($mot))) {
-				array_push($listeMotsCles, testerSingulier($mot));
+				if (!in_array($mot, $listeMotsCles)) {
+					$mot = new Mot($mot);
+					array_push($listeMotsCles, testerSingulier($mot));
+				}
 			}
 			$mot = strtok($delimiteurs);
 		}
@@ -119,4 +114,6 @@
 	function existe($mot) {
 		return in_array($mot, getListeMots());
 	}
+
+
 ?>
