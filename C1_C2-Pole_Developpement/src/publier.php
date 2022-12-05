@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php 
 	include 'article.php';
-	include 'infos.php';
 ?>
 <html lang="fr">
 <head>
@@ -56,10 +55,10 @@
 				<div>
 					<?php
 						if (isset($offre)) {
-							print '<input class="valider" type="submit" name="offre" "value="Valider">';
+							print '<input class="valider" type="submit" name="offre" value="Valider">';
 						}
 						else {
-							print '<input class="valider" type="submit" name="demande" "value="Valider">';
+							print '<input class="valider" type="submit" name="demande" value="Valider">';
 						}
 					?>
 				</div>

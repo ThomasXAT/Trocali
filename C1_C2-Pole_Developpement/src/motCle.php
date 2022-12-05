@@ -1,14 +1,13 @@
 <?php
-
     include "mot.php";
 
     class motCle extends mot {
         
-        //ATTRIBUTS
+        // ATTRIBUTS
 
         private $_compteur;
 
-        //CONSTRUCTEURS
+        // CONSTRUCTEURS
 
         function __construct($intitule) {
 			$this->setIntitule($intitule);
@@ -17,7 +16,7 @@
             $this->setCompteur(1);
 		}
 
-        //GETTERS ET SETTERS
+        // METHODES D'ENCAPSULATION
 
         public function setCompteur($compteur) {
             $this->_compteur = $compteur;
@@ -27,14 +26,10 @@
             return $this->_compteur;
         }
 
-        //METHODE SPECIFIQUES
+        // METHODES SPECIFIQUES
 
         public function incrCompteur() {
-            $this->compteur++;
+            $this->_compteur++;
         }
-
     }
-
 ?>
-
-public $_compteur = 1 ;		

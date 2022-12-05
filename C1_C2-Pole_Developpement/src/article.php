@@ -1,5 +1,6 @@
 <?php
 	include 'mot.php';
+	$footer = "Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES et Evan SPICKA dans le cadre de la SAÉ 3.01.";
 
 	function getCategories() {
 		return ["Automobile", "Enseignement", "Informatique", "Sécurité", "Nettoyage"];
@@ -97,8 +98,7 @@
 
 		function exporter() {
 
-			// Incrémentation et récupération du nombre d'articles
-			incrNombreArticles();
+			// Récupération du nombre d'articles
 			$nombreArticles = getNombreArticles();
 			$motsCles = findMotsCles($this->getTitre());
 	
@@ -154,7 +154,10 @@
 
 		// Récupération des attributs de l'article
 		$titre = $dicArticles[$id]["Titre"];
-		$motsCles = $dicArticles[$id]["Mots cles"];
+		$motsCles = array();
+		foreach($dicArticles[$id]["Mots cles"] as $mot) {
+			array_push($motsCles, $mot);
+		}
 		$type = $dicArticles[$id]["Type"];
 		$categorie = $dicArticles[$id]["Categorie"];
 		$description = $dicArticles[$id]["Description"];

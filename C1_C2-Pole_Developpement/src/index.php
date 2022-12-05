@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+
 <?php 
 	include 'article.php';
-	include 'infos.php';
+	
 	foreach (getListeMots() as $mot) {
 		${$mot} = new Mot($mot);
-		${$mot}->genererSynonymes();
+		${$mot} -> genererSynonymes();
 	}
 ?>
+
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">

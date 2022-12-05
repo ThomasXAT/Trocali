@@ -10,6 +10,7 @@
 		elseif (isset($demande)) {
 			$type = "Appel d'offres";
 		}
+		incrNombreArticles();
 		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
 		$nouvelArticle = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
 		$nouvelArticle->exporter();
