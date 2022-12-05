@@ -29,7 +29,9 @@
 \item 
 \mbox{\hyperlink{class_article_a2e7bb35c71bf1824456ceb944cb7a845}{get\+Description}} ()
 \item 
-\mbox{\hyperlink{class_article_af9fc02d25d9ea7a41434b753c2e00f2e}{afficher}} (\$infos\+Dev)
+\mbox{\hyperlink{class_article_a78427cce4ef24caf78ccd7a8556c1d26}{afficher}} ()
+\item 
+\mbox{\hyperlink{class_article_a0ea301938f24da30c2641ed3a2c0e4a6}{exporter}} ()
 \end{DoxyCompactItemize}
 
 
@@ -40,16 +42,37 @@
 \doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
 {\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$id,  }\item[{}]{\$titre,  }\item[{}]{\$mots\+Cles,  }\item[{}]{\$type,  }\item[{}]{\$categorie,  }\item[{}]{\$description }\end{DoxyParamCaption})}
 
+Constructeur de la classe \mbox{\hyperlink{class_article}{Article}} 
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$id} & Identifiant unique \+: integer \\
+\hline
+mixed & {\em \$titre} & Titre \+: string \\
+\hline
+mixed & {\em \$mots\+Cles} & Mots clés extraits du titre \+: array(string) \\
+\hline
+mixed & {\em \$type} & Type (\char`\"{}offre\char`\"{}/\char`\"{}demande\char`\"{}) \+: string \\
+\hline
+mixed & {\em \$categorie} & Catégorie \+: string \\
+\hline
+mixed & {\em \$description} & Description \+: string \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Documentation des fonctions membres}
-\mbox{\Hypertarget{class_article_af9fc02d25d9ea7a41434b753c2e00f2e}\label{class_article_af9fc02d25d9ea7a41434b753c2e00f2e}} 
+\mbox{\Hypertarget{class_article_a78427cce4ef24caf78ccd7a8556c1d26}\label{class_article_a78427cce4ef24caf78ccd7a8556c1d26}} 
 \index{Article@{Article}!afficher@{afficher}}
 \index{afficher@{afficher}!Article@{Article}}
 \doxysubsubsection{\texorpdfstring{afficher()}{afficher()}}
-{\footnotesize\ttfamily afficher (\begin{DoxyParamCaption}\item[{}]{\$infos\+Dev }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily afficher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_article_a9dc349c323f7f81dbe5e4f5cdeb0528b}\label{class_article_a9dc349c323f7f81dbe5e4f5cdeb0528b}} 
+Méthode permettant d\textquotesingle{}afficher l\textquotesingle{}\mbox{\hyperlink{class_article}{Article}} mis en forme \mbox{\Hypertarget{class_article_a0ea301938f24da30c2641ed3a2c0e4a6}\label{class_article_a0ea301938f24da30c2641ed3a2c0e4a6}} 
+\index{Article@{Article}!exporter@{exporter}}
+\index{exporter@{exporter}!Article@{Article}}
+\doxysubsubsection{\texorpdfstring{exporter()}{exporter()}}
+{\footnotesize\ttfamily exporter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Méthode permettant d\textquotesingle{}exporter les informations de l\textquotesingle{}\mbox{\hyperlink{class_article}{Article}} afin de les stocker dans le fichier articles.\+json \mbox{\Hypertarget{class_article_a9dc349c323f7f81dbe5e4f5cdeb0528b}\label{class_article_a9dc349c323f7f81dbe5e4f5cdeb0528b}} 
 \index{Article@{Article}!getCategorie@{getCategorie}}
 \index{getCategorie@{getCategorie}!Article@{Article}}
 \doxysubsubsection{\texorpdfstring{getCategorie()}{getCategorie()}}

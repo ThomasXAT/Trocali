@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Trocali: Référence du fichier src/clear.php</title>
+<title>Trocali: Référence du fichier src/traitementSynonymes.php</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,72 +69,60 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#var-members">Variables</a>  </div>
-  <div class="headertitle"><div class="title">Référence du fichier clear.php</div></div>
+  <div class="headertitle"><div class="title">Référence du fichier traitementSynonymes.php</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a912409f4d3858d8f3d17fff9a307eed5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clear_8php.html#a912409f4d3858d8f3d17fff9a307eed5">$compteur</a> = fopen(&quot;compteur.txt&quot;, &quot;r+&quot;)</td></tr>
-<tr class="separator:a912409f4d3858d8f3d17fff9a307eed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a086d538fe71143a08071c194c8569f92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clear_8php.html#a086d538fe71143a08071c194c8569f92">$articles</a> = fopen(&quot;articles.json&quot;, &quot;r+&quot;)</td></tr>
-<tr class="separator:a086d538fe71143a08071c194c8569f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc7c3385478b73d486c29767e764f855"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clear_8php.html#abc7c3385478b73d486c29767e764f855">$dic</a> = <a class="el" href="mot_8php.html#a0d06fb777b862c6253c5439de7fa0b67">getDicSynonymes</a>()</td></tr>
-<tr class="separator:abc7c3385478b73d486c29767e764f855"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdcda90639542affd16342c7f7134eb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="traitement_synonymes_8php.html#a8ecdb84e7670eec78291f1b7e90c3f85">foreach</a>(<a class="el" href="mot_8php.html#aaf2e0e7d8454cdf77d8cdee6f0420231">getListeMots</a>() as $mot)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clear_8php.html#acdcda90639542affd16342c7f7134eb1">$donnees</a> = json_encode($dic)</td></tr>
-<tr class="separator:acdcda90639542affd16342c7f7134eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ecdb84e7670eec78291f1b7e90c3f85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_synonymes_8php.html#a8ecdb84e7670eec78291f1b7e90c3f85">foreach</a> (<a class="el" href="mot_8php.html#aaf2e0e7d8454cdf77d8cdee6f0420231">getListeMots</a>() as $mot)</td></tr>
+<tr class="separator:a8ecdb84e7670eec78291f1b7e90c3f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3abd48b2e8d3dccbb9e546051ae698b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_synonymes_8php.html#a3abd48b2e8d3dccbb9e546051ae698b7">$listeMotsCles</a> = array(&quot;je&quot;)</td></tr>
+<tr class="separator:a3abd48b2e8d3dccbb9e546051ae698b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40f485cec174847252bcec0d8649f1ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="traitement_synonymes_8php.html#a40f485cec174847252bcec0d8649f1ab">$listeSynonymes</a> = array()</td></tr>
+<tr class="separator:a40f485cec174847252bcec0d8649f1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des variables</h2>
-<a id="a086d538fe71143a08071c194c8569f92" name="a086d538fe71143a08071c194c8569f92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a086d538fe71143a08071c194c8569f92">&#9670;&nbsp;</a></span>$articles</h2>
+<a id="a3abd48b2e8d3dccbb9e546051ae698b7" name="a3abd48b2e8d3dccbb9e546051ae698b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3abd48b2e8d3dccbb9e546051ae698b7">&#9670;&nbsp;</a></span>$listeMotsCles</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$articles = fopen(&quot;articles.json&quot;, &quot;r+&quot;)</td>
+          <td class="memname">$listeMotsCles = array(&quot;je&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a912409f4d3858d8f3d17fff9a307eed5" name="a912409f4d3858d8f3d17fff9a307eed5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a912409f4d3858d8f3d17fff9a307eed5">&#9670;&nbsp;</a></span>$compteur</h2>
+<a id="a40f485cec174847252bcec0d8649f1ab" name="a40f485cec174847252bcec0d8649f1ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40f485cec174847252bcec0d8649f1ab">&#9670;&nbsp;</a></span>$listeSynonymes</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$compteur = fopen(&quot;compteur.txt&quot;, &quot;r+&quot;)</td>
+          <td class="memname">$listeSynonymes = array()</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="abc7c3385478b73d486c29767e764f855" name="abc7c3385478b73d486c29767e764f855"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc7c3385478b73d486c29767e764f855">&#9670;&nbsp;</a></span>$dic</h2>
+<a id="a8ecdb84e7670eec78291f1b7e90c3f85" name="a8ecdb84e7670eec78291f1b7e90c3f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ecdb84e7670eec78291f1b7e90c3f85">&#9670;&nbsp;</a></span>foreach</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$dic = <a class="el" href="mot_8php.html#a0d06fb777b862c6253c5439de7fa0b67">getDicSynonymes</a>()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="acdcda90639542affd16342c7f7134eb1" name="acdcda90639542affd16342c7f7134eb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdcda90639542affd16342c7f7134eb1">&#9670;&nbsp;</a></span>$donnees</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="traitement_synonymes_8php.html#a8ecdb84e7670eec78291f1b7e90c3f85">foreach</a> (<a class="el" href="mot_8php.html#aaf2e0e7d8454cdf77d8cdee6f0420231">getListeMots</a>() as $mot) $donnees = json_encode($dic)</td>
+          <td class="memname">foreach(<a class="el" href="mot_8php.html#aaf2e0e7d8454cdf77d8cdee6f0420231">getListeMots</a>() as $mot) </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mot_8php.html#aaf2e0e7d8454cdf77d8cdee6f0420231">getListeMots</a>() as&#160;</td>
+          <td class="paramname"><em>$mot</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

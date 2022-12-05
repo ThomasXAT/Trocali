@@ -1,4 +1,10 @@
 <?php
+
+	foreach (getListeMots() as $mot) {
+		${$mot} = new Mot($mot);
+		${$mot} -> genererSynonymes();
+	}
+	
 	Class Mot
 	{
 		// ATTRIBUTS

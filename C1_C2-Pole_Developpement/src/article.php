@@ -1,6 +1,6 @@
 <?php
 	include 'mot.php';
-	$footer = "Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES et Evan SPICKA dans le cadre de la SAÉ 3.01.";
+	$footer = "Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES, Evan SPICKA et parfois Rémi DUPIN (alternant) dans le cadre de la SAÉ 3.01.";
 
 	function getCategories() {
 		return ["Automobile", "Enseignement", "Informatique", "Sécurité", "Nettoyage"];
@@ -10,17 +10,26 @@
 	{
 		// ATTRIBUTS
 		
-		private $_id;			// Identifiant unique de l'article
-		private $_titre;		// Titre de l'article
-		private $_motsCles;		// Mots clés de l'article
-		private $_type;			// Type de l'article (offre ou demande)
-		private $_categorie;	// Catégorie de l'article
-		private $_description;	// Description de l'article
+		private $_id; 		
+		private $_titre; 
+		private $_motsCles;	
+		private $_type;
+		private $_categorie; 
+		private $_description; 
 
 		// CONSTRUCTEUR 
 		
+		/**
+		 * Constructeur de la classe Article
+		 * @param mixed $id Identifiant unique : integer
+		 * @param mixed $titre Titre : string
+		 * @param mixed $motsCles Mots clés extraits du titre : array(string)
+		 * @param mixed $type Type ("offre"/"demande") : string 
+		 * @param mixed $categorie Catégorie : string
+		 * @param mixed $description Description : string
+		 */
 		function __construct($id, $titre, $motsCles, $type, $categorie, $description) {
-			$this->setId($id);
+			$this->setId($id); 
 			$this->setTitre($titre);
 			$this->setMotsCles($motsCles);
 			$this->setType($type);
@@ -80,7 +89,10 @@
 
 		// METHODES SPECIFIQUES
 
-		public function afficher($infosDev) {
+		/**
+		 * Méthode permettant d'afficher l'Article mis en forme
+		 */
+		public function afficher() {
 			$id = $this->getId();
 			$titre = $this->getTitre();
 			$type = $this->getType();
@@ -96,6 +108,9 @@
 			print "</article>";
 		}
 
+		/**
+		 * Méthode permettant d'exporter les informations de l'Article afin de les stocker dans le fichier articles.json
+		 */
 		function exporter() {
 
 			// Récupération du nombre d'articles
