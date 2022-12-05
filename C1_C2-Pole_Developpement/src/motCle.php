@@ -1,8 +1,8 @@
 <?php
 
-    include "mot.php";
+    include "article.php";
 
-    class motCle extends mot {
+    class MotCle extends Mot {
         
         //ATTRIBUTS
 
@@ -12,8 +12,16 @@
 
         function __construct($intitule) {
 			$this->setIntitule($intitule);
-			$this->setSynonymes(getDicSynonymes()[$this->getIntitule()]["Synonymes"]);
-			$this->setArticles(getDicSynonymes()[$this->getIntitule()]["Articles"]);
+			$listeSynonymes = array();
+			$listeArticles = array(); 
+			
+			foreach (getDicSynonymes()[$this->getIntitule()]["Articles"] as $id) {
+				$article = importer($id);
+				array_push($listeArticles, $article);
+			}
+
+			$this->setSynonymes($listeSynonymes);
+			$this->setArticles($listeArticles);
             $this->setCompteur(1);
 		}
 
@@ -30,11 +38,8 @@
         //METHODE SPECIFIQUES
 
         public function incrCompteur() {
-            $this->compteur++;
+            $this->_compteur++;
         }
-
     }
-
 ?>
-
-public $_compteur = 1 ;		
+	
