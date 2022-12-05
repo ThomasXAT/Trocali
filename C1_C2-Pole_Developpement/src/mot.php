@@ -1,4 +1,10 @@
 <?php
+
+	foreach (getListeMots() as $mot) {
+		${$mot} = new Mot($mot);
+		${$mot} -> genererSynonymes();
+	}
+	
 	Class Mot
 	{
 		// ATTRIBUTS
@@ -51,18 +57,16 @@
 		
 		// METHODES SPECIFIQUES	
 
-		public function ajouterArticle($id) {
+		public function ajouterArticle($article) {
 			$fichier = ("dicSynonymes.json");
 			$donnees = file_get_contents($fichier);
 			$dicSynonymes = json_decode($donnees, true);
-			$article = importer($id);
 
-			if (isset($dicSynonymes[$this->getIntitule()]["Articles"])) {
-				array_push($dicSynonymes[$this->getIntitule()]["Articles"], $article);
+			if (!isset($dicSynonymes[$this->getIntitule()]["Articles"])) {
+				$dicSynonymes[$this->getIntitule()]["Articles"] = array();
 			}
-			else {
-				$dicSynonymes[$this->getIntitule()]["Articles"] = [$article];
-			}
+			array_push($dicSynonymes[$this->getIntitule()]["Articles"], $article->getId());
+
 			$donnees = json_encode($dicSynonymes);
 			file_put_contents($fichier, $donnees);
 		}
@@ -118,8 +122,8 @@
 		while ($mot != "") {
 			if (existe($mot)) {
 				$synonyme = new Mot($mot);
-				if (!in_array($synonyme, $listeMotsCles)) {
-					array_push($listeMotsCles, $synonyme);
+				if (!in_array($synonyme->getIntitule(), $listeMotsCles)) {
+					array_push($listeMotsCles, $synonyme->getIntitule());
 				}
 			}
 			/*elseif (existe(testerSingulier($mot))) {

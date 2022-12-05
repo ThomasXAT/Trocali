@@ -1,12 +1,9 @@
 <!DOCTYPE html>
+
 <?php 
 	include 'article.php';
-	include 'infos.php';
-	foreach (getListeMots() as $mot) {
-		${$mot} = new Mot($mot);
-		${$mot}->genererSynonymes();
-	}
 ?>
+
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
@@ -64,7 +61,7 @@
 						print "<p>Derniers articles ($nombreArticles)</p><br />";
 						for ($id = $nombreArticles; $id > 0; $id--) {
 							$article = importer($id);
-							$article->afficher(true);
+							$article->afficher();
 						}
 					}
 					else {

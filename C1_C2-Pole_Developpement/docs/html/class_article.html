@@ -97,8 +97,10 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="separator:a31fad3e39336ea079ea758e051866627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e7bb35c71bf1824456ceb944cb7a845"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_article.html#a2e7bb35c71bf1824456ceb944cb7a845">getDescription</a> ()</td></tr>
 <tr class="separator:a2e7bb35c71bf1824456ceb944cb7a845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9fc02d25d9ea7a41434b753c2e00f2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_article.html#af9fc02d25d9ea7a41434b753c2e00f2e">afficher</a> ($infosDev)</td></tr>
-<tr class="separator:af9fc02d25d9ea7a41434b753c2e00f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78427cce4ef24caf78ccd7a8556c1d26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_article.html#a78427cce4ef24caf78ccd7a8556c1d26">afficher</a> ()</td></tr>
+<tr class="separator:a78427cce4ef24caf78ccd7a8556c1d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea301938f24da30c2641ed3a2c0e4a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_article.html#a0ea301938f24da30c2641ed3a2c0e4a6">exporter</a> ()</td></tr>
+<tr class="separator:a0ea301938f24da30c2641ed3a2c0e4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
 <a id="a5ae3480489ffdf1fd94544520b1c0bde" name="a5ae3480489ffdf1fd94544520b1c0bde"></a>
@@ -150,12 +152,23 @@ Fonctions membres publiques</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Constructeur de la classe <a class="el" href="class_article.html">Article</a> </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">mixed</td><td class="paramname">$id</td><td>Identifiant unique : integer </td></tr>
+    <tr><td class="paramtype">mixed</td><td class="paramname">$titre</td><td>Titre : string </td></tr>
+    <tr><td class="paramtype">mixed</td><td class="paramname">$motsCles</td><td>Mots clés extraits du titre : array(string) </td></tr>
+    <tr><td class="paramtype">mixed</td><td class="paramname">$type</td><td>Type ("offre"/"demande") : string </td></tr>
+    <tr><td class="paramtype">mixed</td><td class="paramname">$categorie</td><td>Catégorie : string </td></tr>
+    <tr><td class="paramtype">mixed</td><td class="paramname">$description</td><td>Description : string </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a id="af9fc02d25d9ea7a41434b753c2e00f2e" name="af9fc02d25d9ea7a41434b753c2e00f2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9fc02d25d9ea7a41434b753c2e00f2e">&#9670;&nbsp;</a></span>afficher()</h2>
+<a id="a78427cce4ef24caf78ccd7a8556c1d26" name="a78427cce4ef24caf78ccd7a8556c1d26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78427cce4ef24caf78ccd7a8556c1d26">&#9670;&nbsp;</a></span>afficher()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,12 +176,30 @@ Fonctions membres publiques</h2></td></tr>
         <tr>
           <td class="memname">afficher </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$infosDev</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Méthode permettant d'afficher l'<a class="el" href="class_article.html">Article</a> mis en forme </p>
+
+</div>
+</div>
+<a id="a0ea301938f24da30c2641ed3a2c0e4a6" name="a0ea301938f24da30c2641ed3a2c0e4a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ea301938f24da30c2641ed3a2c0e4a6">&#9670;&nbsp;</a></span>exporter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">exporter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Méthode permettant d'exporter les informations de l'<a class="el" href="class_article.html">Article</a> afin de les stocker dans le fichier articles.json </p>
 
 </div>
 </div>

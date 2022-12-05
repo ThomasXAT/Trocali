@@ -8,8 +8,9 @@
 			$type = "Offre";
 		}	
 		elseif (isset($demande)) {
-			$type = "Appel d'offres";
+			$type = "Demande";
 		}
+		incrNombreArticles();
 		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
 		$nouvelArticle = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
 		$nouvelArticle->exporter();

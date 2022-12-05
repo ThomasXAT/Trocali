@@ -27,6 +27,7 @@ var menudata={children:[
 {text:"Structures de données",url:"annotated.html",children:[
 {text:"Structures de données",url:"annotated.html"},
 {text:"Index des structures de données",url:"classes.html"},
+{text:"Hiérarchie des classes",url:"hierarchy.html"},
 {text:"Champs de donnée",url:"functions.html",children:[
 {text:"Tout",url:"functions.html"},
 {text:"Fonctions",url:"functions_func.html"}]}]},
@@ -42,7 +43,6 @@ var menudata={children:[
 {text:"g",url:"globals.html#index_g"},
 {text:"i",url:"globals.html#index_i"},
 {text:"m",url:"globals.html#index_m"},
-{text:"s",url:"globals.html#index_s"},
-{text:"t",url:"globals.html#index_t"}]},
+{text:"s",url:"globals.html#index_s"}]},
 {text:"Fonctions",url:"globals_func.html"},
 {text:"Variables",url:"globals_vars.html"}]}]}]}
