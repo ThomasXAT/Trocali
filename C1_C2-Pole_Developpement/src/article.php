@@ -1,5 +1,5 @@
 <?php
-	include 'mot.php';
+	include_once 'mot.php';
 
 	/**
 	 * @var string Texte du footer
@@ -253,6 +253,7 @@
 		$article = new Article($id, $titre, $motsCles, $type, $categorie, $description);
 		return $article;
 	}
+
 
 function rechercher($liste, $categorie) {
 	$resultat = array();

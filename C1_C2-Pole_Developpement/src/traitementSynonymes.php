@@ -29,7 +29,7 @@ foreach (getListeMots() as $mot) {
         }
     }
 
-    for ($i=; $i < count($listeSynonymes); $i++) { 
+    for ($i=0; $i < count($listeSynonymes); $i++) { 
         foreach ($listeSynonymes[$i]->getSynonymes as $synonyme) {
             
         }
@@ -39,6 +39,4 @@ foreach (getListeMots() as $mot) {
         echo $value;
         echo ${"$value"}->getCompteur();
     }
-
-
 ?>

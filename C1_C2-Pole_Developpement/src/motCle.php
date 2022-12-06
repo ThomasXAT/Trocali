@@ -1,5 +1,5 @@
 <?php
-    include "mot.php";
+    include_once "mot.php";
 
     class motCle extends mot {
         
@@ -9,11 +9,9 @@
 
         // CONSTRUCTEURS
 
-        function __construct($intitule) {
-			$this->setIntitule($intitule);
-			$this->setSynonymes(getDicSynonymes()[$this->getIntitule()]["Synonymes"]);
-			$this->setArticles(getDicSynonymes()[$this->getIntitule()]["Articles"]);
-            $this->setCompteur(1);
+        function __construct($intitule, $compteur = 1) {
+            parent::__construct($intitule);
+            $this->setCompteur($compteur);
 		}
 
         // METHODES D'ENCAPSULATION
