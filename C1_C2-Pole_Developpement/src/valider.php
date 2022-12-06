@@ -16,7 +16,7 @@
 		$nouvelArticle->exporter();
 
 		foreach ($nouvelArticle->getMotsCles() as $mot) {
-			$mot = new Mot($mot);
+			$mot = new Mot($mot->getIntitule());
 			$mot->ajouterArticle($nouvelArticle);
 		}
 
