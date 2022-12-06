@@ -1,9 +1,5 @@
 <?php
-
-	foreach (getListeMots() as $mot) {
-		${$mot} = new Mot($mot);
-		${$mot} -> genererSynonymes();
-	}
+	include_once 'article.php';
 	
 	Class Mot
 	{
@@ -141,5 +137,9 @@
 		return in_array($mot, getListeMots());
 	}
 
-
+	
+	foreach (getListeMots() as $mot) {
+		${$mot} = new Mot($mot);
+		${$mot} -> genererSynonymes();
+	}
 ?>

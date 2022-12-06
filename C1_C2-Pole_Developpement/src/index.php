@@ -55,8 +55,13 @@
 				if (isset($recherche) && $recherche != "") {
 	           		$motsCles = findMotsCles($recherche);
 					print "<p>Articles correspondants à votre recherche : ".$recherche."</p><br />";
-					foreach(rechercher($motsCles, $categorie) as $article) {
-						$article->afficher();
+					if (!empty(rechercher($motsCles, $categorie))) {
+						foreach (rechercher($motsCles, $categorie) as $article) {
+							$article->afficher();
+						}
+					}
+					else {
+						print "<p>Aucun article ne correspond à votre recherche...</p>";
 					}
 				}
 				else {

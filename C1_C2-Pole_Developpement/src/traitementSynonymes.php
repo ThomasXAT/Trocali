@@ -28,11 +28,25 @@
                 echo $sousSynonyme->getIntitule();
             }
         }
+<<<<<<< HEAD
     }*/
 /*
+=======
+    }
+
+    for ($i=0; $i < count($listeSynonymes); $i++) { 
+        foreach ($listeSynonymes[$i]->getSynonymes as $synonyme) {
+            
+        }
+    }
+
+>>>>>>> f4a46bdae43082a51c21ab912d070def7ed98125
     foreach ($listeSynonymes as $value) {
         echo $value->getIntitule();
         echo $value->getCompteur();
     }
+<<<<<<< HEAD
 */
+=======
+>>>>>>> f4a46bdae43082a51c21ab912d070def7ed98125
 ?>

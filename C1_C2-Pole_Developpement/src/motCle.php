@@ -1,6 +1,10 @@
 <?php
+<<<<<<< HEAD
 
     include "mot.php";
+=======
+    include_once "mot.php";
+>>>>>>> f4a46bdae43082a51c21ab912d070def7ed98125
 
     class MotCle extends Mot {
         
@@ -11,10 +15,16 @@
 
         // CONSTRUCTEURS
 
+<<<<<<< HEAD
         function __construct($mot) {
 			$this->setMot($mot);
             $this->getMot()->genererSynonymes();
             $this->setCompteur(1);
+=======
+        function __construct($intitule, $compteur = 1) {
+            parent::__construct($intitule);
+            $this->setCompteur($compteur);
+>>>>>>> f4a46bdae43082a51c21ab912d070def7ed98125
 		}
 
         // METHODES D'ENCAPSULATION
