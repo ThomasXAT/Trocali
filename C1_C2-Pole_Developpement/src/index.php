@@ -53,7 +53,11 @@
 			<?php
 				extract($_POST,EXTR_OVERWRITE);		
 				if (isset($recherche) && $recherche != "") {
-					print "<p>Articles correspondants à votre recherche :</p><br />";
+	           		$motsCles = findMotsCles($recherche);
+					print "<p>Articles correspondants à votre recherche : ".$recherche."</p><br />";
+					foreach(rechercher($motsCles, $categorie) as $article) {
+						$article->afficher();
+					}
 				}
 				else {
 					$nombreArticles = getNombreArticles();

@@ -61,9 +61,10 @@
 			$fichier = ("dicSynonymes.json");
 			$donnees = file_get_contents($fichier);
 			$dicSynonymes = json_decode($donnees, true);
-
+			
 			if (!isset($dicSynonymes[$this->getIntitule()]["Articles"])) {
 				$dicSynonymes[$this->getIntitule()]["Articles"] = array();
+				print "array créé";
 			}
 			array_push($dicSynonymes[$this->getIntitule()]["Articles"], $article->getId());
 
@@ -122,8 +123,8 @@
 		while ($mot != "") {
 			if (existe($mot)) {
 				$synonyme = new Mot($mot);
-				if (!in_array($synonyme->getIntitule(), $listeMotsCles)) {
-					array_push($listeMotsCles, $synonyme->getIntitule());
+				if (!in_array($synonyme, $listeMotsCles)) {
+					array_push($listeMotsCles, $synonyme);
 				}
 			}
 			/*elseif (existe(testerSingulier($mot))) {

@@ -1,7 +1,15 @@
 <?php
 	include 'mot.php';
+
+	/**
+	 * @var string Texte du footer
+	 */
 	$footer = "Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES, Evan SPICKA et parfois Rémi DUPIN (alternant) dans le cadre de la SAÉ 3.01.";
 
+	/**
+	 * Liste des catégories disponibles
+	 * @return array<string>
+	 */
 	function getCategories() {
 		return ["Automobile", "Enseignement", "Informatique", "Sécurité", "Nettoyage"];
 	}
@@ -39,50 +47,98 @@
 		
 		// METHODES D'ENCAPSULATION
 		
+		/**
+		 * SETTER de $id
+		 * @param mixed $id
+		 */
 		public function setId($id) {
 			$this->_id = $id;
 		}
 		
+		/**
+		 * GETTER de $id
+		 * @return mixed
+		 */
 		public function getId() {
 			return $this->_id;
 		}
 		
+		/**
+		 * SETTER de $titre
+		 * @param mixed $titre
+		 */
 		public function setTitre($titre) {
 			$this->_titre = $titre;
 		}
 		
+		/**
+		 * GETTER de $titre
+		 * @return mixed
+		 */
 		public function getTitre() {
 			return $this->_titre;
 		}
 		
+		/**
+		 * SETTER de $motsCles
+		 * @param mixed $motsCles
+		 */
 		public function setMotsCles($motsCles) {
 			$this->_motsCles = $motsCles;
 		}
 		
+		/**
+		 * GETTER de $motsCles
+		 * @return mixed
+		 */
 		public function getMotsCles() {
 			return $this->_motsCles;
 		}
 
+		/**
+		 * SETTER de $type
+		 * @param mixed $type
+		 */
 		public function setType($type) {
 			$this->_type = $type;
 		}
 		
+		/**
+		 * GETTER de $type
+		 * @return mixed
+		 */
 		public function getType() {
 			return $this->_type;
 		}
 
+		/**
+		 * SETTER de $categorie
+		 * @param mixed $categorie
+		 */
 		public function setCategorie($categorie) {
 			$this->_categorie = $categorie;
 		}
 		
+		/**
+		 * GETTER de $categorie
+		 * @return mixed
+		 */
 		public function getCategorie() {
 			return $this->_categorie;
 		}
 
+		/**
+		 * SETTER de $description
+		 * @param mixed $description
+		 */
 		public function setDescription($description) {
 			$this->_description = $description;
 		}
 		
+		/**
+		 * GETTER de $description
+		 * @return mixed
+		 */
 		public function getDescription() {
 			return $this->_description;
 		}
@@ -116,6 +172,9 @@
 			// Récupération du nombre d'articles
 			$nombreArticles = getNombreArticles();
 			$motsCles = findMotsCles($this->getTitre());
+			for ($i = 0; $i < sizeof($motsCles); $i++) {
+				$motsCles[$i] = $motsCles[$i]->getIntitule();
+			}
 	
 			// Récupération de dicArticles
 			$fichier = ("articles.json");
@@ -137,6 +196,10 @@
 		
 	// SOUS-PROGRAMMES EXTERNES
 
+	/**
+	 * Nombre d'articles publiés
+	 * @return int
+	 */
 	function getNombreArticles() {
 		$compteur = fopen("compteur.txt", "r+");
 		$nombreArticles = fgets($compteur, 255);
@@ -153,6 +216,10 @@
 		return $nombreArticles;
 	}
 	
+	/**
+	 * Incrémenter le nombre d'articles
+	 * @return void
+	 */
 	function incrNombreArticles() {
 		$compteur = fopen("compteur.txt", "r+");
 		$nombreArticles = getNombreArticles();
@@ -161,6 +228,11 @@
 		fclose($compteur);
 	}
 
+	/**
+	 * Summary of importer
+	 * @param mixed $id
+	 * @return Article
+	 */
 	function importer($id) {
 		// Récupération de dicArticles
 		$fichier = ("articles.json");
@@ -181,4 +253,17 @@
 		$article = new Article($id, $titre, $motsCles, $type, $categorie, $description);
 		return $article;
 	}
+
+function rechercher($liste, $categorie) {
+	$resultat = array();
+
+	foreach ($liste as $mot) {
+		foreach ($mot->getArticles() as $article) {
+			if (!in_array($article, $resultat)) {
+				array_push($resultat, $article);
+			}
+		}
+	}
+	return $resultat;
+}
 ?>
