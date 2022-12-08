@@ -119,12 +119,14 @@
 		while ($mot != "") {
 			if (existe($mot)) {
 				$motCle = new Mot($mot);
+				$motCle->genererSynonymes();
 				if (!in_array($motCle, $listeMotsCles)) {
 					array_push($listeMotsCles, $motCle);
 				}
 			}
 			elseif (existe(testerSingulier($mot))) {
 				$motCle = new Mot(testerSingulier($mot));
+				$motCle->genererSynonymes();
 				if (!in_array($motCle, $listeMotsCles)) {
 					array_push($listeMotsCles, $motCle);
 				}

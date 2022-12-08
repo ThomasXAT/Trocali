@@ -14,15 +14,11 @@
 	<title>Trocali - Accueil</title>
 </head>
 <body>
-	<header>
-		<h1>Trocali</h1>
-		<nav>
-			<ul>
-				<li><a href="index.php">Accueil</i><a></li>
-				<li><a href="clear.php">Supprimer les articles</i><a></li>
-			</ul>
-		</nav>
-	</header>
+
+	<?php
+		include 'header.php'
+	?>
+	
 	<main>
 		<section class="recherche">
 			<form action="index.php" method="POST">

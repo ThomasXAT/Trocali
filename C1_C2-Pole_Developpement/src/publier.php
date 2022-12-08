@@ -12,16 +12,12 @@
 	<title>Trocali - Publier un article</title>
 </head>
 <body>
-	<header>
-	<h1>Trocali</h1>
-		<nav>
-			<ul>
-				<li><a href="index.php">Accueil<a></li>
-				<li><a href="clear.php">Supprimer les articles</i><a></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
+
+<?php
+	include 'header.php'
+?>
+
+<main>
 		<section class="titre">
 			<?php
 				extract($_POST,EXTR_OVERWRITE);		

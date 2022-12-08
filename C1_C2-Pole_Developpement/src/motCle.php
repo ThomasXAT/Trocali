@@ -30,4 +30,7 @@
             $this->_compteur++;
         }
     }
+
+$test = new MotCle("voiture");
+print_r($test);
 ?>
