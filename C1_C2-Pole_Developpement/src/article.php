@@ -263,17 +263,15 @@
 	 * @return void
 	 */
 	function publier($titre, $type = "Offre", $categorie = "", $description = "") {
-		if ($categorie != "") {
-			if (in_array($categorie, getCategories())) {
-				if ($type == "Offre" || $type == "Demande") {
-					incrNombreArticles();
-					$article = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
-					$article->exporter();
+		if (in_array($categorie, getCategories()) || $categorie == "") {
+			if ($type == "Offre" || $type == "Demande") {
+				incrNombreArticles();
+				$article = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
+				$article->exporter();
 
-					foreach ($article->getMotsCles() as $mot) {
-						$mot = new Mot($mot->getIntitule());
-						$mot->ajouterArticle($article);
-					}
+				foreach ($article->getMotsCles() as $mot) {
+					$mot = new Mot($mot->getIntitule());
+					$mot->ajouterArticle($article);
 				}
 			}
 		}	

@@ -10,15 +10,10 @@
 		elseif (isset($demande)) {
 			$type = "Demande";
 		}
-		incrNombreArticles();
-		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
-		$nouvelArticle = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
-		$nouvelArticle->exporter();
 
-		foreach ($nouvelArticle->getMotsCles() as $mot) {
-			$mot = new Mot($mot->getIntitule());
-			$mot->ajouterArticle($nouvelArticle);
-		}
+		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
+
+		publier($titre, $type, $categorie, $description);
 
 		header("Location:index.php");
 	}
