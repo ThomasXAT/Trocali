@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
 	include 'article.php';
+	include 'website.php'
 ?>
 <html lang="fr">
 <head>
@@ -13,9 +14,7 @@
 </head>
 <body>
 
-<?php
-	include 'header.php'
-?>
+<?php print $header; ?>
 
 <main>
 		<section class="titre">
@@ -62,8 +61,8 @@
 			</form>
 		</section>
 	</main>
-	<footer>
-		<?php print $footer; ?>
-	</footer>
+
+	<?php print $footer; ?>
+	
 </body>
 </html>

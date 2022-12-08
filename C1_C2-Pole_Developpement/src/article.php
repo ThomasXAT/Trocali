@@ -2,11 +2,6 @@
 	include_once 'mot.php';
 
 	/**
-	 * @var string Texte du footer
-	 */
-	$footer = "Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES, Evan SPICKA et parfois Rémi DUPIN (alternant) dans le cadre de la SAÉ 3.01.";
-
-	/**
 	 * Liste des catégories disponibles
 	 * @return array<string>
 	 */
