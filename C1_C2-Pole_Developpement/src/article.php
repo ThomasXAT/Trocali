@@ -2,6 +2,11 @@
 	include_once 'mot.php';
 
 	/**
+	 * @var string Texte du footer
+	 */
+	$footer = "Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES, Evan SPICKA et parfois Rémi DUPIN (alternant) dans le cadre de la SAÉ 3.01.";
+
+	/**
 	 * Liste des catégories disponibles
 	 * @return array<string>
 	 */
@@ -249,32 +254,33 @@
 		return $article;
 	}
 
-	/**
-	 * Summary of publier
-	 * @param mixed $titre
-	 * @param mixed $type
-	 * @param mixed $categorie
-	 * @param mixed $description
-	 * @return void
-	 */
-	function publier($titre, $type = "Offre", $categorie = "", $description = "") {
-		if (in_array($categorie, getCategories()) || $categorie == "") {
-			if ($type == "Offre" || $type == "Demande") {
-				incrNombreArticles();
-				$article = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
-				$article->exporter();
+/**
+ * Summary of publier
+ * @param mixed $titre
+ * @param mixed $type
+ * @param mixed $categorie
+ * @param mixed $description
+ * @return void
+ */
+function publier($titre, $type = "Offre", $categorie = "", $description = "") {
+	if (in_array($categorie, getCategories()) || $categorie == "") {
+		if ($type == "Offre" || $type == "Demande") {
+			incrNombreArticles();
+			$article = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
+			$article->exporter();
 
-				foreach ($article->getMotsCles() as $mot) {
-					$mot = new Mot($mot->getIntitule());
-					$mot->ajouterArticle($article);
-				}
+			foreach ($article->getMotsCles() as $mot) {
+				$mot = new Mot($mot->getIntitule());
+				$mot->ajouterArticle($article);
 			}
-		}	
-	}
+		}
+	}	
+}
+
 
 function rechercher($liste, $categorie) {
 	$resultat = array();
- 
+
 	foreach ($liste as $mot) {
 		foreach ($mot->getArticles() as $article) {
 			if (!in_array($article, $resultat)) {

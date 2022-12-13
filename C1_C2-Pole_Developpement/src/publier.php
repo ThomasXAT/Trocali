@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php 
 	include 'article.php';
-	include 'website.php'
 ?>
 <html lang="fr">
 <head>
@@ -13,10 +12,16 @@
 	<title>Trocali - Publier un article</title>
 </head>
 <body>
-
-<?php print $header; ?>
-
-<main>
+	<header>
+	<h1>Trocali</h1>
+		<nav>
+			<ul>
+				<li><a href="index.php">Accueil<a></li>
+				<li><a href="clear.php">Supprimer les articles</i><a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
 		<section class="titre">
 			<?php
 				extract($_POST,EXTR_OVERWRITE);		
@@ -61,8 +66,8 @@
 			</form>
 		</section>
 	</main>
-
-	<?php print $footer; ?>
-	
+	<footer>
+		<?php print $footer; ?>
+	</footer>
 </body>
 </html>

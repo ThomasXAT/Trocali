@@ -95,7 +95,7 @@
 		return array_keys(getDicSynonymes());
 	}
 
-	function testerSingulier($mot) {
+	/*function testerSingulier($mot) {
 		$derniereLettre = substr($mot, -1);
 		if ($derniereLettre == "s") {
 			$tailleMot = strlen($mot);
@@ -109,7 +109,7 @@
 		else {
 			return $mot;
 		}
-	}
+	}*/
 
 	function findMotsCles($chaine) {
 		$chaine = strtolower($chaine);
@@ -118,19 +118,16 @@
 		$mot = strtok($chaine, $delimiteurs);
 		while ($mot != "") {
 			if (existe($mot)) {
-				$motCle = new Mot($mot);
-				$motCle->genererSynonymes();
-				if (!in_array($motCle, $listeMotsCles)) {
-					array_push($listeMotsCles, $motCle);
+				$synonyme = new Mot($mot);
+				if (!in_array($synonyme, $listeMotsCles)) {
+					array_push($listeMotsCles, $synonyme);
 				}
 			}
-			elseif (existe(testerSingulier($mot))) {
-				$motCle = new Mot(testerSingulier($mot));
-				$motCle->genererSynonymes();
-				if (!in_array($motCle, $listeMotsCles)) {
-					array_push($listeMotsCles, $motCle);
+			/*elseif (existe(testerSingulier($mot))) {
+				if (!in_array($mot, $listeMotsCles)) {
+					array_push($listeMotsCles, testerSingulier($mot)->getIntitule());
 				}
-			}
+			}*/
 			$mot = strtok($delimiteurs);
 		}
 		return $listeMotsCles; 

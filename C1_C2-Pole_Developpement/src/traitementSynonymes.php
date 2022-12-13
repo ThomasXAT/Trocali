@@ -1,42 +1,56 @@
 <?php
-
-foreach (getListeMots() as $mot) {
-    ${$mot} = new Mot($mot);
-}
-
-    include "article.php";
-
-    $listeMotsCles = array("je");
-    //Récupération des synonymes des mots clés et leur nombre d'occurences
+    include "motCle.php";
     
-    //Initialisation de listeSynonymes
-    $listeSynonymes = array();
+    function traitementSynonymes($listeMots) {
 
+        foreach (getListeMots() as $mot) {
+            ${$mot} = new Mot($mot);
+        }
 
-    //${"article$i"} $article1 +
-    foreach ($listeMotsCles as $motCle) {
-        ${"$motCle"} = new Mot($motCle);
-        ${"$motCle"}->setCompteur(INF);
+        foreach (getListeMots() as $mot) {
+            ${$mot} = new Mot($mot);
+            ${$mot} -> genererSynonymes();
+        }
 
-        foreach (${"$motCle"}->getSynonymes() as $synonyme) {
-            if (!in_array($synonyme, $listeSynonymes) && !in_array($synonyme, $listeMotsCles)) {
-                ${"$synonyme"} = new Mot($synonyme);
-                array_push($listeSynonymes, $synonyme);
+        $listeMotsCles = array();
+
+        foreach ($listeMots as $mot) {
+
+            if (!(in_array(${$mot->getIntitule()}, $listeMotsCles))) {
+                ${$mot->getIntitule()} = new MotCle($mot->getIntitule(), INF);
+                array_push($listeMotsCles, ${$mot->getIntitule()});
             }
-            elseif (!in_array($synonyme, ${"$synonyme"})) {
-                ${"$synonyme"}->incrCompteur();
+            else {
+                ${$mot->getIntitule()}->setCompteur(INF);
+            }
+
+            foreach (${$mot->getIntitule()}->getSynonymes() as $synonyme) {
+                if (!(in_array(${$synonyme->getIntitule()}, $listeMotsCles))) {
+                    ${$synonyme->getIntitule()} = new MotCle($synonyme->getIntitule());
+                    array_push($listeMotsCles, ${$synonyme->getIntitule()});
+                }
+                ${$synonyme->getIntitule()}->incrCompteur(2);
+
+                foreach (${$synonyme->getIntitule()}->getSynonymes() as $sousSynonyme) {
+                    if (!(in_array(${$sousSynonyme->getIntitule()}, $listeMotsCles))) {
+                        ${$sousSynonyme->getIntitule()} = new MotCle($sousSynonyme->getIntitule());
+                        array_push($listeMotsCles, ${$sousSynonyme->getIntitule()});
+                    }
+                    ${$sousSynonyme->getIntitule()}->incrCompteur();
+                }
             }
         }
-    }
 
-    for ($i=0; $i < count($listeSynonymes); $i++) { 
-        foreach ($listeSynonymes[$i]->getSynonymes as $synonyme) {
-            
+        for ($iterateur1 = count($listeMotsCles)-2; $iterateur1 >= 0; $iterateur1--) { 
+            for ($iterateur2 = 0; $iterateur2 <= $iterateur1; $iterateur2++) { 
+                if ($listeMotsCles[$iterateur2+1]->getCompteur() > $listeMotsCles[$iterateur2]->getCompteur()) {
+                    $temp = $listeMotsCles[$iterateur2+1];
+                    $listeMotsCles[$iterateur2+1] = $listeMotsCles[$iterateur2];
+                    $listeMotsCles[$iterateur2] = $temp;
+                }
+            }
         }
-    }
+        return $listeMotsCles;
 
-    foreach ($listeSynonymes as $value) {
-        echo $value;
-        echo ${"$value"}->getCompteur();
     }
 ?>
