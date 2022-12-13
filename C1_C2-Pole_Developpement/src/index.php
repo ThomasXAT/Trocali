@@ -56,6 +56,9 @@
 				extract($_POST,EXTR_OVERWRITE);		
 				if (isset($recherche) && $recherche != "") {
 	           		$motsCles = findMotsCles($recherche);
+					foreach ($motsCles as $motCle) {
+		            	print $motCle->getIntitule();
+					}
 					print "<p>Articles correspondants à votre recherche : ".$recherche."</p><br />";
 					if (!empty(rechercher($motsCles, $categorie))) {
 						foreach (rechercher($motsCles, $categorie) as $article) {
