@@ -1,20 +1,30 @@
 <?php
     include_once "mot.php";
 
-    class motCle extends mot {
+    class MotCle extends Mot {
         
         // ATTRIBUTS
 
+        private $_mot;
         private $_compteur;
 
         // CONSTRUCTEURS
-
-        function __construct($intitule, $compteur = 1) {
+        
+        function __construct($intitule, $compteur = 0) {
             parent::__construct($intitule);
+            $this->genererSynonymes();
             $this->setCompteur($compteur);
 		}
 
         // METHODES D'ENCAPSULATION
+
+        public function setMot($mot) {
+            $this->_mot = $mot;
+        }
+
+        public function getMot() {
+            return $this->_mot;
+        }
 
         public function setCompteur($compteur) {
             $this->_compteur = $compteur;
@@ -26,11 +36,8 @@
 
         // METHODES SPECIFIQUES
 
-        public function incrCompteur() {
-            $this->_compteur++;
+        public function incrCompteur($ajout = 1) {
+            $this->_compteur += $ajout;
         }
     }
-
-$test = new MotCle("voiture");
-print_r($test);
 ?>
