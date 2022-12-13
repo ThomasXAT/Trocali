@@ -273,10 +273,13 @@ main > .newsletter > form > .valider {
 		margin: auto;
 	}
 
+
+	/* News Letter */
+
 	main > .newsletter > form > .email {
-		font-size: 1.2em;
+		font-size: 1em;
 		height: 4vh;
-		width: 25%;
+		width: 22%;
 		margin: 1vh;
 	}
 
@@ -285,5 +288,16 @@ main > .newsletter > form > .valider {
 		background-color: rgb(108, 163, 108);
 		width: 8%;
 		height: 4vh;
+	}
+
+	main > .newsletter > form > .checkboxs {
+		text-align: left;
+		padding-left: 46em;
+	}
+
+	main > .newsletter > form > p {
+		color: darkslategray;
+		font-style: italic;
+		font-size: smaller;
 	}
 }

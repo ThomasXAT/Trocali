@@ -18,6 +18,7 @@
 
         // METHODES D'ENCAPSULATION
 
+        
         public function setMot($mot) {
             $this->_mot = $mot;
         }
