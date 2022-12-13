@@ -2,10 +2,7 @@
 
 <?php 
 	include 'article.php';
-<<<<<<< HEAD
 	include 'website.php';
-=======
->>>>>>> 3f723602eba678a8f3414668e00975ef58ce070d
 ?>
 
 <html lang="fr">
@@ -23,6 +20,7 @@
 		<nav>
 			<ul>
 				<li><a href="index.php">Accueil</i><a></li>
+				<li><a href="generate.php">Générer des articles</i><a></li>
 				<li><a href="clear.php">Supprimer les articles</i><a></li>
 			</ul>
 		</nav>
