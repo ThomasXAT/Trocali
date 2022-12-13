@@ -2,7 +2,7 @@
 
 <?php 
 	include 'article.php';
-	include 'website.php'
+	include 'website.php';
 ?>
 
 <html lang="fr">

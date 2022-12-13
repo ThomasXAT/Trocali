@@ -31,4 +31,10 @@ $footer = "
         Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES, Evan SPICKA et parfois Rémi DUPIN (alternant) dans le cadre de la SAÉ 3.01.
     </footer>";
 
+function afficherListeMots() {
+    foreach(getListeMots() as $mot) {
+        print $mot;
+        print "<br>";
+    }
+}
 ?>

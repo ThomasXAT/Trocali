@@ -212,7 +212,7 @@
 	}
 	
 	/**
-	 * Incrémenter le nombre d'articles
+	 * Summary of incrNombreArticles
 	 * @return void
 	 */
 	function incrNombreArticles() {
