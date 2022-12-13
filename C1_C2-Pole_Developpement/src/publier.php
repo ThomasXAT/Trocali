@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
 	include 'article.php';
+	include 'website.php'
 ?>
 <html lang="fr">
 <head>
