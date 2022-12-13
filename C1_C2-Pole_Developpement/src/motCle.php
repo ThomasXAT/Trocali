@@ -9,7 +9,7 @@
         private $_compteur;
 
         // CONSTRUCTEURS
-
+        
         function __construct($intitule, $compteur = 0) {
             parent::__construct($intitule);
             $this->genererSynonymes();
@@ -40,11 +40,4 @@
             $this->_compteur += $ajout;
         }
     }
-<<<<<<< HEAD
 ?>
-=======
-
-$test = new MotCle("voiture");
-print_r($test);
-?>
->>>>>>> 8ed362be4baac87baea87eb77cec20b1d304a2b4
