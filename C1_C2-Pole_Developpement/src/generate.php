@@ -20,7 +20,19 @@
     publier("Cherche cours informatique", "Demande", "Informatique", "Je souhaiterais recevoir des cours d'informatique.");
     publier("Vente de logiciels de bureautiques Offices à bas prix", "Offre", "Informatique", "Je revends mes licenses de Offices que j'ai en trop.");
     publier("Cherche ingégnieur en robotique", "Demande", "Informatique", "Je cherche un ingégnieur en robotique pour m'aider à faire mon projet.");
-    publier("Cherche cours informatique", "Demande", "Informatique", "Je souhaiterais recevoir des cours d'informatique.");
+    publier("Cherche gardes du corps ", "Demande", "Sécurité", "Je souhaiterais avoir des gardes du corps pour protéger ma personne qui est sacrée.");
+    publier("Travail de vigile à mi-temps", "Offre", "Sécurité", "J'offre des travaux de vigile à mi-temps sur la côte basque");
+    publier("Cherche portier pour garder la porte du BDE", "Demande", "Sécurité", "Je vourdrais protéger le BDE de n'importe quel étudiant afin qu'il ne casse rien j'ai déjà un câble cassé ça m'énerve!");
+    publier("Manque de surveillants au lycée de Périgueux", "Demande", "Sécurité", "Je souhaite embaucher des surveillants pour surveiller les salles d'études.");
+    publier("Stage de gardiens de prisons et policiers", "Offre", "Sécurité", "On proposes des sstages pour faire garde de prisons ou policiers.");
+    publier("Recherche de concierges pour netoyer un stade", "Demande", "Netoyage", "On embauche des concierges pour netoyer le stade Maurice Trélut.");
+    publier("Cherche veilleur de nuit pour surveiller les patients", "Demande", "Sécurité", "On embauche des veilleurs de nuit pour surveiller les patients de l'hôpital.");
+    publier("Vente de matériel de netoyage : serpillères, chiffons, balai, aspirateurs, torchons... ", "Netoyage", "Informatique", "Avec notre entreprises de matériel de netoyage vous obtiendrez enfin tout ce dont vous avez besoin pour tuer la moindre tâche!");
+    publier("Je propose des cours de rap donnés par Espi", "Offre", "Enseignement", "Avec Espi vous apprendrez le rap en 2 secondes.");
+    publier("Je voudrais des voitures en plastique pour mon fils", "Demande", "", "C'est pour l'anniversaire de mon fils de 6 ans.");
+    publier("J'organise un rallye de bagnoles", "Offre", "Automobile", "Achetez vos place dès maintenant  au parc des expos.");
+    publier("Je vends mes voiture d'occaz", "Offre", "Automobile", "Mes voitures sont plutôt en bon état donc pas de soucis rdv à Angoulème");
+    publier("Je cherche des cours de natation ", "Demande", "Enseignement", "Je ne sais pas nager donc je voudrais un prof qui pourrait m'enseigner la brasse.");
     // Retour à la page d'accueil
     header("Location:index.php");
 ?>
