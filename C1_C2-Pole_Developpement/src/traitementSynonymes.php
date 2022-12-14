@@ -1,56 +1,63 @@
 <?php
     include "motCle.php";
     
-    function traitementSynonymes($listeMots) {
+    function traitementSynonymes($liste) {
 
-        foreach (getListeMots() as $mot) {
-            ${$mot} = new Mot($mot);
-        }
+        $resultat = array();
 
-        foreach (getListeMots() as $mot) {
-            ${$mot} = new Mot($mot);
-            ${$mot} -> genererSynonymes();
-        }
+        // Ajout de chaque mot de la recherche dans la liste résultat avec compteur = INF
+        foreach($liste as $mot) {
+            ${$mot->getIntitule()} = new MotCle($mot->getIntitule(), INF);
+            array_push($resultat, ${$mot->getIntitule()});
 
-        $listeMotsCles = array();
+            // Ajout de chaque synonyme du mot dans la liste résultat
+            foreach(${$mot->getIntitule()}->getSynonymes() as $synonyme) {
 
-        foreach ($listeMots as $mot) {
-
-            if (!(in_array(${$mot->getIntitule()}, $listeMotsCles))) {
-                ${$mot->getIntitule()} = new MotCle($mot->getIntitule(), INF);
-                array_push($listeMotsCles, ${$mot->getIntitule()});
-            }
-            else {
-                ${$mot->getIntitule()}->setCompteur(INF);
-            }
-
-            foreach (${$mot->getIntitule()}->getSynonymes() as $synonyme) {
-                if (!(in_array(${$synonyme->getIntitule()}, $listeMotsCles))) {
+                // Si le synonyme n'est pas encore dans la liste : compteur = 2
+                if (!in_array(${$synonyme->getIntitule()}, $resultat)) {
                     ${$synonyme->getIntitule()} = new MotCle($synonyme->getIntitule());
-                    array_push($listeMotsCles, ${$synonyme->getIntitule()});
+                    array_push($resultat, ${$synonyme->getIntitule()});
+                    ${$synonyme->getIntitule()}->setCompteur(2);
                 }
-                ${$synonyme->getIntitule()}->incrCompteur(2);
 
-                foreach (${$synonyme->getIntitule()}->getSynonymes() as $sousSynonyme) {
-                    if (!(in_array(${$sousSynonyme->getIntitule()}, $listeMotsCles))) {
+                // Sinon, incrémentation du compteur
+                else {
+                    ${$synonyme->getIntitule()}->incrCompteur();
+                }
+
+                // Ajout de chaque synonyme du synonyme dans la liste résultat
+                foreach(${$synonyme->getIntitule()}->getSynonymes() as $sousSynonyme) {
+
+                    // Si le sous synonyme n'est pas encore dans la liste : compteur = 1
+                    if (!in_array(${$sousSynonyme->getIntitule()}, $resultat)) {
                         ${$sousSynonyme->getIntitule()} = new MotCle($sousSynonyme->getIntitule());
-                        array_push($listeMotsCles, ${$sousSynonyme->getIntitule()});
+                        array_push($resultat, ${$sousSynonyme->getIntitule()});
+                        ${$synonyme->getIntitule()}->setCompteur(1);
                     }
-                    ${$sousSynonyme->getIntitule()}->incrCompteur();
+
+                    // Sinon, incrémentation du compteur
+                    else {
+                        ${$sousSynonyme->getIntitule()}->incrCompteur();
+                    }
                 }
             }
         }
 
-        for ($iterateur1 = count($listeMotsCles)-2; $iterateur1 >= 0; $iterateur1--) { 
+        // Tri
+        for ($iterateur1 = count($resultat)-2; $iterateur1 >= 0; $iterateur1--) { 
             for ($iterateur2 = 0; $iterateur2 <= $iterateur1; $iterateur2++) { 
-                if ($listeMotsCles[$iterateur2+1]->getCompteur() > $listeMotsCles[$iterateur2]->getCompteur()) {
-                    $temp = $listeMotsCles[$iterateur2+1];
-                    $listeMotsCles[$iterateur2+1] = $listeMotsCles[$iterateur2];
-                    $listeMotsCles[$iterateur2] = $temp;
+                if ($resultat[$iterateur2+1]->getCompteur() > $resultat[$iterateur2]->getCompteur()) {
+                    $temp = $resultat[$iterateur2+1];
+                    $resultat[$iterateur2+1] = $resultat[$iterateur2];
+                    $resultat[$iterateur2] = $temp;
                 }
             }
         }
-        return $listeMotsCles;
 
+    foreach ($resultat as $mot) {
+        print $mot->getIntitule()." ";
+        print $mot->getCompteur();
+        print "<br>";
+    }
     }
 ?>

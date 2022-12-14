@@ -3,6 +3,7 @@
 <?php 
 	include 'article.php';
 	include 'website.php';
+	include_once 'traitementSynonymes.php';
 ?>
 
 <html lang="fr">
@@ -48,6 +49,7 @@
 				if (isset($recherche) && $recherche != "") {
 	           		$motsCles = findMotsCles($recherche);
 					print "<p>Articles correspondants à votre recherche : ".$recherche."</p><br />";
+	           		print_r(traitementSynonymes(findMotsCles($recherche)));
 					if (!empty(rechercher($motsCles, $categorie))) {
 						foreach (rechercher($motsCles, $categorie) as $article) {
 							$article->afficher();

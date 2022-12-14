@@ -130,9 +130,8 @@
 		return in_array($mot, getListeMots());
 	}
 
-	
 	foreach (getListeMots() as $mot) {
 		${$mot} = new Mot($mot);
-		${$mot} -> genererSynonymes();
+		${$mot}->genererSynonymes();
 	}
 ?>
