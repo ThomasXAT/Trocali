@@ -103,7 +103,7 @@
 		}
 	}
 
-	function findMotsCles($chaine) {
+	function trouverMotsCles($chaine) {
 		$chaine = strtolower($chaine);
 		$delimiteurs = " .!?,:;(){}[]%-$'/\_"; 
 		$listeMotsCles = array(); 

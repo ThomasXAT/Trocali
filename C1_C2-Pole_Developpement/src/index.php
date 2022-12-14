@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 
 <?php 
-	include 'article.php';
 	include 'website.php';
-	include_once 'traitementSynonymes.php';
+	include_once 'motCle.php';
+	include_once 'article.php';
+
+	/*foreach (getListeMots() as $mot) {
+		print $mot."<br>";
+	}*/
 ?>
 
 <html lang="fr">
@@ -47,9 +51,9 @@
 			<?php
 				extract($_POST,EXTR_OVERWRITE);		
 				if (isset($recherche) && $recherche != "") {
-	           		$motsCles = findMotsCles($recherche);
+	           		$motsCles = trouverMotsCles($recherche);
 					print "<p>Articles correspondants à votre recherche : ".$recherche."</p><br />";
-	           		print_r(traitementSynonymes(findMotsCles($recherche)));
+
 					if (!empty(rechercher($motsCles, $categorie))) {
 						foreach (rechercher($motsCles, $categorie) as $article) {
 							$article->afficher();

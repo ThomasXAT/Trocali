@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-	include 'article.php';
+	include_once 'article.php';
 	include 'website.php'
 ?>
 <html lang="fr">
