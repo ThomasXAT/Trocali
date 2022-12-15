@@ -23,7 +23,7 @@ $newsletter = "
                         <li><input class='case' type='checkbox' name='recevoir_mail'><span>J'accepte de recevoir des mails publicitaires</span></li>
                     </ul>
                 </section>
-                <p>Vous pouvez vous désinscrire à tout moment à l'aide des liens de désincription ou en nous contactant sur contact@trocali.com</p>
+                <p>Vous pouvez vous désinscrire à tout moment à l'aide des liens </br> de désincription ou en nous contactant sur contact@trocali.com</p>
 
                 <input class='valider' type='submit' value='Confirmer'>
             </form>
