@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['traitementsynonymes_2ephp_0',['traitementSynonymes.php',['../traitement_synonymes_8php.html',1,'']]]
+  ['publier_2ephp_0',['publier.php',['../publier_8php.html',1,'']]]
 ];

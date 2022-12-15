@@ -15,6 +15,8 @@ class \mbox{\hyperlink{class_article}{Article}}
 \mbox{\hyperlink{article_8php_aeb03288006bcb0ba1e867577c1732e4f}{incr\+Nombre\+Articles}} ()
 \item 
 \mbox{\hyperlink{article_8php_a53b56e8b6a21cb53a3014fc0ddce06fb}{importer}} (\$id)
+\item 
+\mbox{\hyperlink{article_8php_a85254121209afc4a01f21d2e2fff2f01}{rechercher}} (\$liste, \$categorie)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -30,23 +32,46 @@ class \mbox{\hyperlink{class_article}{Article}}
 \doxysubsubsection{\texorpdfstring{getCategories()}{getCategories()}}
 {\footnotesize\ttfamily get\+Categories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Liste des catégories disponibles \begin{DoxyReturn}{Renvoie}
+array$<$string$>$ 
+\end{DoxyReturn}
 \mbox{\Hypertarget{article_8php_a7ede9f8b37264ea95fc2ab741561647f}\label{article_8php_a7ede9f8b37264ea95fc2ab741561647f}} 
 \index{article.php@{article.php}!getNombreArticles@{getNombreArticles}}
 \index{getNombreArticles@{getNombreArticles}!article.php@{article.php}}
 \doxysubsubsection{\texorpdfstring{getNombreArticles()}{getNombreArticles()}}
 {\footnotesize\ttfamily get\+Nombre\+Articles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Nombre d\textquotesingle{}articles publiés \begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
 \mbox{\Hypertarget{article_8php_a53b56e8b6a21cb53a3014fc0ddce06fb}\label{article_8php_a53b56e8b6a21cb53a3014fc0ddce06fb}} 
 \index{article.php@{article.php}!importer@{importer}}
 \index{importer@{importer}!article.php@{article.php}}
 \doxysubsubsection{\texorpdfstring{importer()}{importer()}}
 {\footnotesize\ttfamily importer (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
 
+Summary of importer 
+\begin{DoxyParams}[1]{Paramètres}
+mixed & {\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\mbox{\hyperlink{class_article}{Article}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{article_8php_aeb03288006bcb0ba1e867577c1732e4f}\label{article_8php_aeb03288006bcb0ba1e867577c1732e4f}} 
 \index{article.php@{article.php}!incrNombreArticles@{incrNombreArticles}}
 \index{incrNombreArticles@{incrNombreArticles}!article.php@{article.php}}
 \doxysubsubsection{\texorpdfstring{incrNombreArticles()}{incrNombreArticles()}}
 {\footnotesize\ttfamily incr\+Nombre\+Articles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Incrémenter le nombre d\textquotesingle{}articles \begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{article_8php_a85254121209afc4a01f21d2e2fff2f01}\label{article_8php_a85254121209afc4a01f21d2e2fff2f01}} 
+\index{article.php@{article.php}!rechercher@{rechercher}}
+\index{rechercher@{rechercher}!article.php@{article.php}}
+\doxysubsubsection{\texorpdfstring{rechercher()}{rechercher()}}
+{\footnotesize\ttfamily rechercher (\begin{DoxyParamCaption}\item[{}]{\$liste,  }\item[{}]{\$categorie }\end{DoxyParamCaption})}
 
 
 
