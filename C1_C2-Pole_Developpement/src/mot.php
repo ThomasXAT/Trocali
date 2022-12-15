@@ -103,7 +103,7 @@
 		}
 	}
 
-	function findMotsCles($chaine) {
+	function trouverMotsCles($chaine) {
 		$chaine = strtolower($chaine);
 		$delimiteurs = " .!?,:;(){}[]%-$'/\_"; 
 		$listeMotsCles = array(); 
@@ -130,9 +130,8 @@
 		return in_array($mot, getListeMots());
 	}
 
-	
 	foreach (getListeMots() as $mot) {
 		${$mot} = new Mot($mot);
-		${$mot} -> genererSynonymes();
+		${$mot}->genererSynonymes();
 	}
 ?>

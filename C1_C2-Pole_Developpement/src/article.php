@@ -171,7 +171,7 @@
 
 			// Récupération du nombre d'articles
 			$nombreArticles = getNombreArticles();
-			$motsCles = findMotsCles($this->getTitre());
+			$motsCles = trouverMotsCles($this->getTitre());
 			for ($i = 0; $i < sizeof($motsCles); $i++) {
 				$motsCles[$i] = $motsCles[$i]->getIntitule();
 			}
@@ -266,7 +266,7 @@ function publier($titre, $type = "Offre", $categorie = "", $description = "") {
 	if (in_array($categorie, getCategories()) || $categorie == "") {
 		if ($type == "Offre" || $type == "Demande") {
 			incrNombreArticles();
-			$article = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
+			$article = new Article(getNombreArticles(), $titre, trouverMotsCles($titre), $type, $categorie, $description);
 			$article->exporter();
 
 			foreach ($article->getMotsCles() as $mot) {

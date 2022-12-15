@@ -1,5 +1,5 @@
 <?php
-    include "article.php";
+    include_once "article.php";
 
 	extract($_POST,EXTR_OVERWRITE);	
 
@@ -12,7 +12,7 @@
 		}
 		incrNombreArticles();
 		$description = preg_replace("(\r\n|\n|\r)", " ", $description);
-		$nouvelArticle = new Article(getNombreArticles(), $titre, findMotsCles($titre), $type, $categorie, $description);
+		$nouvelArticle = new Article(getNombreArticles(), $titre, trouverMotsCles($titre), $type, $categorie, $description);
 		$nouvelArticle->exporter();
 
 		foreach ($nouvelArticle->getMotsCles() as $mot) {
