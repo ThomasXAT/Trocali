@@ -211,26 +211,6 @@ main > .newsletter > form > .valider {
 	height: 6vh;
 }
 
-
-main > .newsletter > h2 {
-	font-weight: bold;
-	font-size: medium;
-}
-
-main > .newsletter > form > .checkboxs {
-	width: max-content;
-	margin: auto;
-	text-align: left;
-	font-size: 85%;
-}
-
-main > .newsletter > form > p {
-	color: darkslategray;
-	font-style: italic;
-	font-size: small;
-}
-
-
 /* Ordinateur */
 
 @media screen and (min-width: 800px) {
@@ -299,7 +279,7 @@ main > .newsletter > form > p {
 	main > .newsletter > form > .email {
 		font-size: 1em;
 		height: 4vh;
-		width: 40vh;
+		width: 22%;
 		margin: 1vh;
 	}
 
@@ -310,4 +290,14 @@ main > .newsletter > form > p {
 		height: 4vh;
 	}
 
+	main > .newsletter > form > .checkboxs {
+		text-align: left;
+		padding-left: 46em;
+	}
+
+	main > .newsletter > form > p {
+		color: darkslategray;
+		font-style: italic;
+		font-size: smaller;
+	}
 }

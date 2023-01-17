@@ -277,17 +277,67 @@ function publier($titre, $type = "Offre", $categorie = "", $description = "") {
 	}	
 }
 
-
 function rechercher($liste, $categorie) {
 	$resultat = array();
-
-	foreach ($liste as $mot) {
-		foreach ($mot->getArticles() as $article) {
+	if ($categorie != "") {
+		foreach (recupererArticlesTries($liste, INF, $categorie) as $article) {
+			array_push($resultat, $article);
+		}
+		foreach (recupererArticlesTries($liste, 0, $categorie) as $article) {
 			if (!in_array($article, $resultat)) {
 				array_push($resultat, $article);
 			}
 		}
 	}
+	foreach (recupererArticlesTries($liste, INF) as $article) {
+		if (!in_array($article, $resultat)) {
+			array_push($resultat, $article);
+		}
+	}
+	foreach (recupererArticlesTries($liste) as $article) {
+		if (!in_array($article, $resultat)) {
+			array_push($resultat, $article);
+		}
+	}
 	return $resultat;
+}
+
+function recupererArticlesTries($liste, $compteurMinimum = 0, $categorie = null) {
+	$resultat = array();
+	$compteur = array();
+	foreach ($liste as $mot){
+		if ($mot->getCompteur() >= $compteurMinimum) {
+			foreach ($mot->getArticles() as $article) {
+				if (isset($categorie)) {
+					if (!in_array($article, $resultat)) {
+						$compteur[$article->getId()] = 1;
+						if ($article->getCategorie() == $categorie) {
+							array_push($resultat, $article);
+						}
+					} else {
+						$compteur[$article->getId()]++;
+					}
+				} else {
+					if (!in_array($article, $resultat)) {
+						$compteur[$article->getId()] = 1;
+						array_push($resultat, $article);
+					} else {
+						$compteur[$article->getId()]++;
+					}
+				}
+			}
+		}
+	}
+	// Tri à bulle
+	for ($iterateur1 = count($resultat)-2; $iterateur1 >= 0; $iterateur1--) { 
+		for ($iterateur2 = 0; $iterateur2 <= $iterateur1; $iterateur2++) { 
+			if ($compteur[$resultat[$iterateur2+1]->getId()] > $compteur[$resultat[$iterateur2]->getId()]) {
+				$temp = $resultat[$iterateur2+1];
+				$resultat[$iterateur2+1] = $resultat[$iterateur2];
+				$resultat[$iterateur2] = $temp;
+			}
+		}
+	}
+	return($resultat);
 }
 ?>

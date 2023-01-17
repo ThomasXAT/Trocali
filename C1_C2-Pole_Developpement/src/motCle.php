@@ -94,21 +94,6 @@
             }
         }
 
-        // Tri à bulle
-        for ($iterateur1 = count($resultat)-2; $iterateur1 >= 0; $iterateur1--) { 
-            for ($iterateur2 = 0; $iterateur2 <= $iterateur1; $iterateur2++) { 
-                if ($resultat[$iterateur2+1]->getCompteur() > $resultat[$iterateur2]->getCompteur()) {
-                    $temp = $resultat[$iterateur2+1];
-                    $resultat[$iterateur2+1] = $resultat[$iterateur2];
-                    $resultat[$iterateur2] = $temp;
-                }
-            }
-        }
-        
-        /*foreach ($resultat as $mot) {
-            print $mot->getIntitule() . " " . $mot->getCompteur() . "<br>";
-        }*/
-
         return $resultat;
     }
 ?>
