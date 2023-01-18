@@ -277,67 +277,87 @@ function publier($titre, $type = "Offre", $categorie = "", $description = "") {
 	}	
 }
 
-function rechercher($liste, $categorie) {
-	$resultat = array();
-	if ($categorie != "") {
-		foreach (recupererArticlesTries($liste, INF, $categorie) as $article) {
-			array_push($resultat, $article);
-		}
-		foreach (recupererArticlesTries($liste, 0, $categorie) as $article) {
-			if (!in_array($article, $resultat)) {
+
+function rechercher($listeMotsCles, $categorie) {
+
+	$resultat = array();			// Liste contenant la liste des articles à publier
+	$attributsArticle = array();	// Dictionnaire ayant pour chaqe idée d'article deux entiers "infini" et "compteur"
+
+	// Rassemblement de tout les articles concernés
+	foreach ($listeMotsCles as $motCle) {
+		$compteurMotCle = $motCle->getCompteur();	// Entier contenant le compteur du MotCle traité
+
+		foreach ($motCle->getArticles() as $article) { 
+			$idArticle = $article->getId();		// Chaîne de charctère contenant l'id de l'Article traité
+
+			// Vérifie si m'article a déjà été trouvé
+			if(!in_array($article, $resultat)) {
+				// Initialise les attributs de l'article à 0
+				$attributsArticle[$idArticle] = array("infini" => 0, "compteur" => 0);
 				array_push($resultat, $article);
+			}
+
+			// Si le MotCle a un compteur à l'infini, le compteur de mot à l'inifini de l'Article est incrémenté de 1
+			if ($compteurMotCle == INF) {
+				$attributsArticle[$idArticle]["infini"] += 1;
+			}
+			// Sinon le compteur de l'Article prendra la valeur maximale du compteur de ses mots cles
+			elseif ($attributsArticle[$idArticle]["compteur"] < $compteurMotCle) {
+				$attributsArticle[$idArticle]["compteur"] = $compteurMotCle;
 			}
 		}
 	}
-	foreach (recupererArticlesTries($liste, INF) as $article) {
-		if (!in_array($article, $resultat)) {
-			array_push($resultat, $article);
-		}
-	}
-	foreach (recupererArticlesTries($liste) as $article) {
-		if (!in_array($article, $resultat)) {
-			array_push($resultat, $article);
-		}
-	}
-	return $resultat;
-}
 
-function recupererArticlesTries($liste, $compteurMinimum = 0, $categorie = null) {
-	$resultat = array();
-	$compteur = array();
-	foreach ($liste as $mot){
-		if ($mot->getCompteur() >= $compteurMinimum) {
-			foreach ($mot->getArticles() as $article) {
-				if (isset($categorie)) {
-					if (!in_array($article, $resultat)) {
-						$compteur[$article->getId()] = 1;
-						if ($article->getCategorie() == $categorie) {
-							array_push($resultat, $article);
-						}
-					} else {
-						$compteur[$article->getId()]++;
-					}
-				} else {
-					if (!in_array($article, $resultat)) {
-						$compteur[$article->getId()] = 1;
-						array_push($resultat, $article);
-					} else {
-						$compteur[$article->getId()]++;
+	//Tri à bulle des articles par pertinence
+	for ($iterateur1 = count($resultat)-2; $iterateur1 >= 0; $iterateur1--) { 
+		for ($iterateur2 = 0; $iterateur2 <= $iterateur1; $iterateur2++) {
+
+			$changement = FALSE;	//Booléen disant si les deux valeurs doivent être échangées
+
+			// Vérifie si le premier article a un compteur d'infini suppérieur au deuxième
+			if ($attributsArticle[$resultat[$iterateur2+1]->getId()]["infini"] > $attributsArticle[$resultat[$iterateur2]->getId()]["infini"]) {
+				$changement = TRUE;
+			}
+			// Sinon, vérifie si ces deux compteurs sont égaux
+			elseif ($attributsArticle[$resultat[$iterateur2+1]->getId()]["infini"] == $attributsArticle[$resultat[$iterateur2]->getId()]["infini"]) {
+
+				// Vérifie si la catègorie du premier Article correspond à celle entrée par l'utilisateur et que celle du deuxième non
+				if (($categorie != "") && ((verifierCategorie($resultat[$iterateur2+1], $categorie)) && !(verifierCategorie($resultat[$iterateur2], $categorie)))) {
+					$changement = TRUE;
+				}
+				// Vérifie si les catégories des deux Articles sont soit similaires soit différentes de celle entrée par l'utilisateur ou si aucune catégorie n'a étédemandée
+				elseif (($categorie == "") || (($categorie != "") && 
+				((!(verifierCategorie($resultat[$iterateur2+1], $categorie)) && !(verifierCategorie($resultat[$iterateur2], $categorie))) 
+				|| ((verifierCategorie($resultat[$iterateur2+1], $categorie)) && (verifierCategorie($resultat[$iterateur2], $categorie)))))) {
+
+					//Vérifie si le compteur du premier Article est supérieur à celui du deuxième
+					if ($attributsArticle[$resultat[$iterateur2+1]->getId()]["compteur"] > $attributsArticle[$resultat[$iterateur2]->getId()]["compteur"]) {
+						$changement = TRUE;
 					}
 				}
 			}
-		}
-	}
-	// Tri à bulle
-	for ($iterateur1 = count($resultat)-2; $iterateur1 >= 0; $iterateur1--) { 
-		for ($iterateur2 = 0; $iterateur2 <= $iterateur1; $iterateur2++) { 
-			if ($compteur[$resultat[$iterateur2+1]->getId()] > $compteur[$resultat[$iterateur2]->getId()]) {
+
+			// Si besoin, les deux Article dans la liste resultat
+			if ($changement) {
 				$temp = $resultat[$iterateur2+1];
 				$resultat[$iterateur2+1] = $resultat[$iterateur2];
 				$resultat[$iterateur2] = $temp;
 			}
 		}
 	}
-	return($resultat);
+	return $resultat;
 }
+
+// Si l'article et la catégorie sont la même, retourne True, sinon False
+function verifierCategorie($article, $categorie) {
+	$memeCategorie = FALSE;
+	
+	if($categorie == $article->getCategorie()) {
+		$memeCategorie = TRUE;
+	}
+	
+	return $memeCategorie;
+}
+
+
 ?>
