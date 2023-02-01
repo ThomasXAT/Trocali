@@ -9,7 +9,7 @@ $header =
                 <li><a href="account.php">Mon Compte</a></li>
             </ul>
         </nav>
-    </header>';
+    </header>'."\n";
 
 $newsletter = "
         <section class='newsletter'>
@@ -26,10 +26,10 @@ $newsletter = "
 
                 <input class='valider' type='submit' value='Confirmer'>
             </form>
-        </section>";
+        </section>\n";
 
 $footer = "
     <footer>
         Développé par Thomas JORGE, Noé JOUVE, Guilhem POTIES, Evan SPICKA et parfois Rémi DUPIN (alternant) dans le cadre de la SAÉ 4.D.01.
-    </footer>";
+    </footer>\n";
 ?>

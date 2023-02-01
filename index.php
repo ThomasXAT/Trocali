@@ -46,7 +46,7 @@ include 'database.php';
 			extract($_POST,EXTR_OVERWRITE);		
 			if (isset($recherche) && $recherche != "") {
 				$motsCles = trouverMotsCles($recherche);
-				print "<p>Articles correspondants à votre recherche : ".$recherche."</p>";
+				print "<h2>Articles correspondants à votre recherche : ".$recherche."</h2>";
 
 				$traitement = rechercher((trouverSynonymes($motsCles)), $categorie);
 				if (empty($traitement)) {
@@ -62,21 +62,26 @@ include 'database.php';
 			else {
 				$nombreArticles = getNombreArticles($database);
 				if ($nombreArticles != 0) {
-					print "<p>Derniers articles ($nombreArticles)</p><br />";
-					for ($id = $nombreArticles; $id > 0; $id--) {
-						$article = importer($id);
-						$article->afficher();
+					print "<h2>Derniers articles ($nombreArticles)</h2><br />\n";
+					$statement = $database->query("SELECT identifiant, titre, type, categorie, description FROM Article");
+					while ($row = $statement->fetch()) {
+						print "				<article>\n";
+						print "					<h3>".$row['titre']."</h3>\n";
+						print "					<p>".$row['type']."</p>\n";
+						print "					<p>".$row['categorie']."</p>\n";
+						print "					<p>".$row['description']."</p>\n";
+						print "					<p>"."auteur"."</p>\n";
+						print "				<article>\n";
+					
 					}
 				}
 				else {
-					print "<p>Aucun article n'a encore été publié...</p>";
+					print "<h2>Aucun article n'a encore été publié...</h2>";
 				}
 			}
 			?>
 		</section>
 	</main>
-	<footer>
-		<?php print $footer; ?>
-	</footer>
+	<?php print $footer; ?>
 </body>
 </html>
