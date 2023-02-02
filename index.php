@@ -63,7 +63,7 @@ include 'database.php';
 				$nombreArticles = getNombreArticles($database);
 				if ($nombreArticles != 0) {
 					print "<h2>Derniers articles ($nombreArticles)</h2><br />\n";
-					$statement = $database->query("SELECT identifiant, titre, type, categorie, description FROM Article");
+					$statement = $database->query("SELECT identifiant, titre, type, categorie, datePublication, description FROM Article ORDER BY datePublication DESC");
 					while ($row = $statement->fetch()) {
 						print "				<article>\n";
 						print "					<h3>".$row['titre']."</h3>\n";

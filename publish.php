@@ -16,10 +16,11 @@ include 'database.php';
 		<section>
 			<?php
 			extract($_POST,EXTR_OVERWRITE);		
+			extract($_GET,EXTR_OVERWRITE);	
 			if (isset($offre)) {
 				print "<h2>Publier une offre</h2>";
 			}
-			else {
+			else if (isset($demande)){
 				print "<h2>Lancer un appel d'offres</h2>";
 			}
 			?>

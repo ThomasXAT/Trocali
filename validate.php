@@ -27,4 +27,12 @@ if ($titre != "") {
 	$statement->execute();
 	header("Location:index.php");
 }
+else {
+	if (isset($offre)) {
+		header("Location:publish.php?offre");
+	}
+	elseif (isset($demande)) {
+		header("Location:publish.php?demande");
+	}
+}
 ?>
