@@ -45,6 +45,9 @@ include 'database.php';
 					<textarea id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea>
 				</div>
 				<div>
+					<input type="file" id="photos" name="photos" accept="image/*" />>
+				</div>
+				<div>
 					<?php
 					if (isset($offre)) {
 						print '<input type="submit" name="offre" value="Valider">';
@@ -54,6 +57,7 @@ include 'database.php';
 					}
 					?>
 				</div>
+
 
 			</form>
 		</section>

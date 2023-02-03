@@ -1,6 +1,6 @@
 <?php
 include 'database.php';
-extract($_POST,EXTR_OVERWRITE);	
+extract($_POST,EXTR_OVERWRITE);
 if ($titre != "") {
 	if (isset($offre)) {
 		$type = "Offre";
@@ -8,7 +8,9 @@ if ($titre != "") {
 	elseif (isset($demande)) {
 		$type = "Demande";
 	}
+	
 	$identifiant = getNombreArticles($database) + 1;
+
 	$sql = "INSERT INTO Article (
 		identifiant,
 		titre,
@@ -25,7 +27,29 @@ if ($titre != "") {
 	)";
 	$statement= $database->prepare($sql);
 	$statement->execute();
-	header("Location:index.php");
+
+	
+	if (isset($_FILES)) {
+		print "photo en cours d'upload";
+		$nomPhoto = "./photos/".$identifiant;
+		move_uploaded_file($_FILES['photos']['tmp_name'], $nomPhoto);
+
+		$sql = "INSERT INTO Photo (
+			lien, 
+			article
+		)
+		VALUES (
+			$nomPhoto,
+			$identifiant
+		)";
+		$statement= $database->prepare($sql);
+		$statement->execute();
+		print "</br>";
+		print "photo uploadée";
+	}
+
+
+	//header("Location:index.php");
 }
 else {
 	if (isset($offre)) {
