@@ -32,6 +32,12 @@ function generateDatabase() {
         CHECK (type = ‘Offre’ OR type = ‘Demande’),
         categorie VARCHAR(50),
         description VARCHAR(1000),
+        moyenPaiement VARCHAR(50)
+        CHECK (moyenPaiement = 'Argent' 
+        OR moyenPaiement = 'Troc' 
+        OR moyenPaiement = ‘Argent & Troc’),
+        prix DOUBLE UNSIGNED,
+        troc VARCHAR(1000),
         auteur VARCHAR(50) NOT NULL,
         datePublication TIMESTAMP NOT NULL,
         acheteur VARCHAR(50),
@@ -53,26 +59,6 @@ function generateDatabase() {
         CHECK (cible != redacteur),
         FOREIGN KEY (redacteur) REFERENCES Utilisateur(Identifiant),
         FOREIGN KEY (cible) REFERENCES Utilisateur(Identifiant));
-        ");
-
-    $moyenPaiement = $db->prepare("
-    CREATE TABLE MoyenPaiement (
-        identifiant INTEGER UNSIGNED PRIMARY KEY,
-        intitule VARCHAR(50) NOT NULL
-        CHECK (Intitule = 'Argent' 
-        OR Intitule = 'Troc' 
-        OR Intitule = ‘Argent & Troc’),
-        description VARCHAR(250),
-        montant INTEGER UNSIGNED);
-        ");
-
-    $etreReglePar = $db->prepare("
-    CREATE TABLE EtreReglePar (
-        article INTEGER UNSIGNED,
-        moyenPaiement INTEGER UNSIGNED,
-        PRIMARY KEY (article, moyenPaiement),
-        FOREIGN KEY (article) REFERENCES Article(Identifiant),
-        FOREIGN KEY (MoyenPaiement) REFERENCES MoyenPaiement(Identifiant));
         ");
 
     $mot = $db->prepare("
@@ -97,10 +83,11 @@ function generateDatabase() {
         FOREIGN KEY (article) REFERENCES Article(Identifiant));
         ");
 
-    $tables = [$utilisateur, $article, $avis, $moyenPaiement, $etreReglePar, $mot, $etreSynonymeDe, $photo];
+    $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo];
     foreach ($tables as $table) {
         $table->execute();
     }
+    uploadWords("dicSynonymes.json");
 }
 
 function uploadWords($dic) {
@@ -115,6 +102,4 @@ function uploadWords($dic) {
         }
     }
 }
-
-//uploadWords("dicSynonymes.json");
 ?>

@@ -19,6 +19,8 @@ html_header();
 		</section>
 		<section>
 			<form action="data/validate.php" method="POST" enctype="multipart/form-data">
+				<h3>Caractéristiques</h3>
+
 				<div>
 					<input type="text" id="titre" name="titre" placeholder="Titre de l'article">
 					<select name="categorie" id="categorie">
@@ -34,10 +36,18 @@ html_header();
 					</select>
 				</div>
 				<div>
-					<textarea id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea>
+					<textarea id="description" name="description" rows="4" cols="50" placeholder="Description"></textarea>
 				</div>
+				<h3>Images</h3>
 				<div>
 					<input type="file" id="images" name="images[]" accept="image/*" multiple />>
+				</div>
+				<h3>Moyens de paiement</h3>
+				<div>
+					<input type="number" id="price" name="price" placeholder="Prix">
+				</div>
+				<div>
+					<textarea id="barter" name="barter" rows="4" cols="50" placeholder="Modalités de troc"></textarea>
 				</div>
 				<div>
 					<?php

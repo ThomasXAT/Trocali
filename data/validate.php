@@ -2,12 +2,14 @@
 include '../articles.php';
 session_start();
 extract($_POST,EXTR_OVERWRITE);	
+
 if (isset($offre)) {
 	$type = "Offre";
 }	
 elseif (isset($demande)) {
 	$type = "Demande";
 }
+
 if ($titre != "") {
 	$identifiant = getNombreArticles() + 1;
 	$writer = $_SESSION["user"][0];
@@ -45,6 +47,33 @@ if ($titre != "") {
 			move_uploaded_file($file_tmp, $file_name);
 		}
 	}
+
+	if ($price != null && $barter != "") {
+		$means = "Argent & Troc";
+		$sql = "UPDATE Article SET 
+			moyenPaiement = '$means', prix = $price, troc = '$barter'
+			WHERE identifiant = $identifiant";
+	}
+	else if ($price != null && $barter == "") {
+		$means = "Argent";
+		$sql = "UPDATE Article SET 
+			moyenPaiement = '$means', prix = $price, troc = NULL
+			WHERE identifiant = $identifiant";
+	}
+	else if ($price == null && $barter != "") {
+		$means = "Troc";
+		$sql = "UPDATE Article SET 
+			moyenPaiement = '$means', prix = NULL, troc = '$barter'
+			WHERE identifiant = $identifiant";
+	}
+	else {
+		$means = "Argent";
+		$sql = "UPDATE Article SET 
+			moyenPaiement = '$means', prix = 0, troc = NULL
+			WHERE identifiant = $identifiant";
+	}
+	$statement= $db->prepare($sql);
+	$statement->execute();
 
 	header("Location:../index.php");
 }
