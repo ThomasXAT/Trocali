@@ -40,7 +40,7 @@ html_header();
 				</div>
 				<h3>Images</h3>
 				<div>
-					<input type="file" id="images" name="images[]" accept="image/*" multiple />>
+					<input type="file" id="images" name="images[]" accept="image/*" multiple />
 				</div>
 				<h3>Moyens de paiement</h3>
 				<div>
