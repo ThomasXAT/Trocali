@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<?php 
-include 'website.php'; 
-include 'database.php';
-include 'article.php';
-include 'mot.php';
-
+<?php
+include "template.php";
+include "articles.php";
+html_head("Trocali - Accueil");
+html_header();
 ?>
-<html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width-device-width, initial-scale=0.1">
-	<title>Trocali - Accueil</title>
-</head>
-<body>
-	<?php print $header; ?>
-	<main>
-		<!-- Barre de recherche -->
+
+    <main>
+        <h2>Accueil</h2>
+
+        <!-- Barre de recherche -->
 		<section>
 			<form action="index.php" method="POST">
 				<input type="search" id="recherche" name="recherche" placeholder="Recherche">
@@ -27,22 +19,36 @@ include 'mot.php';
 					$nombreCategories = count($listeCategories);
 					for ($numCategorie = 0; $numCategorie < $nombreCategories; $numCategorie++) {
 						$categorie = $listeCategories[$numCategorie];
-						print "<option value=$categorie>$categorie</option>";
+						print "<option value=$categorie>$categorie</option>\n";
 					}
 					?>
 				</select>
 				<input type="submit" value="Valider">
 			</form>
 		</section>
+
 		<!-- Publication -->
 		<section>
-			<form action="publish.php" method="POST">
 				<p>Un bien ou un service à proposer ?</p>
-				<input type="submit" name="offre" value="Publier une offre" />
+                <?php
+                if (isset($_SESSION["user"])) {
+				    print '<a href="publish.php?type=Offre">';
+                }
+                else {
+                    print '<a href="account.php?request=login">';
+                }
+                ?><input type="submit" name="offre" value="Publier une offre" /></a>
 				<p>Vous avez besoin de quelque chose ?</p>
-				<input type="submit" name="demande" value="Lancer un appel d'offres" />
-			</form>
+                <?php
+                if (isset($_SESSION["user"])) {
+				    print '<a href="publish.php?type=Demande">';
+                }
+                else {
+                    print '<a href="account.php?request=login">';
+                }
+                ?><input type="submit" name="demande" value="Lancer un appel d'offres" /></a>
 		</section>
+        
 		<!-- Articles -->
 		<section>
 			<?php
@@ -63,12 +69,11 @@ include 'mot.php';
 				}
 			}
 			else {
-				$nombreArticles = getNombreArticles($database);
+				$nombreArticles = getNombreArticles();
 				if ($nombreArticles != 0) {
 					print "<p>Derniers articles ($nombreArticles)</p><br />";
 					for ($id = $nombreArticles; $id > 0; $id--) {
-						$article = importer($id);
-						$article->afficher();
+						print "ok";
 					}
 				}
 				else {
@@ -77,9 +82,8 @@ include 'mot.php';
 			}
 			?>
 		</section>
-	</main>
-	<footer>
-		<?php print $footer; ?>
-	</footer>
-</body>
-</html>
+    </main>
+
+<?php
+html_footer();
+?>

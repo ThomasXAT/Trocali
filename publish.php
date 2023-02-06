@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<?php 
-include 'website.php';
-include 'database.php';
+<?php
+include "template.php";
+include "articles.php";
+html_head("Trocali - Publier un article");
+html_header();
 ?>
-<html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width-device-width, initial-scale=0.1">
-	<title>Trocali - Publier un article</title>
-</head>
-<body>
-	<?php print $header; ?>
+
 	<main>
 		<section>
 			<?php
-			extract($_POST,EXTR_OVERWRITE);		
-			if (isset($offre)) {
+			extract($_GET,EXTR_OVERWRITE);		
+			if ($type == "Offre") {
 				print "<h2>Publier une offre</h2>";
 			}
 			else {
@@ -25,7 +18,7 @@ include 'database.php';
 			?>
 		</section>
 		<section>
-			<form action="validate.php" method="POST">
+			<form action="data/validate.php" method="POST" enctype="multipart/form-data">
 				<div>
 					<input type="text" id="titre" name="titre" placeholder="Titre de l'article">
 					<select name="categorie" id="categorie">
@@ -44,8 +37,11 @@ include 'database.php';
 					<textarea id="description" name="description" rows="4" cols="50" placeholder="Description..."></textarea>
 				</div>
 				<div>
+					<input type="file" id="images" name="images[]" accept="image/*" multiple />>
+				</div>
+				<div>
 					<?php
-					if (isset($offre)) {
+					if ($type == "Offre") {
 						print '<input type="submit" name="offre" value="Valider">';
 					}
 					else {
@@ -57,8 +53,7 @@ include 'database.php';
 			</form>
 		</section>
 	</main>
-	<footer>
-		<?php print $footer; ?>
-	</footer>
-</body>
-</html>
+
+<?php
+	html_footer();
+?>
