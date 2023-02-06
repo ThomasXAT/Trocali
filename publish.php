@@ -57,6 +57,14 @@ html_header();
 					else {
 						print '<input type="submit" name="demande" value="Valider">';
 					}
+					if (isset($error)) {
+						if ($error == 'title') {
+							print '<p class = "error">Pas de titre</p>';
+						}
+						if ($error == 'images') {
+							print '<p class = "error">Veuillez ne pas mettre plus de 8 images</p>';
+						}
+					}
 					?>
 				</div>
 

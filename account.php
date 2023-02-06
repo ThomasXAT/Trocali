@@ -35,13 +35,7 @@ html_header();
                                     break;
                             }
                         }                
-                        print
-"            <form method=" . '"' . "POST" . '"' . " action=" . '"' . "data/authentication.php?request=login" . '"' . ">
-                <div><input type=" . '"' . "text" . '"' . " name=" . '"' . "username" . '"' . " placeholder=" . '"' . "Nom d'utilisateur" . '"' . " required=" . '"' . "required" . '"' . "></div><br />
-                <div><input type=" . '"' . "password" . '"' . " name=" . '"' . "password" . '"' . " placeholder=" . '"' . "Mot de passe" . '"' . " required=" . '"' . "required" . '"' . "></div><br />
-                <div><input type=" . '"' . "submit" . '"' . " value=" . '"' . "Se connecter" . '"' . " /></div>
-            </form>
-            <a href=" . '"' . "account.php?request=signup" . '"' . "><p>Je ne possède pas de compte.</p></a>\n";
+                        include "modules/login.php";
                         break;
 
                     // Inscription
@@ -58,24 +52,15 @@ html_header();
                                     print "<p class=" . '"' . "error" . '"' . ">Nom d'utilisateur indisponible.</p>\n";
                                     break;
                             }
-                        }                
-                        print 
-"            <form method=" . '"' . "POST" . '"' . " action=" . '"' . "data/authentication.php?request=signup" . '"' . ">
-                <div><input type=" . '"' . "text" . '"' . " name=" . '"' . "username" . '"' . " placeholder=" . '"' . "Nom d'utilisateur" . '"' . " required=" . '"' . "required" . '"' . "></div><br />
-                <div><input type=" . '"' . "text" . '"' . " name=" . '"' . "surname" . '"' . " placeholder=" . '"' . "Nom" . '"' . " required=" . '"' . "required" . '"' . "></div><br />
-                <div><input type=" . '"' . "text" . '"' . " name=" . '"' . "name" . '"' . " placeholder=" . '"' . "Prénom" . '"' . " required=" . '"' . "required" . '"' . "></div><br />
-                <div><input type=" . '"' . "email" . '"' . " name=" . '"' . "email" . '"' . " placeholder=" . '"' . "Adresse e-mail" . '"' . " required=" . '"' . "required" . '"' . "></div><br />
-                <div><input type=" . '"' . "password" . '"' . " name=" . '"' . "password" . '"' . " placeholder=" . '"' . "Mot de passe" . '"' . " required=" . '"' . "required" . '"' . "></div><br />
-                <div><input type=" . '"' . "submit" . '"' . " value=" . '"' . "S'inscrire" . '"' . " /></div>
-            </form>
-            <a href=" . '"' . "account.php?request=login" . '"' . "><p>Je possède déjà un compte.</p></a>\n";
+                        }    
+                        include "modules/signup.php";            
                         break;
                 }
             }
             else {
                 print "
-            <h2>Mon compte</h2>\n
-            <a href='data/authentication.php?request=logout'>Se déconnecter</a>\n";
+            <h2>Mon compte</h2>\n";
+            include "modules/account.php";            
             }
             ?>
         </section>

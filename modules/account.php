@@ -1,0 +1,1 @@
+<a href='data/authentication.php?request=logout'>Se déconnecter</a>

@@ -10,7 +10,7 @@ elseif (isset($demande)) {
 	$type = "Demande";
 }
 
-if ($titre != "") {
+if ($titre != "" && count($_FILES['images']['name']) <= 8) {
 	$identifiant = getNombreArticles() + 1;
 	$writer = $_SESSION["user"][0];
 	$sql = "INSERT INTO Article (
@@ -78,6 +78,10 @@ if ($titre != "") {
 	header("Location:../index.php");
 }
 else {
-	header("Location:../publish.php?type=$type");
-}
+	if ($titre == "") {
+		header("Location:../publish.php?type=$type&error=title");
+	}
+	elseif (count($_FILES['images']['name']) > 8) {
+		header("Location:../publish.php?type=$type&error=images");
+	}}
 ?>
