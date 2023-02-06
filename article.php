@@ -163,70 +163,9 @@
 			print "</h3><br /><p>$description</p>";
 			print "</article>";
 		}
-
-		/**
-		 * Méthode permettant d'exporter les informations de l'Article afin de les stocker dans le fichier articles.json
-		 */
-		function exporter() {
-
-			// Récupération du nombre d'articles
-			$nombreArticles = getNombreArticles();
-			$motsCles = trouverMotsCles($this->getTitre());
-			for ($i = 0; $i < sizeof($motsCles); $i++) {
-				$motsCles[$i] = $motsCles[$i]->getIntitule();
-			}
-	
-			// Récupération de dicArticles
-			$fichier = ("articles.json");
-			$donnees = file_get_contents($fichier);
-			$dicArticles = json_decode($donnees, true);
-	
-			// Stockage des informations du nouvel article
-			$dicArticles[$nombreArticles] = ["Titre" => $this->getTitre(), 
-											 "Mots cles" => $motsCles, 
-											 "Type" => $this->getType(), 
-											 "Categorie" => $this->getCategorie(), 
-											 "Description" => $this->getDescription()];
-	
-			// Exporation de la nouvelle version de dicArticles
-			$donnees = json_encode($dicArticles);
-			file_put_contents("articles.json", $donnees);
-		}
 	}
 		
 	// SOUS-PROGRAMMES EXTERNES
-
-	/**
-	 * Nombre d'articles publiés
-	 * @return int
-	 */
-	function getNombreArticles() {
-		$compteur = fopen("compteur.txt", "r+");
-		$nombreArticles = fgets($compteur, 255);
-
-		if ($nombreArticles == "") {
-			fwrite($compteur, 0);
-			$nombreArticles = 0;
-		}
-		else {
-			$nombreArticles = intval($nombreArticles);
-		}
-
-		fclose($compteur);
-		return $nombreArticles;
-	}
-	
-	/**
-	 * Summary of incrNombreArticles
-	 * @return void
-	 */
-	function incrNombreArticles() {
-		$compteur = fopen("compteur.txt", "r+");
-		$nombreArticles = getNombreArticles();
-		$nombreArticles++;
-		file_put_contents("compteur.txt", $nombreArticles);
-		fclose($compteur);
-	}
 
 	/**
 	 * Summary of importer
@@ -235,9 +174,7 @@
 	 */
 	function importer($id) {
 		// Récupération de dicArticles
-		$fichier = ("articles.json");
-		$donnees = file_get_contents($fichier);
-		$dicArticles = json_decode($donnees, true);
+		$dicArticles = getDicArticles();
 
 		// Récupération des attributs de l'article
 		$titre = $dicArticles[$id]["Titre"];
@@ -253,30 +190,6 @@
 		$article = new Article($id, $titre, $motsCles, $type, $categorie, $description);
 		return $article;
 	}
-
-/**
- * Summary of publier
- * @param mixed $titre
- * @param mixed $type
- * @param mixed $categorie
- * @param mixed $description
- * @return void
- */
-function publier($titre, $type = "Offre", $categorie = "", $description = "") {
-	if (in_array($categorie, getCategories()) || $categorie == "") {
-		if ($type == "Offre" || $type == "Demande") {
-			incrNombreArticles();
-			$article = new Article(getNombreArticles(), $titre, trouverMotsCles($titre), $type, $categorie, $description);
-			$article->exporter();
-
-			foreach ($article->getMotsCles() as $mot) {
-				$mot = new Mot($mot->getIntitule());
-				$mot->ajouterArticle($article);
-			}
-		}
-	}	
-}
-
 
 function rechercher($listeMotsCles, $categorie) {
 
@@ -358,6 +271,4 @@ function verifierCategorie($article, $categorie) {
 	
 	return $memeCategorie;
 }
-
-
 ?>

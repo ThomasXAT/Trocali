@@ -1,5 +1,6 @@
 <?php
 	include_once 'article.php';
+	include_once 'database.php';
 	
 	Class Mot
 	{
@@ -80,19 +81,8 @@
 
 	// SOUS-PROGRAMMES EXTERNES
 
-	foreach (getListeMots() as $mot) {
+	foreach (getListeMots($database) as $mot) {
 		${$mot} = new Mot($mot);
-	}
-
-	function getDicSynonymes() {
-		$fichier = "dicSynonymes.json"; 
-		$donnees = file_get_contents($fichier);
-		$dicSynonymes = json_decode($donnees, true);
-		return $dicSynonymes;
-	}
-
-	function getListeMots() {
-		return array_keys(getDicSynonymes());
 	}
 
 	function testerSingulier($chaine) {

@@ -1,5 +1,6 @@
 <?php
 include 'database.php';
+include 'mot.php';
 extract($_POST,EXTR_OVERWRITE);	
 if ($titre != "") {
 	if (isset($offre)) {
@@ -25,6 +26,20 @@ if ($titre != "") {
 	)";
 	$statement= $database->prepare($sql);
 	$statement->execute();
+
+	$motsCles = trouverMotsCles($titre);
+	foreach ($motsCles as $motCle) {
+		$sql = "INSERT INTO ContenirDansTitre (
+			mot, article
+		)
+		VALUES (".
+			$motCle->getIntitule().",
+			$identifiant
+		)";
+		$statement= $database->prepare($sql);
+		$statement->execute();
+	}
+
 	header("Location:index.php");
 }
 ?>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 <?php 
-	include 'html/website.php';
-	include_once 'class/motCle.php';
-	include_once 'class/article.php';
+	include 'website.php';
+	include_once 'motCle.php';
+	include_once 'article.php';
 ?>
 
 <html lang="fr">

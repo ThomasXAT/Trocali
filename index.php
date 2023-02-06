@@ -2,6 +2,9 @@
 <?php 
 include 'website.php'; 
 include 'database.php';
+include 'article.php';
+include 'mot.php';
+
 ?>
 <html lang="fr">
 <head>
