@@ -14,7 +14,7 @@ if (isset($_GET["id"])) {
             }
             $statement = $db->prepare("DELETE FROM Photo WHERE Article = ?"); 
             $statement->execute([$id]);
-            $statement = $db->prepare("DELETE FROM Panier WHERE idArticle = ?"); 
+            $statement = $db->prepare("DELETE FROM Panier WHERE article = ?"); 
             $statement->execute([$id]);
             $statement = $db->prepare("DELETE FROM Article WHERE Identifiant = ?"); 
             $statement->execute([$id]);
@@ -24,12 +24,12 @@ if (isset($_GET["id"])) {
     if (isset($_GET["cart"])) {
         $cart = $_GET["cart"];
         if ($cart == 'add') {
-            $statement = $db->prepare('INSERT INTO Panier (idUtilisateur, idArticle) VALUES (?,?)');
-            $statement->execute([$_SESSION["user"][0], $id]);
+            $statement = $db->prepare('INSERT INTO Panier (article, utilisateur) VALUES (?,?)');
+            $statement->execute([$id, $_SESSION["user"][0]]);
             header("Location: ../article.php?id=$id");
         }
         elseif ($cart='remove') {
-            $statement = $db->prepare('DELETE FROM Panier WHERE idArticle = ? AND idUtilisateur = ?');
+            $statement = $db->prepare('DELETE FROM Panier WHERE article = ? AND utilisateur = ?');
             $statement->execute([$id, $_SESSION["user"][0]]);
             header("Location: ../article.php?id=$id");
         }

@@ -85,14 +85,23 @@ function generateDatabase() {
 
     $panier = $db->prepare("
     CREATE TABLE Panier (
-        idUtilisateur varchar(50),
-        idArticle integer unsigned,
-        PRIMARY KEY (idArticle, idUtilisateur),
-        FOREIGN KEY (idArticle) REFERENCES Article(identifiant),
-        FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur(identifiant));
+        utilisateur varchar(50),
+        article integer unsigned,
+        PRIMARY KEY (article, utilisateur),
+        FOREIGN KEY (article) REFERENCES Article(identifiant),
+        FOREIGN KEY (utilisateur) REFERENCES Utilisateur(identifiant));
     ");
 
-    $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo, $panier];
+    $notification = $db->prepare("
+    CREATE TABLE Notification (
+    	identifiant integer unsigned AUTO_INCREMENT,
+        utilisateur varchar(50),
+        texte varchar(250),
+        PRIMARY KEY (identifiant),
+        FOREIGN KEY (utilisateur) REFERENCES Utilisateur(identifiant));
+    ");
+
+    $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo, $panier, $notification];
 
     foreach ($tables as $table) {
         $table->execute();
