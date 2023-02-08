@@ -83,7 +83,17 @@ function generateDatabase() {
         FOREIGN KEY (article) REFERENCES Article(Identifiant));
         ");
 
-    $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo];
+        $panier = $db->prepare("
+        CREATE TABLE Panier (
+            idUtilisateur varchar(50),
+            idArticle integer unsigned,
+            PRIMARY KEY (idArticle, idUtilisateur),
+            FOREIGN KEY (idArticle) REFERENCES Article(identifiant),
+            FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur(identifiant));
+        ");
+    
+        $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo, $panier];
+        
     foreach ($tables as $table) {
         $table->execute();
     }

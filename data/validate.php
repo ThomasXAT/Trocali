@@ -10,6 +10,9 @@ elseif (isset($demande)) {
 	$type = "Demande";
 }
 
+$description = strip_tags($description);
+$barter = strip_tags($barter);
+
 if ($titre != "" && count($_FILES['images']['name']) <= 8) {
 	$identifiant = getNombreArticles() + 1;
 	$writer = $_SESSION["user"][0];
@@ -36,7 +39,6 @@ if ($titre != "" && count($_FILES['images']['name']) <= 8) {
 	for ($i = 0; $i < count($file_array['name']); $i++) {
 		$file_name = "../images/articles/" . $identifiant . "_" . $i . "_" . $file_array['name'][$i];
 		$file_tmp = $file_array['tmp_name'][$i];
-		$file_size = $file_array['size'][$i];
 		$file_type = $file_array['type'][$i];
 
 		if (is_uploaded_file($file_tmp)) {
