@@ -43,10 +43,20 @@ if (isset($_GET["id"])) {
                 }
                 if (isset($_SESSION["user"])) {
                     if ($_SESSION["user"][0] == $writer) {
-                        print "<a href='#'>Supprimer cet article</a>\n";
+                        print "<a href='data/article.php?id=$id&delete=true'>Supprimer cet article</a>\n";
+                    }
+                    else {
+                        $statement = $db->prepare("SELECT * FROM Panier WHERE idArticle = ? AND idUtilisateur = ?");
+                        $statement->execute([$id, $_SESSION["user"][0]]);
+                        $row = $statement->rowCount();
+                        if ($row == 0) {
+                            print "<a href='data/article.php?id=$id&cart=add'>Ajouter au panier</a>\n";
+                        }
+                        else {
+                            print "<a href='data/article.php?id=$id&cart=remove'>Retirer du panier</a>\n";
+                        }
                     }
                 }
-
                 ?>
             </article>
 		</section>

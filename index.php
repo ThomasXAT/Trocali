@@ -68,7 +68,7 @@
 				$nombreArticles = getNombreArticles();
 				if ($nombreArticles != 0) {
 					print "<p>Derniers articles ($nombreArticles)</p><br />"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
-					$statement = $db->prepare("SELECT Identifiant, Titre FROM Article ORDER BY Identifiant DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
+					$statement = $db->prepare("SELECT Identifiant, Titre FROM Article ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
 					$statement->execute();
 					while ($resu= $statement->fetch()){ // On parcourt le résultat et on l'affiche
 						$identifiant = $resu['Identifiant'];

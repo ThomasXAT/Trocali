@@ -16,7 +16,7 @@ function generateDatabase() {
     global $db;
     $utilisateur = $db->prepare("
     CREATE TABLE Utilisateur (
-        Identifiant VARCHAR(50) PRIMARY KEY,
+        identifiant VARCHAR(50) PRIMARY KEY,
         nom VARCHAR(50),
         prenom VARCHAR(50),
         email VARCHAR(50),
@@ -77,23 +77,23 @@ function generateDatabase() {
 
     $photo = $db->prepare("
     CREATE TABLE Photo (
-        lien VARCHAR(100),
+        lien VARCHAR(1000),
         article INTEGER UNSIGNED,
         PRIMARY KEY (lien),
         FOREIGN KEY (article) REFERENCES Article(Identifiant));
         ");
 
-        $panier = $db->prepare("
-        CREATE TABLE Panier (
-            idUtilisateur varchar(50),
-            idArticle integer unsigned,
-            PRIMARY KEY (idArticle, idUtilisateur),
-            FOREIGN KEY (idArticle) REFERENCES Article(identifiant),
-            FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur(identifiant));
-        ");
-    
-        $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo, $panier];
-        
+    $panier = $db->prepare("
+    CREATE TABLE Panier (
+        idUtilisateur varchar(50),
+        idArticle integer unsigned,
+        PRIMARY KEY (idArticle, idUtilisateur),
+        FOREIGN KEY (idArticle) REFERENCES Article(identifiant),
+        FOREIGN KEY (idUtilisateur) REFERENCES Utilisateur(identifiant));
+    ");
+
+    $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo, $panier];
+
     foreach ($tables as $table) {
         $table->execute();
     }
