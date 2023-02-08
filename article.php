@@ -46,7 +46,7 @@ if (isset($_GET["id"])) {
                         print "<a href='data/article.php?id=$id&delete=true'>Supprimer cet article</a>\n";
                     }
                     else {
-                        $statement = $db->prepare("SELECT * FROM Panier WHERE idArticle = ? AND idUtilisateur = ?");
+                        $statement = $db->prepare("SELECT * FROM Panier WHERE article = ? AND utilisateur = ?");
                         $statement->execute([$id, $_SESSION["user"][0]]);
                         $row = $statement->rowCount();
                         if ($row == 0) {
