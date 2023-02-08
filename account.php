@@ -1,9 +1,6 @@
-<?php
-include "template.php";
-html_head("Trocali - Mon compte");
-html_header();
-?>
-
+<?php $title="Mon compte"; include "modules/head.php"; ?>
+<?php $page="account"; include "modules/body/header.php"; ?>
+<!-- Main -->  
     <main>
         <section class="content">
             <?php 
@@ -35,7 +32,7 @@ html_header();
                                     break;
                             }
                         }                
-                        include "modules/login.php";
+                        include "modules/body/account/login.php";
                         break;
 
                     // Inscription
@@ -53,19 +50,16 @@ html_header();
                                     break;
                             }
                         }    
-                        include "modules/signup.php";            
+                        include "modules/body/account/signup.php";            
                         break;
                 }
             }
             else {
                 print "
             <h2>Mon compte</h2>\n";
-            include "modules/account.php";            
+            include "modules/body/account/main.php";            
             }
             ?>
         </section>
     </main>
-
-<?php
-html_footer();
-?>
+<?php include "modules/body/footer.php"; ?>

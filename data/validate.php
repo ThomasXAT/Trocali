@@ -1,5 +1,5 @@
 <?php
-include '../articles.php';
+include '../functions.php';
 session_start();
 extract($_POST,EXTR_OVERWRITE);	
 

@@ -1,8 +1,6 @@
+<?php $title="Article"; include "modules/head.php"; ?>
+<?php $page="article"; include "modules/body/header.php"; ?>
 <?php
-include "template.php";
-include "articles.php";
-html_head("Trocali - Publier un article");
-html_header();
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $statement = $db->prepare("SELECT * FROM Article WHERE identifiant = ?");
@@ -53,7 +51,4 @@ if (isset($_GET["id"])) {
             </article>
 		</section>
 	</main>
-
-<?php
-	html_footer();
-?>
+<?php include "modules/body/footer.php"; ?>

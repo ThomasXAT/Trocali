@@ -1,10 +1,6 @@
-<?php
-include "template.php";
-include "articles.php";
-html_head("Trocali - Accueil");
-html_header();
-?>
-
+<?php $title="Accueil"; include "modules/head.php"; ?>
+<?php $page="index"; include "modules/body/header.php"; ?>
+<!-- Main -->  
     <main>
         <h2>Accueil</h2>
 
@@ -88,7 +84,4 @@ html_header();
 			?>
 		</section>
     </main>
-
-<?php
-html_footer();
-?>
+<?php include "modules/body/footer.php"; ?>

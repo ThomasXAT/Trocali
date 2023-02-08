@@ -1,10 +1,6 @@
-<?php
-include "template.php";
-include "articles.php";
-html_head("Trocali - Publier un article");
-html_header();
-?>
-
+<?php $title="Publier un article"; include "modules/head.php"; ?>
+<?php $page="publish"; include "modules/body/header.php"; ?>
+<!-- Main -->  
 	<main>
 		<section>
 			<?php
@@ -71,7 +67,4 @@ html_header();
 			</form>
 		</section>
 	</main>
-
-<?php
-	html_footer();
-?>
+<?php include "modules/body/footer.php"; ?>
