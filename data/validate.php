@@ -32,7 +32,6 @@ if ($titre != "" && count($_FILES['images']['name']) <= 8) {
 		'$description',
 		'$writer'
 	)";
-	print $sql;
 	$statement= $db->prepare($sql);
 	$statement->execute();
 
@@ -78,7 +77,7 @@ if ($titre != "" && count($_FILES['images']['name']) <= 8) {
 	$statement= $db->prepare($sql);
 	$statement->execute();
 
-	//header("Location:../index.php");
+	header("Location:../index.php");
 }
 else {
 	if ($titre == "") {
