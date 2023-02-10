@@ -39,10 +39,10 @@ if (isset($_GET["id"])) {
                 <p><?php print "$barter"; ?></p>
                 <?php 
                 foreach ($images as $image) {
-                    print "<img src='images/".$image."' width='20%' />\n";
+                    print "<img src='.$image.' width='20%' />\n";
                 }
                 if (isset($_SESSION["user"])) {
-                    if ($_SESSION["user"][0] == $writer) {
+                    if (($_SESSION["user"][0] == $writer) || ($_SESSION["user"][2] == 1)) {
                         print "<a href='data/article.php?id=$id&delete=true'>Supprimer cet article</a>\n";
                     }
                     else {

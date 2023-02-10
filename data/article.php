@@ -10,7 +10,7 @@ if (isset($_GET["id"])) {
             $statement->execute([$id]);
             while ($resu= $statement->fetch()){
                 $link = $resu['Lien'];   
-                unlink($link);
+                unlink("..".$link);
             }
             $statement = $db->prepare("DELETE FROM Photo WHERE Article = ?"); 
             $statement->execute([$id]);

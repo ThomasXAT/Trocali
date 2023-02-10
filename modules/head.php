@@ -12,11 +12,5 @@ include "functions.php";
     <link href="style.css" rel="stylesheet">
     <link rel="icon" href="">
     <script src="https://kit.fontawesome.com/d003054d16.js" crossorigin="anonymous"></script>
-    <?php
-    if ($title == "Mon panier" || $title == "Règlement") {
-        if (!isset($_SESSION['user'])) {
-            print '<meta http-equiv="refresh" content="0; URL=account.php">';
-        }
-    }
-    ?>
+    <!--<link href="style/reset.css" rel="stylesheet">-->
 </head>

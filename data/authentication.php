@@ -7,7 +7,7 @@ switch ($_GET["request"]) {
         if(isset($_POST["username"]) && isset($_POST["password"])) {
             $username = htmlspecialchars($_POST["username"]);
             $password = htmlspecialchars($_POST["password"]);
-            $check = $db->prepare("SELECT identifiant, mdp FROM Utilisateur WHERE identifiant = ?");
+            $check = $db->prepare("SELECT identifiant, mdp, administrateur FROM Utilisateur WHERE identifiant = ?");
             $check->execute(array($username));
             $data = $check->fetch();
             $row = $check->rowCount();

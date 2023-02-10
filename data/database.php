@@ -26,67 +26,72 @@ function generateDatabase() {
 
     $article = $db->prepare("
     CREATE TABLE Article (
-        identifiant INTEGER UNSIGNED PRIMARY KEY,
+        identifiant INTEGER UNSIGNED AUTO_INCREMENT,
         titre VARCHAR(50) NOT NULL,
         type VARCHAR(50) NOT NULL
-        CHECK (type = ‘Offre’ OR type = ‘Demande’),
+        CHECK (type = 'Offre' OR type = 'Demande'),
         categorie VARCHAR(50),
         description VARCHAR(1000),
         moyenPaiement VARCHAR(50)
         CHECK (moyenPaiement = 'Argent' 
         OR moyenPaiement = 'Troc' 
-        OR moyenPaiement = ‘Argent & Troc’),
+        OR moyenPaiement = 'Argent & Troc'),
         prix DOUBLE UNSIGNED,
         troc VARCHAR(1000),
         auteur VARCHAR(50) NOT NULL,
-        datePublication TIMESTAMP NOT NULL,
+        datePublication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         acheteur VARCHAR(50),
         dateAchat DATE,
         masque BOOLEAN,
-        FOREIGN KEY (auteur) REFERENCES Utilisateur(Identifiant),
-        FOREIGN KEY (acheteur) REFERENCES Utilisateur(Identifiant));
+        PRIMARY KEY (identifiant),
+        FOREIGN KEY (auteur) REFERENCES Utilisateur(identifiant),
+        FOREIGN KEY (acheteur) REFERENCES Utilisateur(identifiant));
         ");
 
     $avis = $db->prepare("
     CREATE TABLE Avis (
-        identifiant INTEGER UNSIGNED PRIMARY KEY,
+        identifiant INTEGER UNSIGNED AUTO_INCREMENT,
         note INTEGER UNSIGNED NOT NULL 
         CHECK (Note BETWEEN 1 AND 10),
         description VARCHAR(50),
         datePublication DATE NOT NULL,
         redacteur VARCHAR(50) NOT NULL,
-        cible VARCHAR(50) NOT NULL
-        CHECK (cible != redacteur),
-        FOREIGN KEY (redacteur) REFERENCES Utilisateur(Identifiant),
-        FOREIGN KEY (cible) REFERENCES Utilisateur(Identifiant));
+        cible VARCHAR(50) NOT NULL,
+        CHECK (redacteur != cible),
+        PRIMARY KEY (identifiant),
+        FOREIGN KEY (redacteur) REFERENCES Utilisateur(identifiant),
+        FOREIGN KEY (cible) REFERENCES Utilisateur(identifiant))
         ");
 
     $mot = $db->prepare("
     CREATE TABLE Mot (
-        intitule VARCHAR(50) PRIMARY KEY);
+        identifiant INTEGER UNSIGNED AUTO_INCREMENT,
+        intitule VARCHAR(50),
+        PRIMARY KEY (identifiant));
         ");
 
     $etreSynonymeDe = $db->prepare("
     CREATE TABLE EtreSynonymeDe (
-        mot VARCHAR(50),
-        synonyme VARCHAR(50),
-        PRIMARY KEY (Mot, Synonyme),
-        FOREIGN KEY (mot) REFERENCES Mot(Intitule),
-        FOREIGN KEY (synonyme) REFERENCES Mot(Intitule));
+        identifiant INTEGER UNSIGNED AUTO_INCREMENT,
+        mot INTEGER UNSIGNED,
+        synonyme INTEGER UNSIGNED,
+        PRIMARY KEY (identifiant),
+        FOREIGN KEY (mot) REFERENCES Mot(identifiant),
+        FOREIGN KEY (synonyme) REFERENCES Mot(identifiant));
         ");
 
     $photo = $db->prepare("
     CREATE TABLE Photo (
-        lien VARCHAR(1000),
+        lien VARCHAR(500),
         article INTEGER UNSIGNED,
         PRIMARY KEY (lien),
-        FOREIGN KEY (article) REFERENCES Article(Identifiant));
+        FOREIGN KEY (article) REFERENCES Article(identifiant));
         ");
 
     $panier = $db->prepare("
     CREATE TABLE Panier (
-        utilisateur varchar(50),
-        article integer unsigned,
+        utilisateur VARCHAR(50),
+        article INTEGER UNSIGNED,
         PRIMARY KEY (article, utilisateur),
         FOREIGN KEY (article) REFERENCES Article(identifiant),
         FOREIGN KEY (utilisateur) REFERENCES Utilisateur(identifiant));
@@ -94,9 +99,9 @@ function generateDatabase() {
 
     $notification = $db->prepare("
     CREATE TABLE Notification (
-    	identifiant integer unsigned AUTO_INCREMENT,
-        utilisateur varchar(50),
-        texte varchar(250),
+    	identifiant INTEGER UNSIGNED AUTO_INCREMENT,
+        utilisateur VARCHAR(50),
+        texte VARCHAR(250),
         PRIMARY KEY (identifiant),
         FOREIGN KEY (utilisateur) REFERENCES Utilisateur(identifiant));
     ");
@@ -106,7 +111,6 @@ function generateDatabase() {
     foreach ($tables as $table) {
         $table->execute();
     }
-    uploadWords("dicSynonymes.json");
 }
 
 function uploadWords($dic) {
@@ -115,9 +119,24 @@ function uploadWords($dic) {
     foreach (array_keys($list) as $word) {
         $statement= $db->prepare("INSERT INTO Mot (intitule) VALUES (?)");
         $statement->execute([$word]);
+    }
+}
+
+function uploadSynonyms($dic) {
+    global $db;
+    $list = json_decode(file_get_contents($dic), true);
+    foreach (array_keys($list) as $word) {
+        $idWord = $db->prepare("SELECT identifiant FROM Mot WHERE intitule = ?");
+        $idWord->execute([$word]);
+        $idWord = $idWord->fetch();
+        $idWord = $idWord["identifiant"];
         foreach ($list[$word] as $synonym) {
+            $idSynonym = $db->prepare("SELECT identifiant FROM Mot WHERE intitule = ?");
+            $idSynonym->execute([$synonym]);
+            $idSynonym = $idSynonym->fetch();
+            $idSynonym = $idSynonym["identifiant"];
             $statement= $db->prepare("INSERT INTO EtreSynonymeDe (mot, synonyme) VALUES (?, ?)");
-            $statement->execute([$word, $synonym]);
+            $statement->execute([$idWord, $idSynonym]);
         }
     }
 }

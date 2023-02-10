@@ -37,7 +37,7 @@ if ($titre != "" && count($_FILES['images']['name']) <= 8) {
 
 	$file_array = $_FILES['images'];
 	for ($i = 0; $i < count($file_array['name']); $i++) {
-		$file_name = "../images/articles/" . $identifiant . "_" . $i . "_" . $file_array['name'][$i];
+		$file_name = "/images/articles/article" . $identifiant . "-" . $i . "-" . hash("sha256", $file_array['name'][$i]) . ".jpg";
 		$file_tmp = $file_array['tmp_name'][$i];
 		$file_type = $file_array['type'][$i];
 
@@ -46,7 +46,7 @@ if ($titre != "" && count($_FILES['images']['name']) <= 8) {
 			$stmt = $db->prepare("INSERT INTO Photo (lien, article) VALUES (?, ?)");
 			$stmt->execute([$file_name, $identifiant]);
 
-			move_uploaded_file($file_tmp, $file_name);
+			move_uploaded_file($file_tmp, "..".$file_name);
 		}
 	}
 
