@@ -1,4 +1,4 @@
-<?php $title="Paiement"; include "modules/head.php"; ?>
+<?php $title="Règlement"; include "modules/head.php"; ?>
 <?php $page="settlement"; include "modules/body/header.php";?>
 <!-- Main -->  
     <main>
@@ -15,10 +15,6 @@
             $statement->execute([$id, $_SESSION['user'][0]]);
             $row = $statement->rowCount();
 
-
-
-
-
             if ($row != 0) {
                 $titre = $article['titre'];
                 $moyenPayement = $article['moyenPaiement'];
@@ -28,10 +24,15 @@
 
                 if (strpos($moyenPayement, 'Argent') !== false) {
                     $price = $article['prix'];
-                    print "L'article peut s'acheter pour $price €";
-                    print "<br /><br />";
-                    print "<a href=pay.php?prix=$price>Procéder au Paiement</a>";
-                    print "<br /><br />";
+                    if ((strpos($moyenPayement, 'Troc') == false) && ($price == 0)) {
+                        print "<a href = trade.php?acheteur='false'>Acheter l'article gratuitement</a>";
+                    }
+                    else {
+                        print "L'article peut s'acheter pour $price €";
+                        print "<br /><br />";
+                        print "<a href=pay.php?prix=$price>Procéder au Paiement</a>";
+                        print "<br /><br />";
+                    }
                 }
 
                 if ($moyenPayement == 'Argent & Troc') {
@@ -41,14 +42,10 @@
 
                 if (strpos($moyenPayement, 'Troc') !== false) {
                     $trade = $article['troc'];
-                    print "Voici le troc proposer par le prestatère : $trade ";
+                    print "Voici le troc proposé par le prestatère : $trade ";
                     print "<br /><br />";
                     print "<a href=trade.php?acheteur='false'>Procéder au Troc</a>";
                     print "<br /><br />";
-                }
-
-                if($moyenPayement = $article['moyenPaiement'] == null) {
-                    print "<a href = trade.php?acheteur='false'>Acheter l'article gratuitement</a>";
                 }
             }       
         }
