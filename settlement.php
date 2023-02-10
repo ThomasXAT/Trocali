@@ -44,7 +44,7 @@
                     $trade = $article['troc'];
                     print "Voici le troc proposé par le prestatère : $trade ";
                     print "<br /><br />";
-                    print "<a href=trade.php?acheteur='false'>Procéder au Troc</a>";
+                    print "<a href=trade.php?acheteur=false>Procéder au Troc</a>";
                     print "<br /><br />";
                 }
             }       
