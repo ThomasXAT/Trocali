@@ -7,7 +7,7 @@ switch ($_GET["request"]) {
         if(isset($_POST["username"]) && isset($_POST["password"])) {
             $username = htmlspecialchars($_POST["username"]);
             $password = htmlspecialchars($_POST["password"]);
-            $check = $db->prepare("SELECT identifiant, mdp, administrateur FROM Utilisateur WHERE identifiant = ?");
+            $check = $db->prepare("SELECT identifiant, mdp FROM Utilisateur WHERE identifiant = ?");
             $check->execute(array($username));
             $data = $check->fetch();
             $row = $check->rowCount();
@@ -30,21 +30,28 @@ switch ($_GET["request"]) {
 
     // Inscription
     case "signup":
-        if(isset($_POST["username"]) && isset($_POST["surname"]) && isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["password"])) {
+        if(isset($_POST["username"]) && isset($_POST["surname"]) && isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["passwordConfirm"])) {
             $username = htmlspecialchars($_POST["username"]);
             $surname = htmlspecialchars($_POST["surname"]);
             $name = htmlspecialchars($_POST["name"]);
             $email = htmlspecialchars($_POST["email"]);
             $password = htmlspecialchars($_POST["password"]);
+            $passwordConfirm = htmlspecialchars($_POST["passwordConfirm"]);
             $check = $db->prepare("SELECT identifiant FROM Utilisateur WHERE identifiant = ?");
             $check->execute(array($username));
             $data = $check->fetch();
             $row = $check->rowCount();
             if ($row == 0) {
                 $password = hash("sha256", $password);
+                $passwordConfirm = hash("sha256", $passwordConfirm);
+                if ($password != $passwordConfirm) {
+                    header("Location: ../account.php?request=signup&error=mdpNotSame");
+                }
+                else {
                 $statement= $db->prepare("INSERT INTO Utilisateur (identifiant, nom, prenom, email, administrateur, mdp) VALUES (?, ?, ?, ?, 0, ?)");
                 $statement->execute([$username, $surname, $name, $email, $password]);
                 header("Location: ../account.php?request=login");
+                }
             }
             else {
                 header("Location: ../account.php?request=signup&error=username");
