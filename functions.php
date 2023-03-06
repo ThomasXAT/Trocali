@@ -30,4 +30,44 @@
 		}
 		return $listeMotsCles; 
 	}
+
+	function trouverSynonymes($mots) {
+		global $db;
+		$result = array();
+		foreach ($mots as $mot) {
+			$result[$mot] = INF;
+		}
+		foreach (array_keys($result) as $mot) {
+			$idMot = ($db->query("SELECT identifiant FROM Mot WHERE intitule = '$mot'")->fetch())["identifiant"];
+			$synonymes = $db->query("SELECT synonyme FROM EtreSynonymeDe WHERE mot = $idMot")->fetchAll();
+			foreach ($synonymes as $synonyme) {
+				$idSynonyme = $synonyme["synonyme"];
+				$intituleSynonyme = ($db->query("SELECT intitule FROM Mot WHERE identifiant = $idSynonyme")->fetch())["intitule"];
+				if (isset($result[$intituleSynonyme])) {
+					$result[$intituleSynonyme] = $result[$intituleSynonyme] + 1;
+				}
+				else {
+					$result[$intituleSynonyme] = 2;
+				}
+				$synonymes2 = $db->query("SELECT synonyme FROM EtreSynonymeDe WHERE mot = $idSynonyme")->fetchAll();
+				foreach ($synonymes2 as $synonyme) {
+					$idSynonyme = $synonyme["synonyme"];
+					$intituleSynonyme = ($db->query("SELECT intitule FROM Mot WHERE identifiant = $idSynonyme")->fetch())["intitule"];
+					if (isset($result[$intituleSynonyme])) {
+						$result[$intituleSynonyme] = $result[$intituleSynonyme] + 1;
+					}
+				}
+			}
+		}
+		arsort($result);
+		return $result;
+	}
+
+	function rechercher($chaine, $categorie) {
+		$motsCles = (trouverSynonymes(trouverMotsCles($chaine)));
+		foreach($motsCles as $key => $value) {
+			echo "$key $value<br>";
+		  }
+
+	}
 ?>
