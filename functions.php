@@ -1,5 +1,5 @@
 <?php
-    include "data/database.php";
+    include_once "data/database.php";
 
 	function getCategories() {
 		return ["Automobile", "Enseignement", "Informatique", "Sécurité", "Nettoyage"];

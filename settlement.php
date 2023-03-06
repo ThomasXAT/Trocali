@@ -25,12 +25,12 @@
                 if (strpos($moyenPayement, 'Argent') !== false) {
                     $price = $article['prix'];
                     if ((strpos($moyenPayement, 'Troc') == false) && ($price == 0)) {
-                        print "<a href = trade.php?acheteur='false'>Acheter l'article gratuitement</a>";
+                        print "<a href = trade.php?acheteur=false&id=$id>Acheter l'article gratuitement</a>";
                     }
                     else {
                         print "L'article peut s'acheter pour $price €";
                         print "<br /><br />";
-                        print "<a href=pay.php?prix=$price>Procéder au Paiement</a>";
+                        print "<a href=pay.php?price=$price&id=$id>Procéder au Paiement</a>";
                         print "<br /><br />";
                     }
                 }
@@ -44,7 +44,7 @@
                     $trade = $article['troc'];
                     print "Voici le troc proposé par le prestatère : $trade ";
                     print "<br /><br />";
-                    print "<a href=trade.php?acheteur=false>Procéder au Troc</a>";
+                    print "<a href=trade.php?buyer=false&id=$id>Procéder au Troc</a>";
                     print "<br /><br />";
                 }
             }       
