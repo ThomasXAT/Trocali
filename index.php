@@ -46,19 +46,7 @@ print "					<option value='$categorie'>$categorie</option>\n";
 			<?php
 			extract($_POST,EXTR_OVERWRITE);		
 			if (isset($recherche) && $recherche != "") {
-				$motsCles = trouverMotsCles($recherche);
-				print "<p>Articles correspondants à votre recherche : ".$recherche."</p>\n";
-
-				$traitement = rechercher((trouverSynonymes($motsCles)), $categorie);
-				if (empty($traitement)) {
-					print "<p>Aucun article ne correspond à votre recherche...</p>\n";
-				}
-				else {
-					print "<br />";
-					foreach ($traitement as $article) {
-						$article->afficher();
-					}
-				}
+				rechercher($recherche, $categorie);
 			}
 			else {
 				$nombreArticles = getNombreArticles();
