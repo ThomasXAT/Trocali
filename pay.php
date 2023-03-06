@@ -3,6 +3,6 @@
 <!-- Main -->  
     <main>
         <h2>Payement</h2>
-        <a href="index.php">Payer</a>
+        <a href="appreciation.php">Payer</a>
     </main>
 <?php include "modules/body/footer.php"; ?>
