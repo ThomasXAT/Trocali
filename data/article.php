@@ -26,11 +26,17 @@ if (isset($_GET["id"])) {
         if ($cart == 'add') {
             $statement = $db->prepare('INSERT INTO Panier (article, utilisateur) VALUES (?,?)');
             $statement->execute([$id, $_SESSION["user"][0]]);
+            $auteur=getAuteur($id);
+		    $titre=getTitre($id);
+            $letexte= "Votre article " . $titre . " a été ajouté au panier de l'utilisateur ". $_SESSION["user"][0]. " ! (La chance :3!)";
+            creerNotifsAvecRefArticle($auteur, $letexte, $id);
             header("Location: ../article.php?id=$id");
         }
         elseif ($cart='remove') {
             $statement = $db->prepare('DELETE FROM Panier WHERE article = ? AND utilisateur = ?');
             $statement->execute([$id, $_SESSION["user"][0]]);
+            $auteur=getAuteur($id);
+            supprimerNotifsAvecArticleRef($auteur, $id);
             header("Location: ../article.php?id=$id");
         }
     }
