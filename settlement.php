@@ -1,4 +1,4 @@
-<?php $title="Règlement"; include "modules/head.php"; ?>
+<?php $title="Reglement"; include "modules/head.php"; ?>
 <?php $page="settlement"; include "modules/body/header.php";?>
 <!-- Main -->  
     <main>
@@ -47,7 +47,11 @@
                     print "<a href=trade.php?buyer=false&id=$id>Procéder au Troc</a>";
                     print "<br /><br />";
                 }
-            }       
+            }
+            else {
+                print "<p>Cet article ne figure pas dans votre panier.</p>";
+                print "<a href='index.php'>Trouver des articles à ajouter à mon panier";
+            }     
         }
         ?>
     </main>

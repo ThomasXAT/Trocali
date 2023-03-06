@@ -13,4 +13,11 @@ include "functions.php";
     <link rel="icon" href="">
     <script src="https://kit.fontawesome.com/d003054d16.js" crossorigin="anonymous"></script>
     <!--<link href="style/reset.css" rel="stylesheet">-->
+    <?php
+        if ($title == 'Reglement' || $title == 'Panier'|| $title == 'Troc' || $title == 'Paiement') {
+            if(!isset($_SESSION['user'])) {
+                print "<meta http-equiv='refresh' content='0; URL=index.php'>";
+            }
+        }
+    ?>
 </head>
