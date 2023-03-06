@@ -102,8 +102,10 @@ function generateDatabase() {
     	identifiant INTEGER UNSIGNED AUTO_INCREMENT,
         utilisateur VARCHAR(50),
         texte VARCHAR(250),
+        articleRef INTEGER UNSIGNED,
         PRIMARY KEY (identifiant),
-        FOREIGN KEY (utilisateur) REFERENCES Utilisateur(identifiant));
+        FOREIGN KEY (utilisateur) REFERENCES Utilisateur(identifiant)
+        FOREIGN KEY (articleRef) REFERENCES Article(identifiant));
     ");
 
     $tables = [$utilisateur, $article, $avis, $mot, $etreSynonymeDe, $photo, $panier, $notification];

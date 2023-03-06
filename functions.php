@@ -30,4 +30,46 @@
 		}
 		return $listeMotsCles; 
 	}
+
+
+	function creerNotifs($idutilisateur, $texte){
+		global $db;		
+		$statement = $db->prepare('INSERT INTO Notification (utilisateur, texte, articleRef) VALUES (?,?,?)');
+		$statement->execute([$idutilisateur, $texte]);
+        
+	}
+
+	function creerNotifsAvecRefArticle($idutilisateur, $texte, $articleRef){
+		global $db;		
+		$statement = $db->prepare('INSERT INTO Notification (utilisateur, texte, articleRef) VALUES (?,?,?)');
+		$statement->execute([$idutilisateur, $texte, $articleRef]);
+        
+	}
+	function supprimerNotifsAvecArticleRef($idutilisateur, $articleRef){
+		global $db;
+        $statement = $db->prepare('DELETE FROM Notification WHERE utilisateur = ? AND articleRef = ?');
+		$statement->execute([$idutilisateur, $articleRef]);
+	}
+	function supprimerNotifsAvecTexte($idutilisateur, $texte){
+		global $db;
+        $statement = $db->prepare('DELETE FROM Notification WHERE utilisateur = ? AND texte = ?');
+		$statement->execute([$idutilisateur, $texte]);
+	}
+	function supprimerNotifs($identifiant){
+		global $db;
+        $statement = $db->prepare('DELETE FROM Notification WHERE identifiant= ?');
+		$statement->execute([$identifiant]);
+	}
+	function getAuteur($identifiant){
+		global $db;
+		$statement = $db->prepare('SELECT auteur FROM Article WHERE Identifiant= ?');
+		$statement->execute([$identifiant]);
+		return $auteur=$statement->fetch()[0];
+	}
+	function getTitre($identifiant){
+		global $db;
+		$statement = $db->prepare('SELECT titre FROM Article WHERE Identifiant= ?');
+		    $statement->execute([$identifiant]);
+		    return $titre=$statement->fetch()[0];
+	}
 ?>
