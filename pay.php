@@ -3,6 +3,20 @@
 <!-- Main -->  
     <main>
         <h2>Payement</h2>
-        <a href="index.php">Payer</a>
+        <?php
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];    
+                $statement = $db->prepare('SELECT * FROM Article WHERE identifiant = ?');
+                $statement->execute([$id]);
+                $row = $statement->rowCount();
+
+                if ($row != 0) {
+                    $article = $statement->fetch();
+
+                    print "<a href='rating.php?user=".$article['auteur']."'>Payer</a>";
+                }
+            }
+        ?>
+        
     </main>
 <?php include "modules/body/footer.php"; ?>
