@@ -107,11 +107,20 @@
 		return $result;
 	}
 
-	function rechercher($chaine, $categorie) {
-		$motsCles = (trouverSynonymes(trouverMotsCles($chaine)));
-		foreach($motsCles as $key => $value) {
-			echo "$key $value<br>";
+	function rechercher($string, $categorie) {
+		global $db;
+		$words = (trouverSynonymes(trouverMotsCles($string)));
+		$result = array();
+		foreach ($words as $word => $id) {
+			$sql = "SELECT identifiant FROM Article WHERE titre LIKE '%$word%'";
+			$articles = $db->query($sql)->fetchAll();
+			foreach ($articles as $article) {
+				if (!in_array($article["identifiant"], $result)) {
+					array_push($result, $article["identifiant"]);
+				}
+			}
 		}
+		return $result;
 	}
 
 	function getDescription($identifiant) {
