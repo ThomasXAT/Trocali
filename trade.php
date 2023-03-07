@@ -16,7 +16,7 @@
                     print "
                     <p>Une notification a été envoyée à l'utilisateur pour qu'il confirme le troc</p>
                     <a href='index.php'>Retourner à l'accueil</a>
-                    <a href='appreciation.php?".$article['auteur']."'>Laisser un avis</a>";
+                    <a href='rating.php?user=".$article['auteur']."'>Laisser un avis</a>";
                 }
             }
         ?>
