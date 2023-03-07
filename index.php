@@ -46,7 +46,9 @@ print "					<option value='$categorie'>$categorie</option>\n";
 			<?php
 			extract($_POST,EXTR_OVERWRITE);		
 			if (isset($recherche) && $recherche != "") {
-				rechercher($recherche, $categorie);
+				foreach (rechercher($recherche, $categorie) as $article) {
+					afficherArticle($article);
+				}
 			}
 			else {
 				$nombreArticles = getNombreArticles();
