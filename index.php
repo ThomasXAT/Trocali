@@ -57,7 +57,7 @@ print "					<option value='$categorie'>$categorie</option>\n";
 					while ($resu= $statement->fetch()){ // On parcourt le résultat et on l'affiche
 						$identifiant = $resu['Identifiant'];
 						$article = $resu['Titre'];
-						print "<a href='article.php?id=".$identifiant."'>$article</a>";
+						afficherArticle($identifiant);
 						print "<br /><br />";
 					}
 				}

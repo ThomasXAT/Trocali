@@ -113,4 +113,35 @@
 			echo "$key $value<br>";
 		}
 	}
+
+	function getDescription($identifiant) {
+		global $db;
+		$statement = $db->prepare('SELECT Description FROM Article WHERE Identifiant= ?');
+		    $statement->execute([$identifiant]);
+		    return $titre=$statement->fetch()[0];
+	}
+	function getDatePublication($identifiant) {
+		global $db;
+		$statement = $db->prepare('SELECT datePublication FROM Article WHERE Identifiant= ?');
+		    $statement->execute([$identifiant]);
+		    return $titre=$statement->fetch()[0];
+	}
+
+	function get1stImage($identifiant) {
+		global $db;
+		$statement = $db->prepare('SELECT lien FROM Photo WHERE article= ?');
+		    $statement->execute([$identifiant]);
+		    return $titre=$statement->fetch();
+	}
+
+	function afficherArticle($id){
+		print "<article>";
+		if(get1stImage($id)){
+		print "<img src='./". get1stImage($id)[0]. "'>";
+		}
+		print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";
+		print "<span>". getDatePublication($id). "</span>";
+		print "</article>";
+
+	}
 ?>
