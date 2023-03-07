@@ -33,7 +33,7 @@
 
 	function creerNotifs($idutilisateur, $texte) {
 		global $db;		
-		$statement = $db->prepare('INSERT INTO Notification (utilisateur, texte, articleRef) VALUES (?,?,?)');
+		$statement = $db->prepare('INSERT INTO Notification (utilisateur, texte) VALUES (?,?)');
 		$statement->execute([$idutilisateur, $texte]);     
 	}
 
