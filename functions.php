@@ -19,12 +19,8 @@
 		$listeMotsCles = array(); 
 		$mot = strtok($chaine, $delimiteurs);
 		while ($mot != "") {
-            $check = $db->prepare("SELECT intitule FROM Mot WHERE intitule = ?");
-            $check->execute([$mot]);
-			if ($check->rowCount() != 0) {
-				if (!in_array($mot, $listeMotsCles)) {
-					array_push($listeMotsCles, $mot);
-				}
+			if (!in_array($mot, $listeMotsCles)) {
+				array_push($listeMotsCles, $mot);
 			}
 			$mot = strtok($delimiteurs);
 		}
@@ -82,23 +78,27 @@
 			$result[$mot] = INF;
 		}
 		foreach (array_keys($result) as $mot) {
-			$idMot = ($db->query("SELECT identifiant FROM Mot WHERE intitule = '$mot'")->fetch())["identifiant"];
-			$synonymes = $db->query("SELECT synonyme FROM EtreSynonymeDe WHERE mot = $idMot")->fetchAll();
-			foreach ($synonymes as $synonyme) {
-				$idSynonyme = $synonyme["synonyme"];
-				$intituleSynonyme = ($db->query("SELECT intitule FROM Mot WHERE identifiant = $idSynonyme")->fetch())["intitule"];
-				if (isset($result[$intituleSynonyme])) {
-					$result[$intituleSynonyme] = $result[$intituleSynonyme] + 1;
-				}
-				else {
-					$result[$intituleSynonyme] = 2;
-				}
-				$synonymes2 = $db->query("SELECT synonyme FROM EtreSynonymeDe WHERE mot = $idSynonyme")->fetchAll();
-				foreach ($synonymes2 as $synonyme) {
+			$check = $db->prepare("SELECT intitule FROM Mot WHERE intitule = ?");
+            $check->execute([$mot]);
+			if ($check->rowCount() != 0) {
+				$idMot = ($db->query("SELECT identifiant FROM Mot WHERE intitule = '$mot'")->fetch())["identifiant"];
+				$synonymes = $db->query("SELECT synonyme FROM EtreSynonymeDe WHERE mot = $idMot")->fetchAll();
+				foreach ($synonymes as $synonyme) {
 					$idSynonyme = $synonyme["synonyme"];
 					$intituleSynonyme = ($db->query("SELECT intitule FROM Mot WHERE identifiant = $idSynonyme")->fetch())["intitule"];
 					if (isset($result[$intituleSynonyme])) {
 						$result[$intituleSynonyme] = $result[$intituleSynonyme] + 1;
+					}
+					else {
+						$result[$intituleSynonyme] = 2;
+					}
+					$synonymes2 = $db->query("SELECT synonyme FROM EtreSynonymeDe WHERE mot = $idSynonyme")->fetchAll();
+					foreach ($synonymes2 as $synonyme) {
+						$idSynonyme = $synonyme["synonyme"];
+						$intituleSynonyme = ($db->query("SELECT intitule FROM Mot WHERE identifiant = $idSynonyme")->fetch())["intitule"];
+						if (isset($result[$intituleSynonyme])) {
+							$result[$intituleSynonyme] = $result[$intituleSynonyme] + 1;
+						}
 					}
 				}
 			}
