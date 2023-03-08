@@ -19,10 +19,7 @@
                     $articleFetch = $article->fetch();
 
                     $identifiant = $articleFetch['identifiant'];
-                    $titre = $articleFetch['titre'];
-
-                    print "<a href='article.php?id=" . $identifiant . "'>$titre</a>";
-                    print "<a href='settlement.php?id=$identifiant'>Regler l'article</a>";
+                    afficherArticle($identifiant, true);
                     print "<br /><br />";
                 }
             }
