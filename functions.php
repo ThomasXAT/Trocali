@@ -146,7 +146,12 @@
 	function afficherArticle($id, $cart = false){
 		print "<article>";
 		if(get1stImage($id)){
-		print "<img src='./". get1stImage($id)[0]. "'>";
+			if(file_exists("./" . get1stImage($id)[0])){
+				print "<img src='./". get1stImage($id)[0]. "'>";
+			}
+			else{
+				print "<img src='./images/articles/placeholder-1.png'>";
+			}
 		}
 		print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";
 		print "<span>". getDatePublication($id). "</span>";
