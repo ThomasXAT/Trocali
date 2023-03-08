@@ -56,11 +56,15 @@ print "					<option value='$categorie'>$categorie</option>\n";
 					print "<p>Derniers articles ($nombreArticles)</p><br />\n"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
 					$statement = $db->prepare("SELECT Identifiant, Titre FROM Article ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
 					$statement->execute();
+					$compteur=0;
 					while ($resu= $statement->fetch()){ // On parcourt le résultat et on l'affiche
 						$identifiant = $resu['Identifiant'];
-						$article = $resu['Titre'];
 						afficherArticle($identifiant);
 						print "<br /><br />";
+					if ($compteur>=10){
+						break;
+					}
+					$compteur=$compteur+1;
 					}
 				}
 				else {
