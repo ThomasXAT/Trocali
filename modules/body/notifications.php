@@ -1,5 +1,8 @@
 <section class="notifications">
-            <h3>Notifications</h3>
+            <h3>Notifications : </h3>
+            <h3>Exemple notif</h3>
+
+
         <?php
         if (isset($_SESSION["user"])) {
             $username = $_SESSION["user"][0];

@@ -48,13 +48,14 @@
 		</section>
 		<hr>
 		<!-- Articles -->
-		<section class="articles" class="align-items-center">
+		<section class="articles align-items-center">
 			<form class="text-center">
 			<?php
 			extract($_POST,EXTR_OVERWRITE);		
 			if (isset($recherche) && $recherche != "") {
 				foreach (rechercher($recherche, $categorie) as $article) {
 					afficherArticle($article);
+					print "<br /><br />";
 				}
 			}
 			else {

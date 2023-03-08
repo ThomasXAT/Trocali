@@ -15,8 +15,8 @@ while($resu= $statement->fetch()) {
 
 <h3> Bonjour <?php echo $prenom?></h3>
 
-<a href=''>Vos commandes</a><br>
 <a href=''>Vos articles</a><br>
+<a href=''>Vos commandes</a><br>
 <a href=''>Vos informations</a><br>
 <a href='data/authentication.php?request=logout'>Se déconnecter</a><br><br><br>
 
