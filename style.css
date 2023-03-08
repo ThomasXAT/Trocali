@@ -1,0 +1,90 @@
+header{
+    background-color: grey;
+    padding: 30px;
+    
+}
+
+header h1{
+    text-align: left;
+    grid-column: 1/6;
+    grid-row: 1;
+
+}
+
+.header {
+    margin-left: 300px;
+    margin-right: 200px;
+    width: 100%;
+    display: grid;
+}
+
+.content {
+    width: 100%;
+    text-align: center;
+}
+
+.connexion div {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    
+}
+
+header nav {
+    margin-bottom: 15px;
+    text-align: right;
+    grid-column: 6;
+    grid-row: 1;
+}
+
+.article {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+    width: 600px;
+}
+
+.notifications {
+    z-index: 2; /* place .boite-verte au-dessus de .boite-tirets */
+    background: green;
+    opacity: 0.9;
+    text-align: center;
+    grid-column: 6;
+    grid-row: 4;
+    width: 50%;
+}
+
+.error {
+    border: 1px solid;
+    border-color: red;
+    text-align: center;
+    background-color: rgba(218, 197, 197, 0.838);
+    width: 200px;
+    margin: auto;
+}
+
+.inscription div{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+main {
+    width: 100%;
+    text-align: center;
+}
+
+.form {
+    text-align: center;
+}
