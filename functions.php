@@ -143,13 +143,17 @@
 		    return $titre=$statement->fetch();
 	}
 
-	function afficherArticle($id){
+	function afficherArticle($id, $cart = false){
 		print "<article>";
 		if(get1stImage($id)){
 		print "<img src='./". get1stImage($id)[0]. "'>";
 		}
 		print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";
 		print "<span>". getDatePublication($id). "</span>";
+		if($cart){
+			print "</br>";
+			print "<a href='settlement.php?id=$id'>Regler l'article</a>";
+		}
 		print "</article>";
 
 	}
