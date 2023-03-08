@@ -6,7 +6,7 @@
             $statement = $db->prepare("SELECT * FROM Notification WHERE Utilisateur = ? ");
             $statement->execute([$username]);
             while ($resu = $statement->fetch()){
-                print $resu["texte"];
+                print $resu["texte"]. "\n";
                 $id=$resu["identifiant"];
                 print "</BR>";
                 print "<a href='data/notifications.php?id=$id'>Supprimer</a>\n";
