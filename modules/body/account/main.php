@@ -23,15 +23,14 @@ while($resu= $statement->fetch()) {
 <section> 
     <?php 
     $username = $_SESSION["user"][0];
-    $statement = $db->prepare("SELECT identifiant, titre, auteur FROM Article WHERE auteur = ? ORDER BY identifiant DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
+    $statement = $db->prepare("SELECT identifiant FROM Article WHERE auteur = ? ORDER BY identifiant DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
 	$statement->execute([$username]);
     ?>
     <h4>Vos articles (<?php echo $statement->rowcount() ?>)</h4>
     <?php
 		while ($resu= $statement->fetch()){
             $identifiant = $resu['identifiant'];
-            $article = $resu['titre'];
-            print "<a href='article.php?id=".$identifiant."'>$article</a>";
+            afficherArticle($identifiant);
             print "<br /><br />";
 
 		} 
