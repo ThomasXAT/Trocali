@@ -164,5 +164,12 @@
 		print "</article>";
 
 	}
+	function getNbNotif($utilisateur){
+		global $db;
+		$statement = $db->prepare("SELECT COUNT(identifiant) FROM Notification WHERE utilisateur= ?");
+		    $statement->execute([$utilisateur]);
+			
+			return $nb=$statement->fetch()[0];
+	}
 	
 ?>
