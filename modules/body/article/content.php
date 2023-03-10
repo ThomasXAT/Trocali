@@ -11,9 +11,9 @@
                 <p id="troc">Modalités de troc : <?php print "$barter"; ?></p>
                 <div class="listeImage">
                     <p> Images : </p>
-                    <?php 
+                    <?php
                     foreach ($images as $image) {
-                        print "<img src='.$image.' width='20%' />\n";
+                        print "<img src='./".$image["lien"]."' width='20%' />\n";
                     }
                     ?>
                 </div>

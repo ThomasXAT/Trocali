@@ -14,7 +14,13 @@ $description = strip_tags($description);
 $barter = strip_tags($barter);
 
 if ($titre != "" && count($_FILES['images']['name']) <= 8) {
-	$identifiant = getNombreArticles() + 1;
+	$identifiant = $db->query("SELECT MAX(identifiant) FROM Article");
+	if ($identifiant == false) {
+		$identifiant = 1;
+	}
+	else {
+		$identifiant = $identifiant->fetch()[0] + 1;
+	}
 	$writer = $_SESSION["user"][0];
 	$sql = "INSERT INTO Article (
 		identifiant,
@@ -85,5 +91,5 @@ else {
 	}
 	elseif (count($_FILES['images']['name']) > 8) {
 		header("Location:../publish.php?type=$type&error=images");
-	}}
+	}}d
 ?>
