@@ -1,4 +1,4 @@
-<section class="notifications">
+<section id='notifications'>
             <h3>Notifications : </h3>
             <h3>Exemple notif</h3>
 

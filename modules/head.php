@@ -14,9 +14,15 @@ include "functions.php";
     <link rel="icon" type="image/x-icon" href="../images/Logo_Trocali.ico">
     <script src="https://kit.fontawesome.com/d003054d16.js" crossorigin="anonymous"></script>
     <script>
-        const listeNotif = document.querySelector(".notifications");
-        const boutonNotif = document.querySelector(".boutonNotifs");
-        listeNotif.addEventListener('click',()=>{boutonNotif.classList.toggle('active')});
+        function menu() {
+            var menu = document.getElementById('notifications');
+            if (menu.style.display == "block") {
+                menu.style.display = "none";
+            }
+            else {
+                menu.style.display = "block";
+            }
+        }
     </script>
     <!--<link href="style/reset.css" rel="stylesheet">-->
     <?php
