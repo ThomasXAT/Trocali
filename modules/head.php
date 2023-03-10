@@ -13,17 +13,7 @@ include "functions.php";
     <link rel="stylesheet" href="style.css" type="text/css" >
     <link rel="icon" type="image/x-icon" href="../images/Logo_Trocali.ico">
     <script src="https://kit.fontawesome.com/d003054d16.js" crossorigin="anonymous"></script>
-    <script>
-        function menu() {
-            var menu = document.getElementById('notifications');
-            if (menu.style.display == "block") {
-                menu.style.display = "none";
-            }
-            else {
-                menu.style.display = "block";
-            }
-        }
-    </script>
+    <script src="script/script.js"></script>
     <!--<link href="style/reset.css" rel="stylesheet">-->
     <?php
         if ($title == 'Reglement' || $title == 'Panier'|| $title == 'Troc' || $title == 'Paiement') {
