@@ -14,6 +14,8 @@ if (isset($_GET["id"])) {
             }
             $statement = $db->prepare("DELETE FROM Photo WHERE Article = ?"); 
             $statement->execute([$id]);
+            $statement = $db->prepare("DELETE FROM Notification WHERE articleRef = ?"); 
+            $statement->execute([$id]);
             $statement = $db->prepare("DELETE FROM Panier WHERE article = ?"); 
             $statement->execute([$id]);
             $statement = $db->prepare("DELETE FROM Article WHERE Identifiant = ?"); 
