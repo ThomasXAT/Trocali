@@ -232,3 +232,15 @@ main {
     text-align: left;
     margin-left: 5%;
 }
+
+#article {
+    display : none;
+}
+
+#commande {
+    display : none;
+}
+
+#information {
+    display : none;
+}
