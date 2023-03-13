@@ -143,7 +143,10 @@
 		    return $titre=$statement->fetch();
 	}
 
-	function afficherArticle($id, $cart = false){
+	function afficherArticle($id, $cart = false, $force = false){
+		if (condition) {
+			# code...
+		}
 		print "<article>";
 		if(get1stImage($id)){
 			if(file_exists("./" . get1stImage($id)[0])){
@@ -158,9 +161,19 @@
 		if($cart){
 			print "</br>";
 			print "<a href='settlement.php?id=$id'>Regler l'article</a>";
+			
 		}
 		print "</article>";
-
 	}
-	
+
+	function reglerArticle($idArticle, $user) {
+		global $db;
+		$statement = $db->prepare('UPDATE Article SET masque = 1, acheteur = ? WHERE identifiant = ?');
+		$statement->execute([$user, $idArticle]);
+
+		$statement = $db->prepare('DELETE FROM Panier WHERE article = ?');
+		$statement->execute([$idArticle]);
+
+		unset($_SESSION['current_article']);
+	}	
 ?>
