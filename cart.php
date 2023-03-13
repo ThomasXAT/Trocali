@@ -1,5 +1,11 @@
-<?php $title="Reglement"; include "modules/head.php"; ?>
-<?php $page="pay"; include "modules/body/header.php";?>
+<?php 
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: account.php");
+}
+session_abort();
+$title="Reglement"; include "modules/head.php"; 
+$page="pay"; include "modules/body/header.php";?>
 <!-- Main -->  
     <main>
         <h2>Mon panier</h2>

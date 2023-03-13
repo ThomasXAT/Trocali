@@ -143,8 +143,10 @@
 		    return $titre=$statement->fetch();
 	}
 
+
 	function afficherArticle($id, $cart = false){
 		print "<article class='articleListe'>";
+
 		if(get1stImage($id)){
 			if(file_exists("./" . get1stImage($id)[0])){
 				print "<img src='./". get1stImage($id)[0]. "'>";
@@ -159,11 +161,24 @@
 		print "</div>";
 		if($cart){
 			print "</br>";
+
 			print "<a href='settlement.php?id=$id' id='reglement'>Regler l'article</a>";
+
 		}
 		print "</article>";
-
 	}
+
+	function reglerArticle($idArticle, $user) {
+		global $db;
+		$statement = $db->prepare('UPDATE Article SET masque = 1, acheteur = ? WHERE identifiant = ?');
+		$statement->execute([$user, $idArticle]);
+
+		$statement = $db->prepare('DELETE FROM Panier WHERE article = ?');
+		$statement->execute([$idArticle]);
+
+		unset($_SESSION['current_article']);
+	}	
+
 	function getNbNotif($utilisateur){
 		global $db;
 		$statement = $db->prepare("SELECT COUNT(identifiant) FROM Notification WHERE utilisateur= ?");
@@ -171,5 +186,4 @@
 			
 			return $nb=$statement->fetch()[0];
 	}
-	
 ?>

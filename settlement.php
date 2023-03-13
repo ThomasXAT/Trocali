@@ -1,11 +1,24 @@
-<?php $title="Reglement"; include "modules/head.php"; ?>
-<?php $page="settlement"; include "modules/body/header.php";?>
+<?php 
+if (!isset($_GET["id"])) {
+    header("Location: index.php");
+}
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: account.php");
+}
+session_abort();
+
+$title="Reglement"; include "modules/head.php";
+$page="settlement"; include "modules/body/header.php";
+?>
 <!-- Main -->  
     <main>
         <h2>Reglement</h2>
         <?php
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+
+            $_SESSION['current_article'] = $id;
 
             $statement = $db->prepare('SELECT * FROM Article WHERE identifiant = ?');
             $statement->execute([$id]);
@@ -16,35 +29,37 @@
             $row = $statement->rowCount();
 
             if ($row != 0) {
+                $_SESSION['current_article'] = $id;
+
                 $titre = $article['titre'];
-                $moyenPayement = $article['moyenPaiement'];
+                $moyenPaiement = $article['moyenPaiement'];
 
                 print "<a href='article.php?id=" . $id . "'>$titre</a>";
                 print "<br /><br />";
 
-                if (strpos($moyenPayement, 'Argent') !== false) {
+                if (strpos($moyenPaiement, 'Argent') !== false) {
                     $price = $article['prix'];
-                    if ((strpos($moyenPayement, 'Troc') == false) && ($price == 0)) {
-                        print "<a href = trade.php?acheteur=false&id=$id>Acheter l'article gratuitement</a>";
+                    if ((strpos($moyenPaiement, 'Troc') == false) && ($price == 0)) {
+                        print "<a href = trade.php>Obtenir l'article gratuitement</a>";
                     }
                     else {
                         print "L'article peut s'acheter pour $price €";
                         print "<br /><br />";
-                        print "<a href=pay.php?price=$price&id=$id>Procéder au Paiement</a>";
+                        print "<a href=pay.php>Procéder au Paiement</a>";
                         print "<br /><br />";
                     }
                 }
 
-                if ($moyenPayement == 'Argent & Troc') {
+                if ($moyenPaiement == 'Argent & Troc') {
                     print "Sinon";
                     print "<br /><br />";
                 }
 
-                if (strpos($moyenPayement, 'Troc') !== false) {
+                if (strpos($moyenPaiement, 'Troc') !== false) {
                     $trade = $article['troc'];
                     print "Voici le troc proposé par le prestatère : $trade ";
                     print "<br /><br />";
-                    print "<a href=trade.php?id=$id>Procéder au Troc</a>";
+                    print "<a href=trade.php>Procéder au Troc</a>";
                     print "<br /><br />";
                 }
             }

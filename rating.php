@@ -10,7 +10,7 @@
             $utilisateur = $_SESSION['user'][0];
             if ($cible != $utilisateur) {
                 print "<h2>Avis</h2>";
-                include "modules/body/rating/form.html";
+                include "modules/body/forms/rating.html";
             }
             if (isset($_POST['validate'])) {
                 $note = $_POST['note'];
