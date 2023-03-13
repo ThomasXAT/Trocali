@@ -11,7 +11,7 @@ include "functions.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trocali - <?php print $title; ?></title>
     <link rel="stylesheet" href="style.css" type="text/css" >
-    <link rel="icon" type="image/x-icon" href="../images/system/Logo_Trocali.ico">
+    <link rel="icon" href="images/system/Logo_Trocali.ico" />
     <script src="https://kit.fontawesome.com/d003054d16.js" crossorigin="anonymous"></script>
     <script src="script/script.js"></script>
     <!--<link href="style/reset.css" rel="stylesheet">-->
