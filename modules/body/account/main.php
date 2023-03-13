@@ -15,12 +15,8 @@ while($resu= $statement->fetch()) {
 
 <h3> Bonjour <?php echo $prenom?></h3>
 
-<a href=''>Vos commandes</a><br>
-<a href=''>Vos articles</a><br>
-<a href=''>Vos informations</a><br>
-<a href='data/authentication.php?request=logout'>Se déconnecter</a><br><br><br>
-
-<section> 
+<a onclick="article();" style="cursor: pointer; color: rgb(0, 123, 255);">Vos articles</a><br>
+<section id='article'> 
     <?php 
     $username = $_SESSION["user"][0];
     $statement = $db->prepare("SELECT identifiant FROM Article WHERE auteur = ? ORDER BY identifiant DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
@@ -37,7 +33,8 @@ while($resu= $statement->fetch()) {
         ?>
 </section>
 
-<section> 
+<a onclick="commande();" style="cursor: pointer; color: rgb(0, 123, 255);">Vos commandes</a><br>
+<section id='commande'> 
     <?php 
     $username = $_SESSION["user"][0];
     $statement = $db->prepare("SELECT identifiant FROM Article WHERE acheteur = ? ORDER BY identifiant DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
@@ -52,7 +49,8 @@ while($resu= $statement->fetch()) {
 		} ?>
 </section>
 
-<section>
+<a onclick="information();" style="cursor: pointer; color: rgb(0, 123, 255);">Vos informations</a><br>
+<section  id='information'>
     <h4>Vos informations</h4>
     <?php
     if (isset($_GET["error"])) {
@@ -79,3 +77,5 @@ while($resu= $statement->fetch()) {
                 <div><input type="submit" value="Valider"></div>
             </form>
 </section>
+
+<a href='data/authentication.php?request=logout'>Se déconnecter</a><br><br><br>

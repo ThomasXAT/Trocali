@@ -25,36 +25,37 @@
 		<hr>
 		<!-- Publication -->
 		<section class="publish" >
-			<form action="publish.php" method="POST" class="text-center" >
+			<form>
 				<p>Un bien ou un service à proposer ?</p>
 				<?php
 				if (isset($_SESSION["user"])) {
-					print '<a href="publish.php?type=Offre">';
+					print '<a href="publish.php?type=Offre">Publier une offre</a>';
 				}
 				else {
-					print '<a href="account.php?request=login">';
+					print '<a href="account.php?request=login">Publier une offre</a>';
 				}
-				?><input type="submit" name="offre" value="Publier une offre" /></a>
+				?>
 				<p>Vous avez besoin de quelque chose ?</p>
 				<?php
 				if (isset($_SESSION["user"])) {
-					print '<a href="publish.php?type=Demande">';
+					print '<a href="publish.php?type=Demande">Lancer un appel d'."'".'offres</a>';
 				}
 				else {
-					print '<a href="account.php?request=login">';
+					print '<a href="account.php?request=login">Lancer un appel d'."'".'offres</a>';
 				}
-				?><input type="submit" name="demande" value="Lancer un appel d'offres" /></a>
+				?>
 			</form>
 		</section>
 		<hr>
 		<!-- Articles -->
-		<section class="articles" class="align-items-center">
+		<section class="articles align-items-center">
 			<form class="text-center">
 			<?php
 			extract($_POST,EXTR_OVERWRITE);		
 			if (isset($recherche) && $recherche != "") {
 				foreach (rechercher($recherche, $categorie) as $article) {
 					afficherArticle($article);
+					print "<br /><br />";
 				}
 			}
 			else {
