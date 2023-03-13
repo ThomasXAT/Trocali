@@ -1,8 +1,7 @@
 <section id='notifications'>
             <h3>Notifications : </h3>
-            <h3>Exemple notif</h3>
 
-
+        <div id='contenuNotif'>
         <?php
         if (isset($_SESSION["user"])) {
             $username = $_SESSION["user"][0];
@@ -13,7 +12,9 @@
                 $id=$resu["identifiant"];
                 print "</BR>";
                 print "<a href='data/notifications.php?id=$id'>Supprimer</a>\n";
+                print "</BR></BR>";
             }
         }
         ?>
+        </div>
 </section>

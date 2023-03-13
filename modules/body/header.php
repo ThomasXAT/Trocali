@@ -9,8 +9,8 @@
     }
     ?>
 <header class="row">
-        <section class="header">
-            <img src="images/Logo_Trocali.png">
+        <section class="headerClass">
+            <img src="images/system/Logo_Trocali.png">
             <h1 class="col-xs-2">Trocali</h1>
             <div class="listeIcone">
                 <nav class="btn-group">
