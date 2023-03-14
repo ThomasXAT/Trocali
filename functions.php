@@ -147,6 +147,7 @@
 
 	function afficherArticle($id, $cart = false){
 		if (verifMasque($id)==1){
+			if(basename($_SERVER['PHP_SELF'])!='index.php'){
 			if(isset($_SESSION["user"])){
 			if(getAcheteur($id)==$_SESSION["user"][0])
 			{
@@ -155,6 +156,8 @@
 			elseif(getAuteur($id)==$_SESSION["user"][0]){
 				retourneAfficheArticle($id, $cart);
 			}
+		}
+			
 		}
 		}
 		else{
