@@ -197,14 +197,11 @@
 	}
 	function retourneAfficheArticle($id, $cart){
 		print "<article class='articleListe'>";
-
-		if(get1stImage($id)){
-			if(file_exists("./" . get1stImage($id)[0])){
-				print "<img src='./". get1stImage($id)[0]. "'>";
-			}
-			else{
-				print "<img src='./images/articles/placeholder-1.png'>";
-			}
+		if (!isset((get1stImage($id)[0]))){
+			print "<img src='./images/articles/placeholder-1.png'>";
+		}
+		else {
+			print "<img src='./". get1stImage($id)[0]. "'>";
 		}
 		print "<div>";
 		print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";

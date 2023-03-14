@@ -23,7 +23,7 @@ $page="settlement"; include "modules/body/header.php";
                 $price = $article['prix'];
 
                 if ((strpos($moyenPaiement, 'Argent') !== false) && ($price != 0) && !(isset($_POST['payed'])) && (strpos($moyenPaiement, 'Troc') !== false)) {
-                    print "<p>Vous devez d'abbord payer cet article</p>";
+                    print "<p>Vous devez d'abord payer cet article</p>";
                     print "<a href='pay.php'>Payer l'article";
                 }
                 else {
@@ -33,7 +33,11 @@ $page="settlement"; include "modules/body/header.php";
                     <p>Nous vous remercions pour votre transaction</p>
                     <p>Une notification a été envoyée à l'utilisateur pour lui confirmer l'échange</p>
                     <a href='index.php'>Retourner à l'accueil</a>
-                    <a href='rating.php?user=".$article['auteur']."'>Laisser un avis sur l'auteur de l'article</a>";
+                    <a href='rating.php?user=".$article['auteur']."'>Laisser un avis sur l'auteur de l'article</a>"; 
+                    $auteur=getAuteur($id);
+                    $titre=getTitre($id);
+                    $letexte= "Votre article " . $titre . " a été payé par l'utilisateur ". $_SESSION["user"][0]. " ! (La chance :3!)";
+                    creerNotifsAvecRefArticle($auteur, $letexte, $id);
                 }
             }
             else {

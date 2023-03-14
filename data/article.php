@@ -1,6 +1,6 @@
 <?php
-include '../functions.php';
 session_start();
+include '../functions.php';
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     if (isset($_GET["delete"])) {
@@ -27,7 +27,7 @@ if (isset($_GET["id"])) {
         $cart = $_GET["cart"];
         if ($cart == 'add') {
             $statement = $db->prepare('INSERT INTO Panier (article, utilisateur) VALUES (?,?)');
-            $statement->execute([$id, $_SESSION["user"][0]]);
+            $statement->execute([$id, $_SESSION["user"][0]]);   
             $auteur=getAuteur($id);
 		    $titre=getTitre($id);
             $letexte= "Votre article " . $titre . " a été ajouté au panier de l'utilisateur ". $_SESSION["user"][0]. " ! (La chance :3!)";
@@ -43,5 +43,6 @@ if (isset($_GET["id"])) {
         }
     }
 }
+
 
 ?>
