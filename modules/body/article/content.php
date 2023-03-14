@@ -34,6 +34,9 @@
                         }
                     }
                 }
+                else {
+                    print "<a href='account.php' id='modif'>Ajouter au panier</a>\n";
+                }
                 ?>
             </article>
 		</section>

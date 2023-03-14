@@ -1,4 +1,5 @@
 <?php
+	
     include_once "data/database.php";
 
 	function getCategories() {
@@ -145,27 +146,20 @@
 
 
 	function afficherArticle($id, $cart = false){
-		print "<article class='articleListe'>";
-
-		if(get1stImage($id)){
-			if(file_exists("./" . get1stImage($id)[0])){
-				print "<img src='./". get1stImage($id)[0]. "'>";
+		if (verifMasque($id)==1){
+			if(isset($_SESSION["user"])){
+			if(getAcheteur($id)==$_SESSION["user"][0])
+			{
+				retourneAfficheArticle($id, $cart);
 			}
-			else{
-				print "<img src='./images/articles/placeholder-1.png'>";
+			elseif(getAuteur($id)==$_SESSION["user"][0]){
+				retourneAfficheArticle($id, $cart);
 			}
 		}
-		print "<div>";
-		print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";
-		print "<span>". getDatePublication($id). "</span>";
-		print "</div>";
-		if($cart){
-			print "</br>";
-
-			print "<a href='settlement.php?id=$id' id='reglement'>Regler l'article</a>";
-
 		}
-		print "</article>";
+		else{
+		retourneAfficheArticle($id, $cart);
+	}
 	}
 
 	function reglerArticle($idArticle, $user) {
@@ -185,5 +179,40 @@
 		    $statement->execute([$utilisateur]);
 			
 			return $nb=$statement->fetch()[0];
+	}
+	function verifMasque($article){
+		global $db;
+		$statement = $db->prepare("SELECT masque FROM Article WHERE identifiant= ?");
+		    $statement->execute([$article]);
+			
+			return $nb=$statement->fetch()[0];
+	}
+
+	function getAcheteur($article){
+		global $db;
+		$statement = $db->prepare("SELECT acheteur FROM Article WHERE identifiant= ?");
+		    $statement->execute([$article]);
+			
+			return $nb=$statement->fetch()[0];
+	}
+	function retourneAfficheArticle($id, $cart){
+		print "<article class='articleListe'>";
+		if (!isset((get1stImage($id)[0]))){
+			print "<img src='./images/articles/placeholder-1.png'>";
+		}
+		else {
+			print "<img src='./". get1stImage($id)[0]. "'>";
+		}
+		print "<div>";
+		print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";
+		print "<span>". getDatePublication($id). "</span>";
+		print "</div>";
+		if($cart){
+			print "</br>";
+
+			print "<a href='settlement.php?id=$id' id='reglement'>Regler l'article</a>";
+
+		}
+		print "</article>";
 	}
 ?>
