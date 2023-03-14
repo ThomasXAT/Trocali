@@ -59,17 +59,29 @@
 				}
 			}
 			else {
-				$nombreArticles = getNombreArticles();
-				if ($nombreArticles != 0) {
-					print "<p>Derniers articles ($nombreArticles)</p><br />\n"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
 					if (!isset($_SESSION['user'])) {
-						$statement = $db->prepare("SELECT Identifiant, Titre, Auteur FROM Article ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
+						$nombreArticles1 = getNombreArticles();
+						if ($nombreArticles1 != 0) {
+							print "<p>Derniers articles ($nombreArticles1)</p><br />\n"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
+						$statement = $db->prepare("SELECT Identifiant, Titre, Masque FROM Article WHERE Masque = 0 ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
 						$statement->execute();
+						}
+						else {
+							print "<p>Aucun article n'a encore été publié...</p>\n";
+						}
 					}
 					else {
-						$statement = $db->prepare("SELECT Identifiant, Titre, Auteur FROM Article WHERE Auteur != ? ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
-						$statement->execute([$_SESSION["user"][0]]);
+						$nombreArticles2 = getNombreArticleUtilisateurPrecis();
+						if ($nombreArticles2 != 0) {
+							print "<p>Derniers articles ($nombreArticles2)</p><br />\n"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
+							$statement = $db->prepare("SELECT Identifiant, Titre, Auteur, Masque FROM Article WHERE Auteur != ? AND Masque = 0 ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
+							$statement->execute([$_SESSION["user"][0]]);
+						}
+						else {
+							print "<p>Aucun article n'a encore été publié...</p>\n";
+						}
 					}
+				}
 					$compteur=0;
 					while ($resu= $statement->fetch()){ // On parcourt le résultat et on l'affiche
 						$identifiant = $resu['Identifiant'];
@@ -80,11 +92,8 @@
 					}
 					$compteur=$compteur+1;
 					}
-				}
-				else {
-					print "<p>Aucun article n'a encore été publié...</p>\n";
-				}
-			}
+
+
 			?>
 		</form>
 		</section>
