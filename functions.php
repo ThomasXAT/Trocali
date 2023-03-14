@@ -1,4 +1,5 @@
 <?php
+	
     include_once "data/database.php";
 
 	function getCategories() {
@@ -145,6 +146,56 @@
 
 
 	function afficherArticle($id, $cart = false){
+		if (verifMasque($id)==1){
+			if(isset($_SESSION["user"])){
+			if(getAcheteur($id)==$_SESSION["user"][0])
+			{
+				retourneAfficheArticle($id, $cart);
+			}
+			elseif(getAuteur($id)==$_SESSION["user"][0]){
+				retourneAfficheArticle($id, $cart);
+			}
+		}
+		}
+		else{
+		retourneAfficheArticle($id, $cart);
+	}
+	}
+
+	function reglerArticle($idArticle, $user) {
+		global $db;
+		$statement = $db->prepare('UPDATE Article SET masque = 1, acheteur = ? WHERE identifiant = ?');
+		$statement->execute([$user, $idArticle]);
+
+		$statement = $db->prepare('DELETE FROM Panier WHERE article = ?');
+		$statement->execute([$idArticle]);
+
+		unset($_SESSION['current_article']);
+	}	
+
+	function getNbNotif($utilisateur){
+		global $db;
+		$statement = $db->prepare("SELECT COUNT(identifiant) FROM Notification WHERE utilisateur= ?");
+		    $statement->execute([$utilisateur]);
+			
+			return $nb=$statement->fetch()[0];
+	}
+	function verifMasque($article){
+		global $db;
+		$statement = $db->prepare("SELECT masque FROM Article WHERE identifiant= ?");
+		    $statement->execute([$article]);
+			
+			return $nb=$statement->fetch()[0];
+	}
+
+	function getAcheteur($article){
+		global $db;
+		$statement = $db->prepare("SELECT acheteur FROM Article WHERE identifiant= ?");
+		    $statement->execute([$article]);
+			
+			return $nb=$statement->fetch()[0];
+	}
+	function retourneAfficheArticle($id, $cart){
 		print "<article class='articleListe'>";
 
 		if(get1stImage($id)){
@@ -166,24 +217,5 @@
 
 		}
 		print "</article>";
-	}
-
-	function reglerArticle($idArticle, $user) {
-		global $db;
-		$statement = $db->prepare('UPDATE Article SET masque = 1, acheteur = ? WHERE identifiant = ?');
-		$statement->execute([$user, $idArticle]);
-
-		$statement = $db->prepare('DELETE FROM Panier WHERE article = ?');
-		$statement->execute([$idArticle]);
-
-		unset($_SESSION['current_article']);
-	}	
-
-	function getNbNotif($utilisateur){
-		global $db;
-		$statement = $db->prepare("SELECT COUNT(identifiant) FROM Notification WHERE utilisateur= ?");
-		    $statement->execute([$utilisateur]);
-			
-			return $nb=$statement->fetch()[0];
 	}
 ?>
