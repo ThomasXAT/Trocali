@@ -26,6 +26,7 @@
                         $statement = $db->prepare("SELECT * FROM Panier WHERE article = ? AND utilisateur = ?");
                         $statement->execute([$id, $_SESSION["user"][0]]);
                         $row = $statement->rowCount();
+                        $id = $_GET["id"];
                         if ($row == 0) {
                             print "<a href='data/article.php?id=$id&cart=add' id='modif'>Ajouter au panier</a>\n";
                         }
