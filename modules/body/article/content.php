@@ -1,8 +1,10 @@
 <main>
 		<section>
             <article class="articleComplet">
-                <h2><?php print "$type"; ?> : <?php print "$title"; ?></h2>
-                <p id="auteur">Auteur : <?php print "$writer"; ?></p>
+                <h2><?php print "$type"; $id = $_GET["id"];?> : <?php print "$title"; ?></h2>
+                <?php
+                print("<a href='./user.php?id=$id'id='auteur'>Auteur : $writer</a>")
+                ?>
                 <p id="date">Date de publication : <?php print "$publicationDate"; ?></p>
                 <p id="categorie"><?php print "$category"; ?></p>
                 <p id="description">Description : <?php print "$description"; ?></p>
@@ -26,7 +28,7 @@
                         $statement = $db->prepare("SELECT * FROM Panier WHERE article = ? AND utilisateur = ?");
                         $statement->execute([$id, $_SESSION["user"][0]]);
                         $row = $statement->rowCount();
-                        $id = $_GET["id"];
+                        
                         if ($row == 0) {
                             print "<a href='data/article.php?id=$id&cart=add' id='modif'>Ajouter au panier</a>\n";
                         }
