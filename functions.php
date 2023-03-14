@@ -7,10 +7,16 @@
 	}
 
     function getNombreArticles() {
-        global $db;
-        $statement = $db->prepare("SELECT COUNT(identifiant) FROM Article");
-        $statement->execute();
-        return $statement->fetch()[0];
+			global $db;
+			if (isset($_SESSION["user"])) {
+				$statement = $db->prepare("SELECT COUNT(identifiant) FROM Article WHERE Auteur != ?");
+				$statement->execute([$_SESSION["user"][0]]);
+			}
+			else {
+				$statement = $db->prepare("SELECT COUNT(identifiant) FROM Article");
+				$statement->execute();
+			}
+			return $statement->fetch()[0];
     }
 
     function trouverMotsCles($chaine) {
@@ -196,23 +202,24 @@
 			return $nb=$statement->fetch()[0];
 	}
 	function retourneAfficheArticle($id, $cart){
-		print "<article class='articleListe'>";
-		if (!isset((get1stImage($id)[0]))){
-			print "<img src='./images/articles/placeholder-1.png'>";
-		}
-		else {
-			print "<img src='./". get1stImage($id)[0]. "'>";
-		}
-		print "<div>";
-		print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";
-		print "<span>". getDatePublication($id). "</span>";
-		print "</div>";
-		if($cart){
-			print "</br>";
+			print "<article class='articleListe'>";
+			if (!isset((get1stImage($id)[0]))){
+				print "<img src='./images/articles/placeholder-1.png'>";
+			}
+			else {
+				print "<img src='./". get1stImage($id)[0]. "'>";
+			}
+			print "<div>";
+			print "<h3> <a href='article.php?id=".$id."'>". getTitre($id). "</a> </h3>";
+			print "<span>". getDatePublication($id). "</span>";
+			print "</div>";
+			if($cart){
+				print "</br>";
 
-			print "<a href='settlement.php?id=$id' id='reglement'>Regler l'article</a>";
+				print "<a href='settlement.php?id=$id' id='reglement'>Regler l'article</a>";
 
+			}
+			print "</article>";
 		}
-		print "</article>";
-	}
+
 ?>
