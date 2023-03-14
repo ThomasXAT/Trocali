@@ -276,3 +276,31 @@ h2 {
 #article, #commande, #information  {
     display : none;
 }
+
+/*---Avis-----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+.avis {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 250px 0px;
+    width : 700px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: greenyellow;
+    margin: auto;
+    align-items: center;
+    justify-items: center;
+}
+
+.avis div{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.avis #reglement {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+
+}
