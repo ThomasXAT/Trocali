@@ -14,6 +14,9 @@ include "functions.php";
     <link rel="icon" href="images/system/Logo_Trocali.ico" />
     <script src="https://kit.fontawesome.com/d003054d16.js" crossorigin="anonymous"></script>
     <script src="script/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <!--<link href="style/reset.css" rel="stylesheet">-->
 
 </head>
