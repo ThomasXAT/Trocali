@@ -8,7 +8,7 @@
 
     function getNombreArticles() {
         global $db;
-        $statement = $db->prepare("SELECT COUNT(identifiant) FROM Article");
+        $statement = $db->prepare("SELECT COUNT(identifiant), Masque FROM Article WHERE Masque = 0 ");
         $statement->execute();
         return $statement->fetch()[0];
     }
@@ -271,10 +271,10 @@
         return $statement->fetch()[0];
 	}
 
-	function getNombreArticleUtilisateurPrecis($id){
+	function getNombreArticleUtilisateurPrecis(){
 		global $db;
-        $statement = $db->prepare("SELECT COUNT(identifiant) FROM Article WHERE auteur= ?");
-        $statement->execute([$id]);
+        $statement = $db->prepare("SELECT COUNT(identifiant)FROM Article WHERE auteur != ? AND masque = 0 GROUP BY auteur");
+        $statement->execute([$_SESSION["user"][0]]);
         return $statement->fetch()[0];
 	}
 ?>
