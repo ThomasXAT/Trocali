@@ -1,12 +1,17 @@
 /*---Header-------------------------------------------------------------------------------------------------------------------------------*/
 
 header{
-    background-color: grey;
+    background-color: darkslategray;
     width: 100%;
     height: 100px;
     font-family: Optima, sans-serif;
     
 }
+
+header i  {
+    color: #bdd699;
+}
+
 
 header h1{
     text-align: left;
@@ -14,6 +19,8 @@ header h1{
     grid-row: 1;
     font-weight: bold;
     font-size : 45px;
+    color: #bdd699;
+    margin-top: 8px;
 
 }
 
@@ -27,7 +34,7 @@ header nav {
     height: 150px;
     width: 100%;
     display: grid;
-    grid-template-columns: 20% 10% 20% 40% 10%;
+    grid-template-columns: 20% 10% 20% 29% 21%;
     grid-template-rows: 100px;
     align-items: center;
 }
@@ -248,6 +255,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+    background-color: #f0fff0e7;
 }
 
 html {
@@ -257,16 +265,18 @@ html {
 main {
     text-align: center;   
     font-family: 'Roboto', sans-serif;
-    flex-grow: 1
+    flex-grow: 1;
+    width: 60%;
+    margin: auto;
+    background-color: white;
 }
 
 
 .button {
-    background-image: linear-gradient(#f7f8fa ,#e7e9ec);
-    border-color: #adb1b8 #a2a6ac #8d9096;
+    background:#bdd699;
     border-style: solid;
     border-width: 1px;
-    border-radius: 3px;
+    border-radius: 15px;
     box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
     box-sizing: border-box;
     color: black;
@@ -275,12 +285,11 @@ main {
     font-family: "Amazon Ember",Arial,sans-serif;
     font-size: 14px;
     height: 29px;
-    font-size: 13px;
+    font-size: 16px;
     text-underline-offset: none;
     outline: 0;
     overflow: hidden;
-    padding: 5px 11px;
-    text-align: center;
+    padding: 7px 5px;
     text-decoration: none;
     margin-bottom: 10px;
     text-overflow: ellipsis;
@@ -289,6 +298,8 @@ main {
     touch-action: manipulation;
     white-space: nowrap;
     vertical-align:bottom ;
+    width: 200px;
+    height: 40px;
   }
   
   .button:active {
@@ -309,6 +320,11 @@ main {
     outline: 0;
   }
 
+main a:-webkit-any-link { 
+    color: black;
+    cursor: pointer;
+    text-decoration:none
+}
 
 .btn-info {
     color: #fff;
@@ -383,8 +399,9 @@ h2 {
 }
 
 footer{
-    background-color: grey;
+    background-color: darkslategray;
     padding: 10px;
     font-size: 15px;
     font-family: Optima, sans-serif;
+    color: #bdd699;
 }

@@ -7,7 +7,7 @@
 			<div class="col-xs-3 content">
 			<form action="index.php" method="POST">
 				<input type="search" id="recherche" name="recherche" placeholder="Recherche">
-				<select name="categorie" id="categorie">
+				<select name="categorie" id="categorie" >
 					<option value=''>Aucune catégorie</option><?php
 					print "\n";
 					$listeCategories = getCategories();
@@ -18,7 +18,7 @@
 					}
 					?>
 				</select>
-				<input type="submit" value="Valider" style="vertical-align:top;" class="button">
+				<input type="submit" value="Valider" style="vertical-align:top; background:#bdd699; border:1px solid black;" >
 			</form>
 			</div>
 		</section>
