@@ -48,6 +48,12 @@
                                 case "username":
                                     print "<p class=" . '"' . "error" . '"' . ">Nom d'utilisateur indisponible.</p>\n";
                                     break;
+                            
+
+                                // Erreur : pas le meme mdp
+                                case "mdpNotSame":
+                                    print "<p class=" . '"' . "error" . '"' . ">Mots de passe non identiques.</p>\n";
+                                    break;
                             }
                         }    
                         include "modules/body/account/signup.php";            
