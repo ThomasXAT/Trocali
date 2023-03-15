@@ -74,7 +74,7 @@ while($resu= $statement->fetch()) {
                 <div><input type="password" name="newPassword" placeholder="Nouveau mot de passe"></div></br>
                 <div><input type="password" name="newPassword2" placeholder="Confirmer mot de passe"></div>
                 <div><p>Confirmer en entrant votre mot de passe actuel : </p><input type="password" name="oldPassword" placeholder="Ancien mot de passe"></div><br />
-                <div><input type="submit" value="Valider"></div>
+                <div><input type="submit" value="Valider"  class="button"></div>
             </form>
 </section>
 

@@ -18,7 +18,7 @@
 					}
 					?>
 				</select>
-				<input type="submit" value="Valider">
+				<input type="submit" value="Valider" style="vertical-align:top;" class="button">
 			</form>
 			</div>
 		</section>
@@ -29,19 +29,19 @@
 				<p>Un bien ou un service à proposer ?</p>
 				<?php
 				if (isset($_SESSION["user"])) {
-					print '<a href="publish.php?type=Offre">Publier une offre</a>';
+					print '<a href="publish.php?type=Offre" class="button">Publier une offre</a>';
 				}
 				else {
-					print '<a href="account.php?request=login">Publier une offre</a>';
+					print '<a href="account.php?request=login" class="button">Publier une offre</a>';
 				}
 				?>
 				<p>Vous avez besoin de quelque chose ?</p>
 				<?php
 				if (isset($_SESSION["user"])) {
-					print '<a href="publish.php?type=Demande">Lancer un appel d'."'".'offres</a>';
+					print '<a href="publish.php?type=Demande" class="button">Lancer un appel d'."'".'offres</a>';
 				}
 				else {
-					print '<a href="account.php?request=login">Lancer un appel d'."'".'offres</a>';
+					print '<a href="account.php?request=login" class="button">Lancer un appel d'."'".'offres</a>';
 				}
 				?>
 			</form>
@@ -98,4 +98,4 @@
 		</form>
 		</section>
     </main>
-<?php include "modules/body/footer.php"; ?>
+<?php include "modules/body/footer.php" ?>

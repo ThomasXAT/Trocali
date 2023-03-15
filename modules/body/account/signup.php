@@ -5,6 +5,6 @@
                 <div><input type="email" name="email" placeholder="Adresse e-mail" required="required"></div>
                 <div><input type="password" name="password" placeholder="Mot de passe" required="required"></div>
                 <div><input type="password" name="passwordConfirm" placeholder="Confirmer mot de passe" required="required"></div>
-                <div><input type="submit" value="S'inscrire"></div>
+                <div><input type="submit" value="S'inscrire"  class="button"></div>
             </form>
             <a href="account.php?request=login"><p>Je possède déjà un compte.</p></a>
