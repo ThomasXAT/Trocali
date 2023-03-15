@@ -24,7 +24,8 @@ $id=$_GET["id"];
                 print "<p>Aucun avis n'a encore été publié...</p>\n";
             }
 
-            $nombreArticles = getNombreArticleUtilisateurPrecis($utilisateurCible);
+
+            $nombreArticles = getNombreArticleUtilisateurPrecisV($utilisateurCible);
 				if ($nombreArticles != 0) {
 					print "<p>Derniers articles ($nombreArticles)</p><br />\n"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
 					$statement = $db->prepare("SELECT Identifiant, Titre FROM Article WHERE auteur= ? ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
