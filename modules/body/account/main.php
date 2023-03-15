@@ -72,8 +72,8 @@ while($resu= $statement->fetch()) {
                 <div><input type="text" name="name" value="<?php echo $prenom?>" placeholder="Prénom" ></div><br />
                 <div><input type="email" name="email" value="<?php echo $email?>" placeholder="Adresse e-mail" ></div><br />
                 <div><input type="password" name="newPassword" placeholder="Nouveau mot de passe"></div></br>
-                <div><input type="password" name="newPassword2" placeholder="Confirmer mot de passe"></div>
-                <div><p>Confirmer en entrant votre mot de passe actuel : </p><input type="password" name="oldPassword" placeholder="Ancien mot de passe"></div><br />
+                <div><input type="password" name="newPassword2" placeholder="Confirmer mot de passe"></div></br>
+                <div><p>Confirmer en entrant votre mot de passe actuel : </p><input type="password" name="oldPassword" placeholder="Mot de passe actuel"></div><br />
                 <div><input type="submit" value="Valider"  class="button"></div>
             </form>
 </section>

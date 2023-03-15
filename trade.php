@@ -36,7 +36,7 @@ $page="settlement"; include "modules/body/header.php";
                     <a href='rating.php?user=".$article['auteur']."'>Laisser un avis sur l'auteur de l'article</a>"; 
                     $auteur=getAuteur($id);
                     $titre=getTitre($id);
-                    $letexte= "Votre article " . $titre . " a été payé par l'utilisateur ". $_SESSION["user"][0]. " ! (La chance :3!)";
+                    $letexte= "Votre article " . $titre . " a été payé par l'utilisateur ". $_SESSION["user"][0]. " ! ";
                     creerNotifsAvecRefArticle($auteur, $letexte, $id);
                 }
             }

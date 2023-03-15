@@ -30,7 +30,7 @@ if (isset($_GET["id"])) {
             $statement->execute([$id, $_SESSION["user"][0]]);   
             $auteur=getAuteur($id);
 		    $titre=getTitre($id);
-            $letexte= "Votre article " . $titre . " a été ajouté au panier de l'utilisateur ". $_SESSION["user"][0]. " ! (La chance :3!)";
+            $letexte= "Votre article " . $titre . " a été ajouté au panier de l'utilisateur ". $_SESSION["user"][0]. " ! ";
             creerNotifsAvecRefArticle($auteur, $letexte, $id);
             header("Location: ../article.php?id=$id");
         }
