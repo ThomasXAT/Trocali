@@ -276,6 +276,12 @@
         $statement = $db->prepare("SELECT COUNT(identifiant) FROM Article WHERE auteur != ? AND masque = 0");
         $statement->execute([$_SESSION["user"][0]]);
         return $statement->fetch()[0];
-		//TODO il faut pas mettre le fetch quand ya rien
+	}
+
+	function getNombreArticleUtilisateurPrecisV($user){
+		global $db;
+        $statement = $db->prepare("SELECT COUNT(identifiant) FROM Article WHERE auteur = ? AND masque = 0");
+        $statement->execute([$user]);
+        return $statement->fetch()[0];
 	}
 ?>
