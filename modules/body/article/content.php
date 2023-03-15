@@ -1,7 +1,7 @@
 <main>
 		<section>
             <article class="articleComplet">
-                <h2><?php print "$type"; $id = $_GET["id"];?> : <?php print "$title"; ?></h2>
+                <h2><?php print "$title"; ?> (<?php print "$type"; $id = $_GET["id"];?>)</h2>
                 <?php
                 print("<a href='./user.php?id=$id'id='auteur'>Auteur : $writer</a>")
                 ?>
@@ -9,7 +9,9 @@
                 <p id="categorie"><?php print "$category"; ?></p>
                 <p id="description">Description : <?php print "$description"; ?></p>
                 <p id="moyenPayement">Moyen de payement : <?php print "$means"; ?></p>
+                <?php if ($price == null) {$price = 0;}; ?>
                 <p id="prix">Prix : <?php print "$price"; ?>€</p>
+                <?php if ($barter == null) {$barter = "Indisponible";}; ?>
                 <p id="troc">Modalités de troc : <?php print "$barter"; ?></p>
                 <div class="listeImage">
                     <p> Images : </p>
