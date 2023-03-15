@@ -7,7 +7,7 @@ $id=$_GET["id"];
 ?>
     <main>
         <h2><?php $utilisateurCible = getAuteur($id); print($utilisateurCible); ?></h2>
-        <p>Moyenne : <?php  print(getMoyenneAvis($utilisateurCible));?></p>
+        <p>Moyenne : <?php  print(getMoyenneAvis($utilisateurCible));?>/10</p>
         <p> Nombre d'avis : <?php $nbAvis=getNombreAvis($utilisateurCible); print($nbAvis);?> </p>
         <?php 	
             if ($nbAvis != 0) {

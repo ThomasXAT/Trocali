@@ -221,7 +221,7 @@
 
 	function getMoyenneAvis($idutilisateur){
 		global $db;
-		$statement = $db->prepare("SELECT AVG(note) FROM Avis WHERE cible= ?");
+		$statement = $db->prepare("SELECT ROUND(AVG(note) ,1) FROM Avis WHERE cible= ?");
 		    $statement->execute([$idutilisateur]);
 			
 			return $nb=$statement->fetch()[0];
@@ -235,11 +235,11 @@
 	}
 
 	function afficherAvis($id){
-		print "<article class='avis'>";		
-		print ("<h3>" .getRedacteur($id) ."</h3>");
-		print ("<p>Note :" . getNoteAvis($id) . "</p>" );
+		print "<article class='avis'>";	
+		print ("<p> Auteur : " .getRedacteur($id) ."</p>");	
 		print ("<p> Publié le : ". getDateAvis($id) . "</p>");
-		print ("<p>". getTexteAvis($id) . "</p>");
+		print ("<h3>Note : " . getNoteAvis($id) . "/10</h3>" );
+		print ("<h5> Description de l'avis : ". getTexteAvis($id) . "</h5>");
 		print ("</article>");
 	}
 
@@ -273,8 +273,9 @@
 
 	function getNombreArticleUtilisateurPrecis(){
 		global $db;
-        $statement = $db->prepare("SELECT COUNT(identifiant)FROM Article WHERE auteur != ? AND masque = 0 GROUP BY auteur");
+        $statement = $db->prepare("SELECT COUNT(identifiant) FROM Article WHERE auteur != ? AND masque = 0");
         $statement->execute([$_SESSION["user"][0]]);
         return $statement->fetch()[0];
+		//TODO il faut pas mettre le fetch quand ya rien
 	}
 ?>

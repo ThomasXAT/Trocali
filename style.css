@@ -244,10 +244,71 @@ header nav {
 
 /*---Main----------------------------------------------------------------------------------------------------------------------------------*/
 
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
 main {
     text-align: center;   
     font-family: 'Roboto', sans-serif;
-}   
+    flex-grow: 1
+}
+
+
+.button {
+    background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+    border-color: #adb1b8 #a2a6ac #8d9096;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Amazon Ember",Arial,sans-serif;
+    font-size: 14px;
+    height: 29px;
+    font-size: 13px;
+    text-underline-offset: none;
+    outline: 0;
+    overflow: hidden;
+    padding: 5px 11px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    vertical-align:bottom ;
+  }
+  
+  .button:active {
+    border-bottom-color: #a2a6ac;
+  }
+  
+  .button:active:hover {
+    border-bottom-color: #a2a6ac;
+  }
+  
+  .button:hover {
+    border-color: #a2a6ac #979aa1 #82858a;
+  }
+  
+  .button:focus {
+    border-color: #e77600;
+    box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+    outline: 0;
+  }
+
 
 .btn-info {
     color: #fff;
@@ -298,12 +359,12 @@ h2 {
 
 .avis {
     display: grid;
-    grid-template-columns: 40% 60%;
-    grid-template-rows: 250px 0px;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50px 200px;
     width : 700px;
     text-align: center;
     border: 1px solid black;
-    background-color: greenyellow;
+    background-color: lightgray;
     margin: auto;
     align-items: center;
     justify-items: center;
@@ -319,4 +380,11 @@ h2 {
     grid-row: 1;
     align-self: end;
 
+}
+
+footer{
+    background-color: grey;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Optima, sans-serif;
 }
