@@ -51,11 +51,16 @@
 		<section class="articles align-items-center">
 			<form class="text-center">
 			<?php
+			$compteur=0;
 			extract($_POST,EXTR_OVERWRITE);		
 			if (isset($recherche) && $recherche != "") {
 				foreach (rechercher($recherche, $categorie) as $article) {
 					afficherArticle($article);
 					print "<br /><br />";
+					if ($compteur>=10){
+						break;
+					}
+					$compteur=$compteur+1;
 				}
 			}
 			else {
@@ -65,10 +70,20 @@
 							print "<p>Derniers articles ($nombreArticles1)</p><br />\n"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
 						$statement = $db->prepare("SELECT Identifiant, Titre, Masque FROM Article WHERE Masque = 0 ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
 						$statement->execute();
-						}
-						else {
-							print "<p>Aucun article n'a encore été publié...</p>\n";
-						}
+						
+						while ($resu= $statement->fetch()){ // On parcourt le résultat et on l'affiche
+							$identifiant = $resu['Identifiant'];
+							afficherArticle($identifiant);
+							print "<br /><br />";
+							if ($compteur>=10){
+								break;
+							}	
+							$compteur=$compteur+1;
+							}
+							}
+							else {
+								print "<p>Aucun article n'a encore été publié...</p>\n";
+							}
 					}
 					else {
 						$nombreArticles2 = getNombreArticleUtilisateurPrecis();
@@ -76,22 +91,23 @@
 							print "<p>Derniers articles ($nombreArticles2)</p><br />\n"; // On présente le fait qu'on va mettre les derniers articles publiés en dessous
 							$statement = $db->prepare("SELECT Identifiant, Titre, Auteur, Masque FROM Article WHERE Auteur != ? AND Masque = 0 ORDER BY datePublication DESC"); // On va chercher les titres des articles dans l'ordre décroissant de publication
 							$statement->execute([$_SESSION["user"][0]]);
+							
+						while ($resu= $statement->fetch()){ // On parcourt le résultat et on l'affiche
+							$identifiant = $resu['Identifiant'];
+							afficherArticle($identifiant);
+							print "<br /><br />";
+							if ($compteur>=10){
+								break;
+							}
+							$compteur=$compteur+1;
+					}
 						}
 						else {
 							print "<p>Aucun article n'a encore été publié...</p>\n";
 						}
 					}
 				}
-					$compteur=0;
-					while ($resu= $statement->fetch()){ // On parcourt le résultat et on l'affiche
-						$identifiant = $resu['Identifiant'];
-						afficherArticle($identifiant);
-						print "<br /><br />";
-					if ($compteur>=10){
-						break;
-					}
-					$compteur=$compteur+1;
-					}
+					
 
 
 			?>
